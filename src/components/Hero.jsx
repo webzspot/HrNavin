@@ -60,7 +60,15 @@ const Hero = () => {
 
         <h1 className="text-3xl md:text-7xl font-bold leading-normal">
           Become a job ready IT <br /> HR in{" "}
-          <span className="bg-lime-400 text-black px-3 py-1 rounded-xl">
+          <span  className="
+    inline-block
+    rotate-[-6deg]
+    bg-lime-400
+    text-black
+    px-3 py-0
+    rounded-xl
+  "
+  >
             60
           </span>{" "}
           Days
@@ -97,7 +105,7 @@ const Hero = () => {
 
         {/* CTA */}
         <div className="inline-block p-[1.5px] rounded-xl mt-5 bg-gradient-to-r from-[#FFF0F0] to-transparent">
-          <button className="bg-[#4043FE] hover:bg-indigo-600 px-8 py-3 rounded-xl flex items-center gap-2 text-white">
+          <button className="bg-[#4043FE] hover:bg-indigo-600 px-8 py-3 rounded-xl lg:text-xl flex items-center gap-2 text-white">
             Book Your Seat Now <ArrowUpRight size={18} />
           </button>
         </div>
@@ -126,39 +134,85 @@ bg-gradient-to-l from-[#020617] to-transparent z-20"></div>
           }}
         >
           {loopMentors.map((mentor, index) => (
-            <div
-              key={index}
-              className="min-w-[240px] p-[1px] rounded-2xl 
-              bg-gradient-to-b from-white/40 to-white/10 
-              shadow-[0_0_20px_rgba(255,255,255,0.1)]"
-            >
-              <div className="rounded-2xl bg-white/5 backdrop-blur-xl p-3">
+        <div
+  key={index}
+  className="
+  min-w-[240px]
+  rounded-[30px]
+  p-[3px]
+  bg-[#8B90A3]
+  shadow-[0_0_25px_rgba(255,255,255,0.12)]
+"
+>
+  {/* SECOND BORDER */}
+  <div
+    className="
+    rounded-[27px]
+    p-[2px]
+    bg-[#C7CBD6]
+  "
+  >
+    {/* INNER DARK GAP */}
+    <div
+      className="
+      rounded-[24px]
+      bg-[#4A5064]
+      p-2
+    "
+    >
+      {/* CARD */}
+      <div className="relative rounded-[20px] overflow-hidden">
 
-                <div className="relative rounded-xl overflow-hidden">
+        {/* BG */}
+        <div
+          className={`absolute inset-0 bg-gradient-to-b ${mentor.bg}`}
+        ></div>
 
-                  <div className={`absolute inset-0 bg-gradient-to-b ${mentor.bg}`}></div>
+        {/* IMAGE CENTER */}
+        <div className="relative z-10 flex justify-center items-end h-[200px] lg:h-[260px]">
+          <img
+            src={mentor.img}
+            alt={mentor.name}
+            className="h-full object-contain object-bottom"
+          />
+        </div>
 
-                  <img
-                    src={mentor.img}
-                    alt={mentor.name}
-                    className="relative z-10 w-44 h-44 object-cover"
-                  />
+        {/* OVERLAY */}
+        <div
+          className="
+          absolute inset-0 z-10
+          bg-gradient-to-t
+          from-black via-black/40 to-transparent
+        "
+        ></div>
 
-                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/95 via-black/40 via-60% to-transparent"></div>
+        {/* CONTENT */}
+        <div className="absolute bottom-4 left-4 right-4 z-20 flex justify-between items-end">
 
-                  <div className="absolute bottom-3 left-3 z-20">
-                    <h3 className="font-semibold text-sm text-white">{mentor.name}</h3>
-                    <p className="text-xs text-gray-200">{mentor.role}</p>
-                    <p className="text-xs text-gray-300">{mentor.exp}</p>
-                  </div>
+          <div>
+            <h3 className="text-white text-sm  font-medium">
+              {mentor.name}
+            </h3>
 
-                </div>
+            <p className="text-white text-sm leading-tight">
+              {mentor.role}
+            </p>
 
-                <p className="text-xs mt-2 text-right text-gray-300">
-                  {mentor.company}
-                </p>
-              </div>
-            </div>
+            <p className="text-white italic lg:text-xs">
+              {mentor.exp}
+            </p>
+          </div>
+
+          <p className="text-white text-sm whitespace-nowrap">
+            {mentor.company}
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
           ))}
         </motion.div>
       </div>

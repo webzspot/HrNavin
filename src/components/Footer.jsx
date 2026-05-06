@@ -38,7 +38,8 @@ export default function CTASection() {
 
           {/* GLOW BOX */}
           <span className="relative inline-block">
-            <span className="relative z-10 bg-lime-400 text-black px-3 py-1 rounded-xl font-bold">
+            <span className="relative z-10 bg-lime-400 inline-block
+      rotate-[6deg] text-black px-3 py-4 rounded-xl font-bold">
               60
             </span>
 

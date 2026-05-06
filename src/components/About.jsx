@@ -3,76 +3,76 @@ import { ArrowRight } from "lucide-react";
 
 const AboutSection = () => {
   const mentors = [
-  {
-    name: "Navin",
-    role: "IT Recruitment & HR Career Strategy",
-    exp: "8+ Years",
-    img: "/images/m1.png",
-    bg: "from-purple-400 to-purple-700",
-  },
-  {
-    name: "Ramya",
-    role: "Communication & Confidence Building",
-    exp: "8+ Years",
-    img: "/images/m2.png",
-    bg: "from-blue-400 to-blue-700",
-  },
-  {
-    name: "Melvin",
-    role: "IT Recruitment (End-To-End)",
-    exp: "8+ Years",
-    img: "/images/m3.png",
-    bg: "from-yellow-300 to-yellow-500",
-  },
-  {
-    name: "Sangeetha",
-    role: "HR Generalist, Payroll & Compliance",
-    exp: "8+ Years",
-    img: "/images/m4.png",
-    bg: "from-green-400 to-green-600",
-  },
-];
+    {
+      name: "Navin",
+      role: "IT Recruitment & HR Career Strategy",
+      exp: "8+ Years",
+      img: "/images/m1.png",
+      bg: "from-purple-400 to-purple-700",
+    },
+    {
+      name: "Ramya",
+      role: "Communication & Confidence Building",
+      exp: "8+ Years",
+      img: "/images/m2.png",
+      bg: "from-blue-400 to-blue-700",
+    },
+    {
+      name: "Melvin",
+      role: "IT Recruitment (End-To-End)",
+      exp: "8+ Years",
+      img: "/images/m3.png",
+      bg: "from-yellow-300 to-yellow-500",
+    },
+    {
+      name: "Sangeetha",
+      role: "HR Generalist, Payroll & Compliance",
+      exp: "8+ Years",
+      img: "/images/m4.png",
+      bg: "from-green-400 to-green-600",
+    },
+  ];
 
-const loopMentors = [...mentors, ...mentors];
+  const loopMentors = [...mentors, ...mentors];
   return (
     <>
       <section className=" lg:py-16 py-10 ">
         <div className="max-w-7xl container px-4 mx-auto">
 
           {/* TOP ROW */}
-          <div className="grid md:grid-cols-12 gap-6 items-start">
+          <div className="grid lg:grid-cols-12 gap-6 items-start">
 
             {/* Badge (left small) */}
-            <div className="md:col-span-3 flex items-center gap-2 text-sm text-gray-600">
-              <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+            <div className="lg:col-span-3 flex items-center gap-2 text-gray-600">
+              <span className="w-2 h-2 bg-orange-500 lg:text-lg rounded-full"></span>
               <span>About HR Learners Hub</span>
             </div>
 
             {/* Heading (right large) */}
-            <div className="md:col-span-9">
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-snug">
+            <div className="lg:col-span-9">
+              <h2 className="text-2xl lg:text-3xl  text-gray-900 leading-snug">
                 We empower aspiring HR professionals with real-world IT hiring
                 skills beyond classroom learning.
               </h2>
-              <div className="grid md:grid-cols-12 gap-6 mt-12  items-start">
+              <div className="grid lg:grid-cols-12 gap-6 mt-12  items-start">
 
                 {/* Stats */}
-                <div className="md:col-span-6 flex gap-16 md:border-r md:border-b lg:border-b-0 border-[#E9E9E9] py-5">
+                <div className="lg:col-span-6 flex gap-16 lg:border-r border-b lg:border-b-0 border-[#E9E9E9] py-5">
 
                   {/* Stat 1 */}
                   <div>
-                    <h3 className="text-5xl font-bold text-black">
-                      550<span className="text-xl align-top ml-1">+</span>
+                    <h3 className="text-5xl lg:text-7xl font-bold text-black">
+                      550<span className="text-3xl align-top ml-1">+</span>
                     </h3>
-                    <p className="text-sm text-gray-600 mt-2">
+                    <p className=" text-gray-600 mt-2">
                       Students Trained
                     </p>
                   </div>
 
                   {/* Stat 2 */}
                   <div>
-                    <h3 className="text-5xl font-bold text-black">
-                      250<span className="text-xl align-top ml-1">+</span>
+                    <h3 className=" text-5xl lg:text-7xl font-bold text-black">
+                      250<span className="text-2xl align-top ml-1">+</span>
                     </h3>
                     <p className="text-sm text-gray-600 mt-2">
                       Students Trained
@@ -109,12 +109,12 @@ const loopMentors = [...mentors, ...mentors];
 
         </div>
       </section>
-      <section className="container py-10 lg:py-20 px-4">
+      <section className="container mx-auto py-10 lg:py-20 px-4">
         <div className="max-w-7xl mx-auto">
 
           {/* Badge */}
           <div className="flex items-center gap-2  text-gray-600 mb-10">
-            <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+            <span className="w-2 h-2 bg-orange-500 lg:text-lg rounded-full"></span>
             <span>REAL TALK (Why Most HR Aspirants Fail)</span>
           </div>
 
@@ -132,7 +132,7 @@ const loopMentors = [...mentors, ...mentors];
             {/* BLACK CARD */}
             <div className="relative ">
               <div className="flex flex-col lg:flex-row gap-10 justify-between 
-        bg-gradient-to-br from-[#2b2b2b] to-[#1a1a1a] 
+        bg-[#272727]
         rounded-3xl p-5 py-6 md:p-14 text-white shadow-xl lg:pr-14">
 
                 {/* LEFT */}
@@ -145,19 +145,19 @@ const loopMentors = [...mentors, ...mentors];
 
                   <ul className="space-y-5 text-gray-300">
                     <li className="flex md:text-xl gap-3 items-start">
-                      <img src='https://ik.imagekit.io/psltlu4ds/HR%20navin/SVG.png' className="w-5 h-5 mt-1" />
+                      <img src='https://ik.imagekit.io/psltlu4ds/HR%20navin/SVG.png' className="w-5 h-5 lg:w-8 lg:h-8 mt-1" />
                       Too much theory, no real HR work
                     </li>
                     <li className="flex md:text-xl gap-3 items-start">
-                      <img src='https://ik.imagekit.io/psltlu4ds/HR%20navin/SVG.png' className="w-5 h-5 mt-1" />
+                      <img src='https://ik.imagekit.io/psltlu4ds/HR%20navin/SVG.png' className="w-5 h-5 lg:w-8 lg:h-8  mt-1" />
                       No understanding of IT recruitment process
                     </li>
                     <li className="flex md:text-xl gap-3 items-start">
-                      <img src='https://ik.imagekit.io/psltlu4ds/HR%20navin/SVG.png' className="w-5 h-5 mt-1" />
+                      <img src='https://ik.imagekit.io/psltlu4ds/HR%20navin/SVG.png' className="w-5 h-5 lg:w-8 lg:h-8  mt-1" />
                       Weak communication & interview fear
                     </li>
                     <li className="flex md:text-xl gap-3 items-start">
-                      <img src='https://ik.imagekit.io/psltlu4ds/HR%20navin/SVG.png' className="w-5 h-5 mt-1" />
+                      <img src='https://ik.imagekit.io/psltlu4ds/HR%20navin/SVG.png' className="w-5 h-5 lg:w-8 lg:h-8  mt-1" />
                       Certificates but no practical confidence
                     </li>
                   </ul>
@@ -165,7 +165,7 @@ const loopMentors = [...mentors, ...mentors];
 
                 {/* RIGHT CONTENT */}
                 <div className="relative z-30 
-          bg-gradient-to-br from-[#0b0f3c] to-[#3b3bf6] 
+          border-4  lg:border-none
           lg:bg-none px-6 py-6 lg:px-0 lg:py-0 rounded-xl lg:w-[40%]">
 
                   <h2 className="text-2xl md:text-5xl leading-snug font-semibold mb-8">
@@ -214,7 +214,7 @@ const loopMentors = [...mentors, ...mentors];
               {/* INNER BLUE CARD */}
               <div
                 className="
-  w-full h-full
+  w-full h-full 
   rounded-2xl
   bg-[radial-gradient(circle_at_center,#282FE0_0%,#020C32_100%)]
 "
@@ -226,7 +226,7 @@ const loopMentors = [...mentors, ...mentors];
           {/* Bottom Text */}
           <p className="text-center text-gray-700 mt-10 lg:mt-20  text-lg lg:text-3xl">
             You don’t feel like a{" "}
-            <span className="text-blue-600 font-medium">
+            <span className="text-[#2A74DB] font-medium">
               fresher in interviews.
             </span>
           </p>
@@ -236,60 +236,71 @@ const loopMentors = [...mentors, ...mentors];
 
       <section className="relative py-10 lg:py-20 px-4 overflow-hidden">
 
-      {/* Background Image */}
-      <img
-        src='https://ik.imagekit.io/psltlu4ds/HR%20navin/image%20207994.png'
-        alt="background"
-        className="absolute inset-0 w-full h-full object-cover opacity-40 z-0"
-      />
+        {/* Background Image */}
+        <img
+          src='https://ik.imagekit.io/psltlu4ds/HR%20navin/image%20207994.png'
+          alt="background"
+          className="absolute inset-0 w-full h-full object-cover  z-0"
+        />
 
-      {/* Content */}
-      <div className="relative z-10 container max-w-4xl mx-auto text-center">
+        {/* Content */}
+        <div className="relative z-10 container max-w-4xl mx-auto text-center">
 
-        {/* Badge */}
-        <div className="flex justify-center items-center gap-2 text-sm text-gray-600 mb-6">
-          <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
-          <span>Our Promise</span>
-        </div>
+          {/* Badge */}
+          <div className="flex justify-center items-center gap-2  text-sm lg:text-lg text-gray-600 mb-6">
+            <span className="w-2 h-2 bg-orange-500 lg:text-lg rounded-full"></span>
+            <span>Our Promise</span>
+          </div>
 
-        {/* Heading Wrapper */}
-        <div className="relative inline-block">
+          {/* Heading Wrapper */}
+          <div className="relative inline-block">
 
-          {/* Curve Line (Left) */}
-          <img
-            src='https://ik.imagekit.io/psltlu4ds/HR%20navin/Vector%20(2).png'
-            alt="curve"
-            className="hidden md:block absolute -left-5 top-30 w-12 opacity-80"
-          />
+            {/* Curve Line (Left) */}
+            <img
+              src='https://ik.imagekit.io/psltlu4ds/HR%20navin/Vector%20(2).png'
+              alt="curve"
+              className="hidden md:block absolute -left-5 top-30 w-12 opacity-80"
+            />
 
-          {/* Heading */}
-          <h2 className="text-2xl md:text-[40px]  font-bold leading-snug text-gray-800">
-            If You Follow Our Process For{" "}
-            <span className="relative inline-block">
+            {/* Heading */}
+            <h2 className="text-2xl md:text-[40px]  font-extrabold leading-relaxed lg:leading-snug text-gray-800">
+              If You Follow Our Process For{" "}
+              <span className="relative inline-block">
 
-              {/* Floating Badge */}
-              <span className="  
-              bg-blue-500 text-white text-sm md:text-lg px-4 py-1 
-              rounded-xl shadow-lg rotate-6">
-                60 Days
+                {/* Floating Badge */}
+             <span
+  className="
+  inline-block
+  rotate-6
+  bg-[#2A74DB]
+  text-white
+  text-2xl
+  md:text-[40px]
+  px-4
+  py-2
+  rounded-lg
+  shadow-[0_0_35px_rgba(42,116,219,0.7)]
+"
+>
+  60 Days
+</span>
+
+
               </span>
+              , You'll Be Interview-Ready, Industry-Ready, And Job-Ready.
+            </h2>
+          </div>
 
-              
+          {/* Subtext */}
+          <p className="mt-8 text-lg md:text-xl text-gray-700">
+            We Don't Promise Shortcuts.{" "}
+            <span className="text-blue-600 font-medium">
+              We Promise Transformation.
             </span>
-            , You'll Be Interview-Ready, Industry-Ready, And Job-Ready.
-          </h2>
+          </p>
+
         </div>
-
-        {/* Subtext */}
-        <p className="mt-8 text-lg md:text-xl text-gray-700">
-          We Don't Promise Shortcuts.{" "}
-          <span className="text-blue-600 font-medium">
-            We Promise Transformation.
-          </span>
-        </p>
-
-      </div>
-    </section>
+      </section>
     </>
   );
 };
