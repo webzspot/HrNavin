@@ -204,8 +204,8 @@ export default function CoverflowCarousel() {
 
   return (
     <>
-       <section  className="py-12 container mx-auto px-4 relative">
-      <div className=" mb-12 z-40">
+       <section  className="py-12 container max-w-7xl  mx-auto px-4 relative">
+      <div className=" mb-12  z-40">
         <h2 className=" text-3xl lg:text-5xl font-semibold ">Learn From Multiple Mentors</h2>
         <p className="text-gray-400 mt-2 font-light">Across 60 days, 7–8 working HR professionals guide you.</p>
       </div>
@@ -322,7 +322,7 @@ export default function CoverflowCarousel() {
               y: secondCardY,
               scale: secondCardScale,
             }}
-            className="relative z-30 w-full mt-20 md:mt-1"
+            className="relative z-30 w-full mt-20 md:mt-12"
           >
 
             <div className="bg-[#B1E635] rounded-2xl p-6 md:px-8 md:py-14 shadow-xl">
@@ -370,130 +370,161 @@ export default function CoverflowCarousel() {
     </section>
 
  <div className="bg-white py-16 select-none">
-        {/* ══ DESKTOP ══ */}
-        <div className="hidden sm:flex gap-6 px-8 py-10 max-w-7xl mx-auto items-start">
-          {/* LEFT GROUP */}
-          <div className="flex flex-col gap-4 flex-shrink-0" style={{ width: 390 }}>
-            {/* Heading + stars */}
-            <div>
-              <div className="flex items-start gap-2 mb-3">
-                <h2 className="text-[2.25rem] font-extrabold leading-[1.1] m-0 text-gray-950">
-                  Real People<br />Real Result.
-                </h2>
-                <div className="pt-1">
-                  <AvatarStack size={40} />
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold text-gray-900">Excellent</span>
-                <div className="flex gap-[3px]">
-                  {[...Array(5)].map((_, i) => <TpStar key={i} size={22} />)}
-                </div>
-                <span className="text-sm text-gray-900 underline cursor-pointer font-medium">
-                  500+ reviews
-                </span>
-              </div>
-            </div>
+  {/* ══ DESKTOP ══ */}
+  <div className="hidden sm:flex justify-center gap-4 px-6 py-10 max-w-7xl mx-auto items-start">
+    
+    {/* LEFT CONTENT */}
+    <div className="flex relative  flex-col gap-5 w-[260px] lg:w-[300px] xl:w-[320px]">
+      
+      {/* Heading */}
+      <div className="absolute -top-0">
+        <div className="flex items-start gap-2 mb-3">
+          <h2 className="text-[2.25rem] font-extrabold whitespace-nowrap leading-[1.1] m-0 text-gray-950">
+            Real People
+            <br />
+            Real Result.
+          </h2>
 
-            {/* Cards: tall left + medium right */}
-            <div className="flex gap-3 items-end w-full">
-
-    <div className="flex-1 w-12 lg:w-60">
-      <VideoCard
-        imgSrc={imgs[0]}
-       height={440}
-        playPos="bottom-left"
-      />
-    </div>
-
-    <div className="flex-1 w-12 lg:w-60">
-      <VideoCard
-        imgSrc={imgs[1]}
-       height={315}
-        playPos="center"
-      />
-    </div>
-
-  </div>
+          <div className="pt-1">
+            <AvatarStack size={40} />
           </div>
-
-          {/* RIGHT GROUP */}
-          <div className="flex justify-end gap-3 items-start flex-1">
-
-  <div className=" w-12 lg:w-60">
-    <VideoCard
-      imgSrc={imgs[2]}
-      height={440}
-      playPos="center-low"
-    />
-  </div>
-
-  <div className="  w-12 lg:w-60 mt-16">
-    <VideoCard
-      imgSrc={imgs[3]}
-      height={315}
-      playPos="center"
-    />
-  </div>
-
-</div>
         </div>
 
-        {/* ══ MOBILE ══ */}
-        <div className="sm:hidden px-5 pt-6 pb-5">
-          <div className="mb-4">
-            <div className="flex items-start gap-2 mb-2.5">
-              <h2 className="text-[1.65rem] font-extrabold leading-[1.15] m-0 text-gray-950">
-                Real People<br />Real Result.
-              </h2>
-              <div className="pt-1">
-                <AvatarStack size={32} />
-              </div>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold text-gray-900">Excellent</span>
-              <div className="flex gap-[2px]">
-                {[...Array(5)].map((_, i) => <TpStar key={i} size={19} />)}
-              </div>
-              <span className="text-sm text-gray-900 underline cursor-pointer font-medium">
-                500+ reviews
-              </span>
-            </div>
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-semibold text-gray-900">
+            Excellent
+          </span>
+
+          <div className="flex gap-[3px]">
+            {[...Array(5)].map((_, i) => (
+              <TpStar key={i} size={22} />
+            ))}
           </div>
 
-          <div className="flex gap-3 items-end">
-            <VideoCard
-              imgSrc={imgs[pair[0]]} 
-              width={170} height={248}
-              playPos="bottom-left"
-            />
-            <VideoCard
-              imgSrc={imgs[pair[1]]} 
-              width={150} height={205}
-              playPos="center"
-              className="self-start mt-10"
-            />
-          </div>
-
-          <div className="flex justify-end gap-2 mt-3">
-            <button
-              onClick={() => setSlide(s => (s - 1 + mPairs.length) % mPairs.length)}
-              className="w-9 h-9 rounded-full border border-gray-300 bg-white flex items-center justify-center hover:border-gray-800 transition-colors cursor-pointer"
-            >
-              <FiArrowLeft size={15} color="#111" />
-            </button>
-            <button
-              onClick={() => setSlide(s => (s + 1) % mPairs.length)}
-              className="w-9 h-9 rounded-full border border-gray-300 bg-white flex items-center justify-center hover:border-gray-800 transition-colors cursor-pointer"
-            >
-              <FiArrowRight size={15} color="#111" />
-            </button>
-          </div>
+          <span className="text-sm text-gray-900 underline cursor-pointer font-medium">
+            500+ reviews
+          </span>
         </div>
       </div>
 
+      {/* FIRST CARD */}
+      <div className="w-full mt-32">
+        <VideoCard
+          imgSrc={imgs[0]}
+          height={440}
+          width="100%"
+          playPos="bottom-left"
+          className="w-full"
+        />
+      </div>
+    </div>
 
-      <section className="bg-[#f4f4f4] py-16 px-4">
+    {/* CENTER CARD */}
+   {/* CENTER CARD */}
+<div className="w-[260px] lg:w-[300px] xl:w-[320px] flex justify-end self-end">
+  <VideoCard
+    imgSrc={imgs[1]}
+    height={315}
+    width="100%"
+    playPos="center"
+    className="w-full"
+  />
+</div>
+
+    {/* RIGHT CARD */}
+    <div className="w-[260px] lg:w-[300px] xl:w-[320px]">
+      <VideoCard
+        imgSrc={imgs[2]}
+        height={440}
+        width="100%"
+        playPos="center-low"
+        className="w-full"
+      />
+    </div>
+
+    {/* LAST CARD */}
+    <div className="w-[260px] lg:w-[300px] xl:w-[320px] flex justify-start self-start mt-20">
+      <VideoCard
+        imgSrc={imgs[3]}
+        height={315}
+        width="100%"
+        playPos="center"
+        className="w-full"
+      />
+    </div>
+  </div>
+
+  {/* ══ MOBILE ══ */}
+  <div className="sm:hidden px-5 pt-6 pb-5">
+    <div className="mb-4">
+      <div className="flex items-start gap-2 mb-2.5">
+        <h2 className="text-[1.65rem] font-extrabold  leading-[1.15] m-0 text-gray-950">
+          Real People
+          <br />
+          Real Result.
+        </h2>
+
+        <div className="pt-1">
+          <AvatarStack size={32} />
+        </div>
+      </div>
+
+      <div className="flex items-center gap-1.5">
+        <span className="text-sm font-semibold text-gray-900">
+          Excellent
+        </span>
+
+        <div className="flex gap-[2px]">
+          {[...Array(5)].map((_, i) => (
+            <TpStar key={i} size={19} />
+          ))}
+        </div>
+
+        <span className="text-sm text-gray-900 underline cursor-pointer font-medium">
+          500+ reviews
+        </span>
+      </div>
+    </div>
+
+   <div className="flex gap-3 items-end justify-center">
+  <VideoCard
+    imgSrc={imgs[pair[0]]}
+    width={170}
+    height={248}
+    playPos="bottom-left"
+  />
+
+  <VideoCard
+    imgSrc={imgs[pair[1]]}
+    width={170}
+    height={205}
+    playPos="center"
+    className="self-start mt-10"
+  />
+</div>
+
+    <div className="flex justify-end gap-2 mt-3">
+      <button
+        onClick={() =>
+          setSlide((s) => (s - 1 + mPairs.length) % mPairs.length)
+        }
+        className="w-9 h-9 rounded-full border border-gray-300 bg-white flex items-center justify-center hover:border-gray-800 transition-colors cursor-pointer"
+      >
+        <FiArrowLeft size={15} color="#111" />
+      </button>
+
+      <button
+        onClick={() => setSlide((s) => (s + 1) % mPairs.length)}
+        className="w-9 h-9 rounded-full border border-gray-300 bg-white flex items-center justify-center hover:border-gray-800 transition-colors cursor-pointer"
+      >
+        <FiArrowRight size={15} color="#111" />
+      </button>
+    </div>
+  </div>
+</div>
+
+
+      <section id="pricing" className="bg-[#f4f4f4] scroll-mt-12 lg:py-16 px-4">
         <div className="max-w-7xl container mx-auto">
           <h2 className="text-center text-3xl md:text-5xl font-bold mb-10 text-gray-800">
             Pricing That Removes Fear

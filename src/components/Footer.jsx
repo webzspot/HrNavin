@@ -7,7 +7,7 @@ import { FaQuoteRight } from "react-icons/fa";
 
 export default function CTASection() {
   return (
-    <section className="relative overflow-hidden text-white py-24 px-4">
+    <section id="career" className="relative overflow-hidden scroll-mt-12 text-white py-24 px-4">
 
       {/* 🔥 BACKGROUND IMAGE */}
       <img

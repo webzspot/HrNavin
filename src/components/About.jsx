@@ -36,7 +36,7 @@ const AboutSection = () => {
   const loopMentors = [...mentors, ...mentors];
   return (
     <>
-      <section className=" lg:py-16 py-10 ">
+      <section id="company"  className=" lg:py-16 scroll-mt-12 py-10 ">
         <div className="max-w-7xl container px-4 mx-auto">
 
           {/* TOP ROW */}
@@ -109,7 +109,7 @@ const AboutSection = () => {
 
         </div>
       </section>
-      <section className="container mx-auto py-10 lg:py-20 px-4">
+      <section id="feature" className="container scroll-mt-12 mx-auto py-10 lg:py-20 px-4">
         <div className="max-w-7xl mx-auto">
 
           {/* Badge */}
@@ -234,7 +234,7 @@ const AboutSection = () => {
         </div>
       </section>
 
-      <section className="relative py-10 lg:py-20 px-4 overflow-hidden">
+      <section  className="relative py-10  lg:py-20 px-4 overflow-hidden">
 
         {/* Background Image */}
         <img

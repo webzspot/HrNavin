@@ -42,7 +42,7 @@ const loopMentors = [...mentors, ...mentors];
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden text-white px-4 pt-24 pb-16">
+    <section id="home" className="relative overflow-hidden  text-white px-4 pt-24 pb-16">
 
       {/* Background */}
       <img
@@ -65,6 +65,8 @@ const Hero = () => {
     rotate-[-6deg]
     bg-lime-400
     text-black
+    shadow-xl
+    shadow-lime-400
     px-3 py-0
     rounded-xl
   "

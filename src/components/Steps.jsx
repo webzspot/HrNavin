@@ -381,11 +381,8 @@ useEffect(() => {
 
   return (
     <div
-      className="w-full overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg,#010897 0%,#010a7e 38%,#020B32 100%)",
-      }}
+      className="w-full overflow-hidden rounded-b-4xl bg-gradient-to-t from-[#020B32] to-[#010897]" 
+      
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 pt-14 md:pt-20">
         <h1
