@@ -1,18 +1,79 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("home");
+
+  const navItems = [
+    { id: "home", label: "Home" },
+    { id: "company", label: "Company" },
+    { id: "feature", label: "Feature" },
+    { id: "pricing", label: "Pricing" },
+    { id: "career", label: "Career" },
+  ];
+
+  // SCROLL TO SECTION
+  const handleScroll = (id) => {
+    const section = document.getElementById(id);
+
+    if (section) {
+      const navbarHeight = 90;
+
+      const sectionTop =
+        section.offsetTop - navbarHeight;
+
+      window.scrollTo({
+        top: sectionTop,
+        behavior: "smooth",
+      });
+
+      setActive(id);
+    }
+
+    setOpen(false);
+  };
+
+  // AUTO ACTIVE NAV ON SCROLL
+ useEffect(() => {
+  const handleActiveSection = () => {
+    const sections = navItems.map((item) =>
+      document.getElementById(item.id)
+    );
+
+    const scrollY = window.scrollY;
+
+    sections.forEach((section) => {
+      if (!section) return;
+
+      const sectionTop = section.offsetTop - 120;
+      const sectionHeight = section.offsetHeight;
+
+      if (
+        scrollY >= sectionTop &&
+        scrollY < sectionTop + sectionHeight
+      ) {
+        setActive(section.id);
+      }
+    });
+  };
+
+  window.addEventListener("scroll", handleActiveSection);
+
+  return () => {
+    window.removeEventListener("scroll", handleActiveSection);
+  };
+}, []);
 
   return (
-    <header className="fixed top-0 left-0 bg-[#01071999] backdrop-blur-md w-full z-50">
+    <header className="fixed top-0 left-0 bg-[#01071999] backdrop-blur-2xl w-full z-50">
 
       {/* NAVBAR */}
       <div className="max-w-7xl mx-auto px-4 py-1.5 flex items-center justify-between">
 
         {/* LOGO */}
-        <a
-          href="#home"
+        <button
+          onClick={() => handleScroll("home")}
           className="w-16 h-16 flex items-center justify-center"
         >
           <img
@@ -20,45 +81,34 @@ const Navbar = () => {
             alt="logo"
             className="w-full h-full object-contain"
           />
-        </a>
+        </button>
 
         {/* DESKTOP MENU */}
-        <nav className="hidden md:flex items-center gap-8 text-white/80 text-sm">
+        <nav className="hidden md:flex items-center gap-8 text-sm">
 
-          <a
-            href="#home"
-            className="hover:text-white transition"
-          >
-            Home
-          </a>
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleScroll(item.id)}
+              className={`relative transition font-medium pb-2 ${
+                active === item.id
+                  ? "text-[#010897]"
+                  : "text-white/70 hover:text-white"
+              }`}
+            >
+              {item.label}
 
-          <a
-            href="#company"
-            className="hover:text-white transition"
-          >
-            Company
-          </a>
+              {/* SCALE LINE */}
+              <span
+                className={`absolute left-0 -bottom-0.5 h-[2px] bg-[#010897] rounded-full transition-all duration-300 origin-left ${
+                  active === item.id
+                    ? "w-full scale-x-100"
+                    : "w-full scale-x-0"
+                }`}
+              ></span>
+            </button>
+          ))}
 
-          <a
-            href="#feature"
-            className="hover:text-white transition"
-          >
-            Feature
-          </a>
-
-          <a
-            href="#pricing"
-            className="hover:text-white transition"
-          >
-            Pricing
-          </a>
-
-          <a
-            href="#career"
-            className="hover:text-white transition"
-          >
-            Career
-          </a>
         </nav>
 
         {/* DESKTOP BUTTON */}
@@ -77,7 +127,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* SMALL SIDE NAV */}
+      {/* MOBILE NAV */}
       <div
         className={`fixed top-4 right-4 w-[240px] rounded-2xl
         bg-[#0b0f2a]/95 backdrop-blur-xl border border-white/10
@@ -101,45 +151,28 @@ const Navbar = () => {
         {/* LINKS */}
         <nav className="flex flex-col p-4 text-sm">
 
-          <a
-            href="#home"
-            onClick={() => setOpen(false)}
-            className="py-3 border-b border-white/5 hover:text-white/70"
-          >
-            Home
-          </a>
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleScroll(item.id)}
+              className={`relative py-3 text-left transition ${
+                active === item.id
+                  ? "text-[#010897]"
+                  : "text-white/70 hover:text-white"
+              }`}
+            >
+              {item.label}
 
-          <a
-            href="#company"
-            onClick={() => setOpen(false)}
-            className="py-3 border-b border-white/5 hover:text-white/70"
-          >
-            Company
-          </a>
-
-          <a
-            href="#feature"
-            onClick={() => setOpen(false)}
-            className="py-3 border-b border-white/5 hover:text-white/70"
-          >
-            Feature
-          </a>
-
-          <a
-            href="#pricing"
-            onClick={() => setOpen(false)}
-            className="py-3 border-b border-white/5 hover:text-white/70"
-          >
-            Pricing
-          </a>
-
-          <a
-            href="#career"
-            onClick={() => setOpen(false)}
-            className="py-3 hover:text-white/70"
-          >
-            Career
-          </a>
+              {/* SCALE LINE */}
+              <span
+                className={`absolute left-0 bottom-1 h-[2px] bg-[#010897] rounded-full transition-all duration-300 origin-left ${
+                  active === item.id
+                    ? "w-12 scale-x-100"
+                    : "w-12 scale-x-0"
+                }`}
+              ></span>
+            </button>
+          ))}
 
           {/* BUTTON */}
           <button className="mt-5 bg-white text-black py-3 rounded-xl font-medium hover:bg-gray-200 transition">

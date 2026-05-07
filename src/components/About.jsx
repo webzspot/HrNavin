@@ -109,7 +109,8 @@ const AboutSection = () => {
 
         </div>
       </section>
-      <section id="feature" className="container scroll-mt-12 mx-auto py-10 lg:py-20 px-4">
+     <div id="feature" >
+ <section  className="container  mx-auto py-10 lg:py-20 px-4">
         <div className="max-w-7xl mx-auto">
 
           {/* Badge */}
@@ -301,6 +302,7 @@ const AboutSection = () => {
 
         </div>
       </section>
+     </div>
     </>
   );
 };

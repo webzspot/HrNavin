@@ -1,42 +1,42 @@
 import React from "react";
 
-import Navbar from "./components/Navbar";
+import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Steps from "./components/Steps";
 import Mentor from "./components/Mentor";
 import Footer from "./components/Footer";
+import Pricing from "./components/Pricing";
 
 const App = () => {
   return (
-    <div className="overflow-hidden">
+    <div>
 
-      <Navbar />
-
-      {/* HOME */}
-      <section id="home">
+      <div id="home">
         <Hero />
-      </section>
+      </div>
 
-      {/* COMPANY */}
-      <section id="company">
+      <div id="company">
         <About />
-      </section>
+      </div>
 
-      {/* FEATURE */}
-      <section id="feature">
+      {/* DON'T WRAP IN SECTION */}
+      <div id="feature">
         <Steps />
-      </section>
+      </div>
+      <div>
+        <Mentor/>
+      </div>
 
-      {/* PRICING */}
-      <section id="pricing">
-        <Mentor />
-      </section>
+      <div id="pricing">
+        <Pricing/>
+      </div>
 
-      {/* CAREER */}
-      <section id="career">
+      <div id="career">
         <Footer />
-      </section>
+      </div>
+
+      <Header />
 
     </div>
   );

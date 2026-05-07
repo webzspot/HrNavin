@@ -42,7 +42,7 @@ const loopMentors = [...mentors, ...mentors];
 
 const Hero = () => {
   return (
-    <section id="home" className="relative overflow-hidden  text-white px-4 pt-24 pb-16">
+    <section id="/" className="relative overflow-hidden  text-white px-4 pt-24 pb-16">
 
       {/* Background */}
       <img
