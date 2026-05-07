@@ -167,7 +167,7 @@ const AboutSection = () => {
                 {/* RIGHT CONTENT */}
                 <div className="relative z-30 
           border-4  lg:border-none
-          lg:bg-none px-6 py-6 lg:px-0 lg:py-0 rounded-xl lg:w-[40%]">
+          lg:bg-none bg-[radial-gradient(circle_at_center,#282FE0_0%,#020C32_100%)] px-6 py-6 lg:px-0 lg:py-0 rounded-xl lg:w-[40%]">
 
                   <h2 className="text-2xl md:text-5xl leading-snug font-semibold mb-8">
                     What Makes HR <br />
