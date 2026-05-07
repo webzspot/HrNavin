@@ -126,7 +126,7 @@ const AboutSection = () => {
             <img
               src='https://ik.imagekit.io/psltlu4ds/HR%20navin/Vector%20998.png'
               alt="shadow"
-              className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 
+              className="hidden lg:block absolute right-0 top-1/3 xl:top-1/2 -translate-y-1/2 
         ] w-[80%] opacity-60 blur-xl z-30"
             />
 
@@ -200,24 +200,29 @@ const AboutSection = () => {
 
             {/* 🔥 BLUE CARD BACKGROUND LAYER */}
             <div
-              className="
-  hidden lg:block
-  absolute right-10
-  -top-10 -bottom-10
-  w-[40%]
-  rounded-3xl
-  p-[10px]
-  bg-[#E5E5E566]   /* border color */
-  z-10
-  overflow-hidden   /* 🔥 important fix */
-"
-            >
+          
+  className="
+    hidden lg:block
+    absolute right-4 xl:right-6
+    -top-10 -bottom-10
+    w-[43%]
+    rounded-3xl
+    p-[12px]
+    z-10
+    overflow-hidden
+     shadow-lg
+    bg-[#E5E5E566]
+    
+    
+  "
+>
               {/* INNER BLUE CARD */}
               <div
                 className="
   w-full h-full 
   rounded-2xl
-  bg-[radial-gradient(circle_at_center,#282FE0_0%,#020C32_100%)]
+bg-[radial-gradient(circle_at_center,#282FE0_0%,#0B1445_60%,#020C32_70%)]
+   bg-no-repeat bg-center
 "
               />
             </div>

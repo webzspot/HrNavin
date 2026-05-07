@@ -11,8 +11,8 @@ const Pricing = () => {
           </h2>
 
           <div className="relative rounded-2xl p-4 md:px-8 md:py-16 text-white mb-10 bg-gradient-to-r from-[#2f6edc] to-[#0f5cc9] overflow-hidden">
-            <div className="bg-gradient-to-r from-[#1161D2] to-[#2380FF] absolute  hidden md:block right-16 -top-12 z-30 w-36 rounded-full h-32"></div>
-            <div className="bg-gradient-to-r from-[#1768D8] to-[#0963DF] absolute hidden md:block right-0 -top-12 z-30 w-32 rounded-full h-32"></div>
+            <div className="bg-gradient-to-r from-[#1161D2] to-[#2380FF] absolute  hidden md:block right-16 -top-12 z-30 w-36 opacity-70 rounded-full h-32"></div>
+            <div className="bg-gradient-to-r from-[#1768D8] to-[#0963DF] absolute hidden md:block right-0 -top-12 z-20 w-36 opacity-65 rounded-full h-32"></div>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-16 h-16  rounded-lg flex items-center justify-center">
                 <img src="https://ik.imagekit.io/psltlu4ds/HR%20navin/Frame%202147224409.png" alt="icon" />
@@ -26,24 +26,24 @@ const Pricing = () => {
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row md:items-center gap-6 text-sm">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-4 text-sm">
               <div className="whitespace-nowrap">
                 <p className="text-white/70 mb-1">Pay During Training</p>
                 <p className="md:text-4xl text-xl font-bold">₹20,000</p>
               </div>
-              <div className="h-10 hidden md:block w-[1px] bg-white/30"></div>
+              <div className="h-10 hidden lg:block w-[1px] bg-white/30"></div>
               <div className="whitespace-nowrap">
                 <p className="text-white/70 text-xs mb-1">Pay After Training</p>
                 <p className="md:text-4xl text-xl font-bold">₹0</p>
               </div>
-              <div className="h-10 hidden md:block w-[1px] bg-white/30"></div>
-              <div className="flex items-center text-lg w-full xl:whitespace-nowrap gap-4 flex-wrap">
+              <div className="h-10 hidden lg:block w-[1px] bg-white/30"></div>
+              <div className="flex items-center text-base xl:text-xl w-full xl:whitespace-nowrap xl:w-150 flex-wrap  gap-3 xl:gap-6 ">
                 <span className="flex items-center gap-2"><Video size={16} /> All Training Programs</span>
                 <span className="flex items-center gap-2"><Users size={16} /> Priority Placement Support</span>
                 <span className="flex items-center gap-2"><Infinity size={16} /> Real-Time Internship</span>
                 <span className="flex items-center gap-2"><Briefcase size={16} /> HR Generalist Program</span>
               </div>
-              <button className="md:ml-auto mx-auto whitespace-nowrap bg-white/90 text-gray-900 px-8 py-3 rounded-lg font-medium shadow border border-white/40 hover:bg-white">
+              <button className="md:ml-auto mx-auto whitespace-nowrap flex items-start bg-white/90 text-gray-900 px-10 py-3 rounded-lg font-medium shadow border border-white/40 hover:bg-white">
                 Go All-in
               </button>
             </div>

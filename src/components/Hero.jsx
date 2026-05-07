@@ -62,12 +62,14 @@ const Hero = () => {
           Become a job ready IT <br /> HR in{" "}
           <span  className="
     inline-block
-    rotate-[-6deg]
-    bg-lime-400
+    rotate-[6deg]
+    bg-[#B1E635]
     text-black
     shadow-xl
-    shadow-lime-400
-    px-3 py-0
+    text-3xl
+    md:text-5xl
+    shadow-[#B1E635]
+    px-2 py-3
     rounded-xl
   "
   >
@@ -141,8 +143,7 @@ bg-gradient-to-l from-[#020617] to-transparent z-20"></div>
   className="
   min-w-[240px]
   rounded-[30px]
-  p-[3px]
-  bg-[#8B90A3]
+  
   shadow-[0_0_25px_rgba(255,255,255,0.12)]
 "
 >
@@ -151,7 +152,7 @@ bg-gradient-to-l from-[#020617] to-transparent z-20"></div>
     className="
     rounded-[27px]
     p-[2px]
-    bg-[#C7CBD6]
+    bg-[#c7cbd6a4]
   "
   >
     {/* INNER DARK GAP */}
@@ -171,7 +172,7 @@ bg-gradient-to-l from-[#020617] to-transparent z-20"></div>
         ></div>
 
         {/* IMAGE CENTER */}
-        <div className="relative z-10 flex justify-center items-end h-[200px] lg:h-[260px]">
+        <div className="relative z-10 flex justify-center items-end h-[200px] lg:h-[230px]">
           <img
             src={mentor.img}
             alt={mentor.name}

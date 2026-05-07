@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { PiBookOpenTextLight } from "react-icons/pi";
 
 /* ---------------- ICONS ---------------- */
 const BookIcon = ({ color = "#fff" }) => (
@@ -149,46 +150,147 @@ const STEPS = [
   },
 ];
 
+
+
 const ANGLES = [-90, -35, 20, 75, 130, 180, 225];
 
 /* ---------------- ORBIT ---------------- */
 function Orbit({ active, setActive, size }) {
   const cx = size / 2;
-  const cy = size / 2;
-  const r = size * 0.34;
-  const centerR = size * 0.19;
-  const nodeSize = size * 0.11;
+const cy = size / 2;
 
-  const getPos = (deg) => {
-    const rad = (deg * Math.PI) / 180;
-    return {
-      x: cx + r * Math.cos(rad),
-      y: cy + r * Math.sin(rad),
-    };
+/* wider orbit spread */
+const r = size * 0.40;
+
+/* slightly smaller center */
+const centerR = size * 0.20;
+
+/* bigger orbit nodes */
+const nodeSize = size * 0.12;
+
+const getPos = (deg) => {
+  const rad = (deg * Math.PI) / 180;
+
+  return {
+    x: cx + r * Math.cos(rad),
+    y: cy + r * Math.sin(rad),
   };
+};
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setActiveIndex((prev) => (prev + 1) % texts.length);
+  }, 2200);
+
+  return () => clearInterval(interval);
+}, []);
 
   return (
     <div
-      className="relative w-full"
+      className="relative left-0 lg:-left-10  w-full"
       style={{
         width: size,
         height: size,
         maxWidth: "100%",
       }}
     >
-      <svg width={size} height={size} className="absolute inset-0">
-        {[1, 0.82, 0.64, 0.46].map((s, i) => (
-          <circle
-            key={i}
-            cx={cx}
-            cy={cy}
-            r={r * s}
-            fill="none"
-            stroke="rgba(255,255,255,0.14)"
-            strokeWidth="1.2"
-          />
-        ))}
-      </svg>
+    <svg
+  width={size}
+  height={size}
+  className="absolute inset-0"
+  style={{
+    overflow: "visible",
+  }}
+>
+  {/* OUTER ORBIT */}
+  <g
+    style={{
+      transformOrigin: "50% 50%",
+      animation: "orbitClockwise 40s linear infinite",
+    }}
+  >
+    <circle
+      cx={cx}
+      cy={cy}
+      r={r}
+      fill="none"
+      stroke="rgba(255,255,255,0.38)"
+      strokeWidth="1.8"
+      strokeDasharray="4 10"
+      strokeLinecap="round"
+    />
+  </g>
+
+  {/* MIDDLE ORBIT */}
+  <g
+    style={{
+      transformOrigin: "50% 50%",
+      animation: "orbitAnti 40s linear infinite",
+    }}
+  >
+    <circle
+      cx={cx}
+      cy={cy}
+      r={r * 0.78}
+      fill="none"
+      stroke="rgba(255,255,255,0.30)"
+      strokeWidth="1.7"
+      strokeDasharray="3 9"
+      strokeLinecap="round"
+    />
+  </g>
+
+  {/* INNER ORBIT */}
+  <g
+    style={{
+      transformOrigin: "50% 50%",
+      animation: "orbitClockwiseSlow 24s linear infinite",
+    }}
+  >
+    <circle
+      cx={cx}
+      cy={cy}
+      r={r * 0.60}
+      fill="none"
+      stroke="rgba(255,255,255,0.24)"
+      strokeWidth="1.6"
+      strokeDasharray="2 8"
+      strokeLinecap="round"
+    />
+  </g>
+</svg>
+
+
+<style>
+  {`
+    @keyframes orbitClockwise {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes orbitAnti {
+      from {
+        transform: rotate(360deg);
+      }
+      to {
+        transform: rotate(0deg);
+      }
+    }
+
+    @keyframes orbitClockwiseSlow {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  `}
+</style>
 
       {/* center */}
       <div
@@ -202,12 +304,15 @@ function Orbit({ active, setActive, size }) {
             "0 0 45px rgba(99,102,241,0.8), 0 0 90px rgba(99,102,241,0.45)",
         }}
       >
-        <div className="mb-2">
-          <BookIcon color="#2f45ff" />
+        <div className="mb-2 md:w-15 md:h-15 p-1  flex items-center justify-center rounded-full bg-gradient-to-r from-[#2129CA] to-[#0A135A]">
+          <PiBookOpenTextLight size={30} className='text-white ' />
         </div>
-        <div
+        <div  
           style={{
-            fontSize: size * 0.042,
+             fontSize:
+      window.innerWidth < 640
+        ? size * 0.032
+        : size * 0.042,
             color: "#111827",
             fontWeight: 700,
             textAlign: "center",
@@ -428,11 +533,11 @@ useEffect(() => {
      
 
 
-  <div className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-20">
+  <div className="max-w-7xl mx-auto px-4 md:px-10 py-10 md:py-20">
 
     {/* HEADING */}
     <h2
-      className="text-white font-extrabold leading-tight"
+      className="text-white lg:font-semibold leading-tight"
       style={{ fontSize: "clamp(28px,4vw,48px)" }}
     >
       Frustrated With Theory-Only Courses,
@@ -442,54 +547,69 @@ useEffect(() => {
 
 
     {/* MAIN GRID */}
-    <div className="grid md:grid-cols-2 gap-12 items-start mb-16 mt-10">
+    <div className="grid  gap-10 items-start mb-16 mt-10">
 
-      {/* LEFT CONTENT */}
-      <div>
-         <span className="text-white font-semibold text-lg md:text-xl"  style={{
-          fontSize: "clamp(26px,3.5vw,40px)",
-          lineHeight: 1.6,
-        }}>
-        Don’t Have Access To
-      </span>
-        <p
-          className="text-white/50 leading-relaxed"
-          style={{ fontSize: 15, maxWidth: 420 }}
+  {/* LEFT CONTENT */}
+  <div
+  className=""
+  style={{
+    fontSize: "clamp(26px,3.5vw,40px)",
+    lineHeight: 1.3,
+    fontWeight: 700,
+  }}
+>
+  <div className="flex flex-wrap lg:flex-nowrap">
+    <span className="text-white mr-3">
+    Don’t Have Access To
+  </span>
+
+  <div
+    className="relative overflow-hidden"
+    style={{
+      height: "1.3em",
+      minWidth: "360px",
+    }}
+  >
+    {texts.map((text, i) => {
+      const isActive = i === activeIndex;
+
+      return (
+        <div
+          key={i}
+          className="absolute left-0 top-0 transition-all duration-700"
+          style={{
+            color: "#a3e635",
+
+            opacity: isActive ? 1 : 0,
+
+            transform: isActive
+              ? "translateY(0px)"
+              : "translateY(25px)",
+
+            filter: isActive
+              ? "blur(0px)"
+              : "blur(8px)",
+
+            transitionTimingFunction:
+              "cubic-bezier(0.22, 1, 0.36, 1)",
+
+            whiteSpace: "nowrap",
+          }}
         >
-          You're Learning HR... But Not Applying It. That’s Why Confidence Is Missing.
-          <br /><br />
-          We Built Something Different —
-          A Real-Time Internship Experience
-          That Puts You Inside Actual HR Work.
-        </p>
-      </div>
+          {text}
+        </div>
+      );
+    })}
+  </div>
+  </div>
+  <div className="md:w-112">
+    <p className="text-white/50  font-normal  leading-relaxed mt-4" style={{ fontSize: 18, }} > You're Learning HR... But Not Applying It. That’s Why Confidence Is Missing. We Built Something Different — A Real-Time Internship Experience That Puts You Inside Actual HR Work. </p>
+  </div>
+</div>
 
-      {/* RIGHT ANIMATED TEXT */}
-      <div
-        className="flex flex-col justify-center"
-        style={{
-          fontSize: "clamp(26px,3.5vw,40px)",
-          lineHeight: 1.6,
-        }}
-      >
-        {texts.map((text, i) => {
-          const isActive = i === activeIndex;
-
-          return (
-            <div
-              key={i}
-              className="transition-all duration-500"
-              style={{
-                color: isActive ? "#a3e635" : "rgba(255,255,255,0.15)",
-               
-              }}
-            >
-              {text}
-            </div>
-          );
-        })}
-      </div>
-    </div>
+  {/* RIGHT ANIMATED TEXT */}
+  
+</div>
 
     {/* DIVIDER */}
     <div className="border-t border-white/10 mb-8" />
