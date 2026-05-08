@@ -157,7 +157,7 @@ const Navbar = () => {
               onClick={() => handleScroll(item.id)}
               className={`relative py-3 text-left transition ${
                 active === item.id
-                  ? "text-[#010897]"
+                  ? "text-[#B1E635]"
                   : "text-white/70 hover:text-white"
               }`}
             >
@@ -165,7 +165,7 @@ const Navbar = () => {
 
               {/* SCALE LINE */}
               <span
-                className={`absolute left-0 bottom-1 h-[2px] bg-[#010897] rounded-full transition-all duration-300 origin-left ${
+                className={`absolute left-0 bottom-1 h-[2px] bg-[#B1E635] rounded-full transition-all duration-300 origin-left ${
                   active === item.id
                     ? "w-12 scale-x-100"
                     : "w-12 scale-x-0"
