@@ -10,7 +10,7 @@ const Navbar = () => {
     { id: "company", label: "Company" },
     { id: "feature", label: "Feature" },
     { id: "pricing", label: "Pricing" },
-    { id: "career", label: "Career" },
+    // { id: "career", label: "Career" },
   ];
 
   // SCROLL TO SECTION
@@ -66,7 +66,7 @@ const Navbar = () => {
 }, []);
 
   return (
-    <header className="fixed top-0 left-0 bg-[#01071999] backdrop-blur-2xl w-full z-50">
+    <header className="fixed top-0 left-0  bg-[#01071999] backdrop-blur-2xl w-full z-50">
 
       {/* NAVBAR */}
       <div className="max-w-7xl mx-auto px-4 py-1.5 flex items-center justify-between">
@@ -84,7 +84,7 @@ const Navbar = () => {
         </button>
 
         {/* DESKTOP MENU */}
-        <nav className="hidden md:flex items-center gap-8 text-sm">
+        <nav className="hidden md:flex  items-center gap-8 text-sm">
 
           {navItems.map((item) => (
             <button
@@ -92,15 +92,15 @@ const Navbar = () => {
               onClick={() => handleScroll(item.id)}
               className={`relative transition font-medium pb-2 ${
                 active === item.id
-                  ? "text-[#010897]"
-                  : "text-white/70 hover:text-white"
+                  ? "text-[#B1E635]"
+                  : "text-white/70 cursor-pointer hover:text-white"
               }`}
             >
               {item.label}
 
               {/* SCALE LINE */}
               <span
-                className={`absolute left-0 -bottom-0.5 h-[2px] bg-[#010897] rounded-full transition-all duration-300 origin-left ${
+                className={`absolute left-0 -bottom-0.5 h-[2px] bg-[#B1E635] rounded-full transition-all duration-300 origin-left ${
                   active === item.id
                     ? "w-full scale-x-100"
                     : "w-full scale-x-0"

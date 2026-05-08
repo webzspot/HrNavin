@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { PiBookOpenTextLight } from "react-icons/pi";
+import { motion } from "framer-motion";
 
 /* ---------------- ICONS ---------------- */
 const BookIcon = ({ color = "#fff" }) => (
@@ -150,150 +151,135 @@ const STEPS = [
   },
 ];
 
-
-
 const ANGLES = [-90, -35, 20, 75, 130, 180, 225];
 
 /* ---------------- ORBIT ---------------- */
 function Orbit({ active, setActive, size }) {
   const cx = size / 2;
-const cy = size / 2;
+  const cy = size / 2;
 
-/* wider orbit spread */
-const r = size * 0.40;
+  const r = size * 0.4;
+  const centerR = size * 0.2;
+  const nodeSize = size * 0.12;
 
-/* slightly smaller center */
-const centerR = size * 0.20;
+  const getPos = (deg) => {
+    const rad = (deg * Math.PI) / 180;
 
-/* bigger orbit nodes */
-const nodeSize = size * 0.12;
-
-const getPos = (deg) => {
-  const rad = (deg * Math.PI) / 180;
-
-  return {
-    x: cx + r * Math.cos(rad),
-    y: cy + r * Math.sin(rad),
+    return {
+      x: cx + r * Math.cos(rad),
+      y: cy + r * Math.sin(rad),
+    };
   };
-};
-
-useEffect(() => {
-  const interval = setInterval(() => {
-    setActiveIndex((prev) => (prev + 1) % texts.length);
-  }, 2200);
-
-  return () => clearInterval(interval);
-}, []);
 
   return (
     <div
-      className="relative left-0 lg:-left-10  w-full"
+      className="relative left-0 lg:-left-10 w-full"
       style={{
         width: size,
         height: size,
         maxWidth: "100%",
       }}
     >
-    <svg
-  width={size}
-  height={size}
-  className="absolute inset-0"
-  style={{
-    overflow: "visible",
-  }}
->
-  {/* OUTER ORBIT */}
-  <g
-    style={{
-      transformOrigin: "50% 50%",
-      animation: "orbitClockwise 40s linear infinite",
-    }}
-  >
-    <circle
-      cx={cx}
-      cy={cy}
-      r={r}
-      fill="none"
-      stroke="rgba(255,255,255,0.38)"
-      strokeWidth="1.8"
-      strokeDasharray="4 10"
-      strokeLinecap="round"
-    />
-  </g>
+      <svg
+        width={size}
+        height={size}
+        className="absolute inset-0"
+        style={{
+          overflow: "visible",
+        }}
+      >
+        <g
+          style={{
+            transformOrigin: "50% 50%",
+            animation: "orbitClockwise 40s linear infinite",
+          }}
+        >
+          <circle
+            cx={cx}
+            cy={cy}
+            r={r}
+            fill="none"
+            stroke="rgba(255,255,255,0.38)"
+            strokeWidth="1.8"
+            strokeDasharray="4 10"
+            strokeLinecap="round"
+          />
+        </g>
 
-  {/* MIDDLE ORBIT */}
-  <g
-    style={{
-      transformOrigin: "50% 50%",
-      animation: "orbitAnti 40s linear infinite",
-    }}
-  >
-    <circle
-      cx={cx}
-      cy={cy}
-      r={r * 0.78}
-      fill="none"
-      stroke="rgba(255,255,255,0.30)"
-      strokeWidth="1.7"
-      strokeDasharray="3 9"
-      strokeLinecap="round"
-    />
-  </g>
+        <g
+          style={{
+            transformOrigin: "50% 50%",
+            animation: "orbitAnti 40s linear infinite",
+          }}
+        >
+          <circle
+            cx={cx}
+            cy={cy}
+            r={r * 0.78}
+            fill="none"
+            stroke="rgba(255,255,255,0.30)"
+            strokeWidth="1.7"
+            strokeDasharray="3 9"
+            strokeLinecap="round"
+          />
+        </g>
 
-  {/* INNER ORBIT */}
-  <g
-    style={{
-      transformOrigin: "50% 50%",
-      animation: "orbitClockwiseSlow 24s linear infinite",
-    }}
-  >
-    <circle
-      cx={cx}
-      cy={cy}
-      r={r * 0.60}
-      fill="none"
-      stroke="rgba(255,255,255,0.24)"
-      strokeWidth="1.6"
-      strokeDasharray="2 8"
-      strokeLinecap="round"
-    />
-  </g>
-</svg>
+        <g
+          style={{
+            transformOrigin: "50% 50%",
+            animation: "orbitClockwiseSlow 24s linear infinite",
+          }}
+        >
+          <circle
+            cx={cx}
+            cy={cy}
+            r={r * 0.6}
+            fill="none"
+            stroke="rgba(255,255,255,0.24)"
+            strokeWidth="1.6"
+            strokeDasharray="2 8"
+            strokeLinecap="round"
+          />
+        </g>
+      </svg>
 
+      <style>
+        {`
+          @keyframes orbitClockwise {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(360deg);
+            }
+          }
 
-<style>
-  {`
-    @keyframes orbitClockwise {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
+          @keyframes orbitAnti {
+            from {
+              transform: rotate(360deg);
+            }
+            to {
+              transform: rotate(0deg);
+            }
+          }
 
-    @keyframes orbitAnti {
-      from {
-        transform: rotate(360deg);
-      }
-      to {
-        transform: rotate(0deg);
-      }
-    }
-
-    @keyframes orbitClockwiseSlow {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  `}
-</style>
+          @keyframes orbitClockwiseSlow {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(360deg);
+            }
+          }
+        `}
+      </style>
 
       {/* center */}
-      <div
+      <motion.div
+        initial={{ opacity: 0, scale: 0.7 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
         className="absolute rounded-full bg-white flex flex-col items-center justify-center"
         style={{
           width: centerR * 2,
@@ -304,15 +290,16 @@ useEffect(() => {
             "0 0 45px rgba(99,102,241,0.8), 0 0 90px rgba(99,102,241,0.45)",
         }}
       >
-        <div className="mb-2 md:w-15 md:h-15 p-1  flex items-center justify-center rounded-full bg-gradient-to-r from-[#2129CA] to-[#0A135A]">
-          <PiBookOpenTextLight size={30} className='text-white ' />
+        <div className="mb-2 md:w-15 md:h-15 p-1 flex items-center justify-center rounded-full bg-gradient-to-r from-[#2129CA] to-[#0A135A]">
+          <PiBookOpenTextLight size={30} className="text-white" />
         </div>
-        <div  
+
+        <div
           style={{
-             fontSize:
-      window.innerWidth < 640
-        ? size * 0.032
-        : size * 0.042,
+            fontSize:
+              window.innerWidth < 640
+                ? size * 0.032
+                : size * 0.042,
             color: "#111827",
             fontWeight: 700,
             textAlign: "center",
@@ -323,7 +310,7 @@ useEffect(() => {
           <br />
           Fundamentals
         </div>
-      </div>
+      </motion.div>
 
       {/* nodes */}
       {STEPS.map((step, i) => {
@@ -331,7 +318,14 @@ useEffect(() => {
         const isActive = active === step.id;
 
         return (
-          <button
+          <motion.button
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.5,
+              delay: i * 0.08,
+            }}
+            viewport={{ once: true }}
             key={step.id}
             onClick={() => setActive(step.id)}
             className="absolute flex items-center justify-center font-bold transition-all duration-300"
@@ -351,7 +345,7 @@ useEffect(() => {
             }}
           >
             {step.id}
-          </button>
+          </motion.button>
         );
       })}
     </div>
@@ -359,12 +353,25 @@ useEffect(() => {
 }
 
 /* ---------------- STEP CARD ---------------- */
-function StepCard({ step, active, setActive }) {
+function StepCard({ step, active, setActive, index }) {
   const Icon = STEP_ICONS[step.id - 1];
   const isActive = active === step.id;
 
   return (
-    <button
+    <motion.button
+      initial={{
+        opacity: 0,
+        y: 40,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.08,
+      }}
+      viewport={{ once: true }}
       onMouseEnter={() => setActive(step.id)}
       onClick={() => setActive(step.id)}
       className="group w-full rounded-2xl transition-all duration-300 text-left"
@@ -422,7 +429,7 @@ function StepCard({ step, active, setActive }) {
           </div>
         </div>
       </div>
-    </button>
+    </motion.button>
   );
 }
 
@@ -430,23 +437,22 @@ function StepCard({ step, active, setActive }) {
 export default function StepsSection() {
   const [active, setActive] = useState(1);
 
- {/* ── BOTTOM CURVED SECTION (FINAL PERFECT) ── */}
- const texts = [
-  "Live HR Projects",
-  "Real Recruitment",
-  "HR Operations",
-  "Documentation",
-];
+  const texts = [
+    "Live HR Projects",
+    "Real Recruitment",
+    "HR Operations",
+    "Documentation",
+  ];
 
-const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setActiveIndex((prev) => (prev + 1) % texts.length);
-  }, 1500);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % texts.length);
+    }, 1500);
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
 
   function Badge({ text }) {
     return (
@@ -485,12 +491,31 @@ useEffect(() => {
   }
 
   return (
-    <div
-      className="w-full overflow-hidden rounded-b-4xl bg-gradient-to-t from-[#020B32] to-[#010897]" 
-      
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+      className="w-full overflow-hidden rounded-b-4xl bg-gradient-to-t from-[#020B32] to-[#010897]"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 pt-14 md:pt-20">
-        <h1
+        {/* MAIN HEADING */}
+        <motion.h1
+          initial={{
+            opacity: 0,
+            y: 40,
+            filter: "blur(12px)",
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+          }}
+          transition={{
+            duration: 1,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          viewport={{ once: true }}
           className="font-bold text-white leading-tight"
           style={{
             fontSize: "clamp(34px,5vw,64px)",
@@ -500,130 +525,162 @@ useEffect(() => {
           The 7-Step System That
           <br />
           Gets You Placed
-        </h1>
+        </motion.h1>
 
         <div className="grid lg:grid-cols-2 gap-10 items-start">
           {/* orbit */}
-          <div className="flex justify-center">
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="flex justify-center"
+          >
             <Orbit
               active={active}
               setActive={setActive}
               size={window.innerWidth < 768 ? 340 : 560}
             />
-          </div>
+          </motion.div>
 
           {/* cards */}
           <div className="flex flex-col gap-5">
-            {STEPS.map((step) => (
+            {STEPS.map((step, index) => (
               <StepCard
                 key={step.id}
                 step={step}
                 active={active}
                 setActive={setActive}
+                index={index}
               />
             ))}
           </div>
         </div>
       </div>
 
-     <div
-      className="relative mt-24 overflow-hidden"
-     
-    >
-     
+      {/* BOTTOM SECTION */}
+      <div className="relative mt-24 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 md:px-10 py-10 md:py-20">
+          {/* HEADING */}
+          <motion.h2
+            initial={{
+              opacity: 0,
+              y: 40,
+              filter: "blur(14px)",
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              filter: "blur(0px)",
+            }}
+            transition={{
+              duration: 1,
+            }}
+            viewport={{ once: true }}
+            className="text-white lg:font-semibold leading-tight"
+            style={{ fontSize: "clamp(28px,4vw,48px)" }}
+          >
+            Frustrated With Theory-Only Courses,
+            <br />
+            But Still Not Getting Real HR Experience?
+          </motion.h2>
 
+          {/* MAIN GRID */}
+          <div className="grid gap-10 items-start mb-16 mt-10">
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 40,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.8,
+              }}
+              viewport={{ once: true }}
+              className=""
+              style={{
+                fontSize: "clamp(26px,3.5vw,40px)",
+                lineHeight: 1.3,
+                fontWeight: 700,
+              }}
+            >
+              <div className="flex flex-wrap lg:flex-nowrap">
+                <span className="text-white mr-3">
+                  Don’t Have Access To
+                </span>
 
-  <div className="max-w-7xl mx-auto px-4 md:px-10 py-10 md:py-20">
+                <div
+                  className="relative overflow-hidden"
+                  style={{
+                    height: "1.3em",
+                    minWidth: "360px",
+                  }}
+                >
+                  {texts.map((text, i) => {
+                    const isActive = i === activeIndex;
 
-    {/* HEADING */}
-    <h2
-      className="text-white lg:font-semibold leading-tight"
-      style={{ fontSize: "clamp(28px,4vw,48px)" }}
-    >
-      Frustrated With Theory-Only Courses,
-      <br />
-      But Still Not Getting Real HR Experience?
-    </h2>
+                    return (
+                      <div
+                        key={i}
+                        className="absolute left-0 top-0 transition-all duration-700"
+                        style={{
+                          color: "#a3e635",
+                          opacity: isActive ? 1 : 0,
+                          transform: isActive
+                            ? "translateY(0px)"
+                            : "translateY(25px)",
+                          filter: isActive
+                            ? "blur(0px)"
+                            : "blur(8px)",
+                          transitionTimingFunction:
+                            "cubic-bezier(0.22, 1, 0.36, 1)",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {text}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
 
+              <div className="md:w-112">
+                <p
+                  className="text-white/50 font-normal leading-relaxed mt-4"
+                  style={{ fontSize: 18 }}
+                >
+                  You're Learning HR... But Not Applying It. That’s Why
+                  Confidence Is Missing. We Built Something Different — A
+                  Real-Time Internship Experience That Puts You Inside Actual HR
+                  Work.
+                </p>
+              </div>
+            </motion.div>
+          </div>
 
-    {/* MAIN GRID */}
-    <div className="grid  gap-10 items-start mb-16 mt-10">
+          {/* DIVIDER */}
+          <div className="border-t border-white/10 mb-8" />
 
-  {/* LEFT CONTENT */}
-  <div
-  className=""
-  style={{
-    fontSize: "clamp(26px,3.5vw,40px)",
-    lineHeight: 1.3,
-    fontWeight: 700,
-  }}
->
-  <div className="flex flex-wrap lg:flex-nowrap">
-    <span className="text-white mr-3">
-    Don’t Have Access To
-  </span>
-
-  <div
-    className="relative overflow-hidden"
-    style={{
-      height: "1.3em",
-      minWidth: "360px",
-    }}
-  >
-    {texts.map((text, i) => {
-      const isActive = i === activeIndex;
-
-      return (
-        <div
-          key={i}
-          className="absolute left-0 top-0 transition-all duration-700"
-          style={{
-            color: "#a3e635",
-
-            opacity: isActive ? 1 : 0,
-
-            transform: isActive
-              ? "translateY(0px)"
-              : "translateY(25px)",
-
-            filter: isActive
-              ? "blur(0px)"
-              : "blur(8px)",
-
-            transitionTimingFunction:
-              "cubic-bezier(0.22, 1, 0.36, 1)",
-
-            whiteSpace: "nowrap",
-          }}
-        >
-          {text}
+          {/* BADGES */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              staggerChildren: 0.1,
+            }}
+            viewport={{ once: true }}
+            className="flex flex-wrap gap-6 md:gap-14"
+          >
+            <Badge text="No Fake Certificate" />
+            <Badge text="No Dummy Case Studies" />
+            <Badge text="No Passive Learning" />
+          </motion.div>
         </div>
-      );
-    })}
-  </div>
-  </div>
-  <div className="md:w-112">
-    <p className="text-white/50  font-normal  leading-relaxed mt-4" style={{ fontSize: 18, }} > You're Learning HR... But Not Applying It. That’s Why Confidence Is Missing. We Built Something Different — A Real-Time Internship Experience That Puts You Inside Actual HR Work. </p>
-  </div>
-</div>
-
-  {/* RIGHT ANIMATED TEXT */}
-  
-</div>
-
-    {/* DIVIDER */}
-    <div className="border-t border-white/10 mb-8" />
-
-    {/* BADGES */}
-    <div className="flex flex-wrap gap-6 md:gap-14">
-      <Badge text="No Fake Certificate" />
-      <Badge text="No Dummy Case Studies" />
-      <Badge text="No Passive Learning" />
-    </div>
-
-  </div>
-
-    </div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
