@@ -328,10 +328,10 @@ export default function CoverflowCarousel() {
         >
 
           {/* LEFT FADE */}
-          <div className="absolute left-0 top-0 h-full w-28 lg:w-36 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 h-full w-12 lg:w-36 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
 
           {/* RIGHT FADE */}
-          <div className="absolute right-0 top-0 h-full w-28 lg:w-36 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 h-full w-12 lg:w-36 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
           {/* TOP CURVE */}
           <div className="absolute w-full h-full -top-6 md:-top-24 lg:-top-32 xl:-top-50 z-10">
