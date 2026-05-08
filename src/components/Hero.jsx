@@ -75,13 +75,26 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto text-center">
 
         <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-block px-4 py-1 text-sm bg-white/10 border border-white/20 rounded-full mb-6"
-        >
-          ✨ Smart HR Training
-        </motion.div>
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 0.1 }}
+  className="
+    inline-flex w-fit
+    px-4 py-1 text-sm
+    bg-white/10
+    border border-white/20
+    items-center gap-3 justify-center
+    rounded-full mb-6
+  "
+>
+  <img
+    src="https://ik.imagekit.io/psltlu4ds/Vector%20(5).png"
+    className="w-5 h-5"
+    alt="logo"
+  />
+
+  Smart HR Training
+</motion.div>
 
         <motion.h1 
           initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}

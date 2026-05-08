@@ -129,7 +129,7 @@ const Navbar = () => {
 
       {/* MOBILE NAV */}
       <div
-        className={`fixed top-4 right-4 w-[240px] rounded-2xl
+        className={`fixed top-4 right-4 w-[240px]  rounded-2xl
         bg-[#0b0f2a]/95 backdrop-blur-xl border border-white/10
         text-white z-50 transform transition-all duration-300 shadow-2xl
         ${
@@ -186,7 +186,7 @@ const Navbar = () => {
       {open && (
         <div
           onClick={() => setOpen(false)}
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+          className="fixed inset-0 bg-black/60 backdrop-blur-2xl w-full h-screen  z-30"
         />
       )}
     </header>
