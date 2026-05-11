@@ -334,7 +334,7 @@ export default function CoverflowCarousel() {
           <div className="absolute right-0 top-0 h-full w-12 lg:w-36 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
           {/* TOP CURVE */}
-          <div className="absolute w-full h-full -top-6 md:-top-24 lg:-top-32 xl:-top-50 z-10">
+          <div className="absolute w-full h-full -top-6 md:-top-24 lg:-top-32 xl:-top-40 z-10">
             <img
               src="https://ik.imagekit.io/psltlu4ds/HR%20navin/bottom%20curve.png"
               alt=""
@@ -375,7 +375,7 @@ export default function CoverflowCarousel() {
                 viewport={{ once: true }}
               >
 
-                <div className="flex-shrink-0 w-[240px] rounded-lg bg-[#f0f0ec] pt-4 pb-0 hover:-translate-y-2 transition-transform shadow-sm">
+                <div className="flex-shrink-0 w-[240px] rounded-lg bg-[#f0f0ec] pt-4 pb-0 shadow-sm">
 
                   {/* TOP */}
                   <div className="flex justify-between items-start px-4 mt-7 mb-3">
@@ -386,7 +386,7 @@ export default function CoverflowCarousel() {
                         {m.name}
                       </h3>
 
-                      <p className="text-xs text-gray-500 mt-1 leading-snug h-9 max-w-[150px]">
+                      <p className="text-xs text-gray-500 mt-1 mb-3 leading-snug h-9 max-w-[150px]">
                         {m.role}
                       </p>
 
@@ -409,7 +409,7 @@ export default function CoverflowCarousel() {
                     <img
                       src={m.img}
                       alt={m.name}
-                      className="w-full h-full object-cover object-top"
+                      className="w-full h-full object-cover   hover:-translate-y-2 transition-transform object-top"
                     />
 
                   </div>

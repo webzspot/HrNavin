@@ -10,7 +10,24 @@ import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 export default function CTASection() {
 
   /* ---------------- ANIMATIONS ---------------- */
-
+ const shaggyVariants = {
+  initial: { scale: 0.8, rotate: -8, opacity: 0 },
+  animate: {
+    scale: 1,
+    rotate: [6, -3, 5, -2, 4, -1, 3, 0, 2, 6],
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+      rotate: {
+        duration: 3,
+        repeat: Infinity,
+        repeatType: "mirror",
+        ease: "easeInOut",
+      },
+    },
+  },
+};
   const blurReveal = {
     hidden: {
       opacity: 0,
@@ -171,25 +188,11 @@ export default function CTASection() {
             {/* NUMBER */}
             <motion.span
 
-              initial={{
-                opacity: 0,
-                scale: 0.5,
-                rotate: -12,
-              }}
-
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-                rotate: 6,
-              }}
-
-              transition={{
-                duration: 0.8,
-                delay: 0.2,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-
-              viewport={{ once: true }}
+               variants={shaggyVariants}
+            initial="initial"
+            animate="animate"
+            className="inline-block"
+              
 
               className="
                 inline-block

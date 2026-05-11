@@ -384,51 +384,51 @@ function StepCard({ step, active, setActive, index }) {
           : "0 6px 18px rgba(0,0,0,0.08)",
       }}
     >
-      <div className="flex gap-4 items-start">
-        <div
-          className="rounded-xl flex items-center justify-center"
-          style={{
-            width: 54,
-            height: 54,
-            background: isActive ? "#3B82F6" : "#fff",
-            border: "1px solid #e5e7eb",
-          }}
-        >
-          <Icon color={isActive ? "#fff" : "#111"} />
-        </div>
+      <div className="flex gap-4 items-center">
+  <div
+    className="rounded-xl flex items-center justify-center shrink-0"
+    style={{
+      width: 54,
+      height: 54,
+      background: isActive ? "#3B82F6" : "#fff",
+      border: "1px solid #e5e7eb",
+    }}
+  >
+    <Icon color={isActive ? "#fff" : "#111"} />
+  </div>
 
-        <div className="flex-1">
-          <p
-            style={{
-              fontSize: 17,
-              fontWeight: 700,
-              color: "#111827",
-              lineHeight: 1.2,
-            }}
-          >
-            {step.title}
-          </p>
+  <div className="flex-1 flex flex-col justify-center">
+    <p
+      style={{
+        fontSize: 17,
+        fontWeight: 700,
+        color: "#111827",
+        lineHeight: 1.2,
+      }}
+    >
+      {step.title}
+    </p>
 
-          <div
-            className="overflow-hidden transition-all duration-300"
-            style={{
-              maxHeight: isActive ? 50 : 0,
-              opacity: isActive ? 1 : 0,
-            }}
-          >
-            <p
-              style={{
-                fontSize: 14,
-                color: "#6b7280",
-                marginTop: 8,
-                lineHeight: 1.4,
-              }}
-            >
-              {step.sub}
-            </p>
-          </div>
-        </div>
-      </div>
+    <div
+      className="overflow-hidden transition-all duration-300"
+      style={{
+        maxHeight: isActive ? 50 : 0,
+        opacity: isActive ? 1 : 0,
+        marginTop: isActive ? 8 : 0,
+      }}
+    >
+      <p
+        style={{
+          fontSize: 14,
+          color: "#6b7280",
+          lineHeight: 1.4,
+        }}
+      >
+        {step.sub}
+      </p>
+    </div>
+  </div>
+</div>
     </motion.button>
   );
 }
