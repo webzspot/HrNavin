@@ -215,7 +215,7 @@ const AboutSection = () => {
                 transition={{ duration: 1.2 }}
                 src="https://ik.imagekit.io/psltlu4ds/HR%20navin/Vector%20998.png"
                 alt="shadow"
-                className="hidden lg:block absolute right-0 top-1/3 xl:top-1/2 -translate-y-1/2 w-[80%] opacity-60 blur-xl z-20"
+                className="hidden lg:block absolute left-0 top-1/3 xl:top-[40%] -translate-y-1/2 w-[80%] opacity-60 blur-xl z-10"
               />
 
               {/* BLACK CARD */}
@@ -526,7 +526,7 @@ const AboutSection = () => {
                 transition={{ duration: 0.8 }}
                 src="https://ik.imagekit.io/psltlu4ds/HR%20navin/Vector%20(2).png"
                 alt="curve"
-                className="hidden md:block absolute -left-5 top-30 w-12 opacity-80"
+                className="hidden md:block absolute left-10 top-40 w-12 opacity-80"
               />
 
              <motion.h2

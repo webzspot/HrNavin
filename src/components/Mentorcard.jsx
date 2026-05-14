@@ -325,7 +325,7 @@ export default function MentorSection() {
       >
 
         <div className="inline-block px-8 py-3 md:py-10">
-          <p className="text-lg md:text-4xl font-bold leading-relaxed">
+          <p className="text-lg md:text-4xl leading-relaxed">
             💡 Different mentors.{" "}
             Different strengths.{" "}
             <span className="text-[#B1E635]">One goal: Your Job.</span>

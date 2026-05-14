@@ -4,7 +4,13 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 
-export default function CTAButtonPopup() {
+export default function CTAButtonPopup({
+  buttonText = "Book Your Seat Now",
+  buttonBg = "#4043FE",
+  gradientFrom = "#FFF0F0",
+  gradientTo = "transparent",
+  submitBtnBg = "#4043FE",
+}) {
 
   const [open, setOpen] = useState(false);
 
@@ -47,12 +53,18 @@ export default function CTAButtonPopup() {
           type: "spring",
           stiffness: 200,
         }}
-        className="inline-block hover:scale-105 transition-transform p-[1.5px] rounded-xl mt-5 bg-gradient-to-r from-[#FFF0F0] to-transparent"
+        className="inline-block hover:scale-105 transition-transform p-[1.5px] rounded-xl mt-5"
+        style={{
+          background: `linear-gradient(to right, ${gradientFrom}, ${gradientTo})`,
+        }}
       >
+
         <button
           onClick={() => setOpen(true)}
+          style={{
+            backgroundColor: buttonBg,
+          }}
           className="
-            bg-[#4043FE]
             px-8
             py-3
             rounded-xl
@@ -66,10 +78,11 @@ export default function CTAButtonPopup() {
             duration-300
           "
         >
-          Book Your Seat Now
+          {buttonText}
 
           <ArrowUpRight size={18} />
         </button>
+
       </motion.div>
 
       {/* POPUP */}
@@ -137,8 +150,9 @@ export default function CTAButtonPopup() {
                   absolute
                   top-4
                   right-4
-                  w-10
-                  h-10
+                  w-7 h-7
+                 md:w-10
+                  md:h-10
                   rounded-full
                   bg-black/5
                   flex
@@ -152,23 +166,24 @@ export default function CTAButtonPopup() {
               </button>
 
               {/* HEADING */}
-              <h2 className="text-2xl md:text-3xl font-bold text-black">
+              <h2 className="text-xl md:text-3xl font-bold text-black">
                 Book Your Slot
               </h2>
 
-              <p className="text-gray-500 mt-2">
+              <p className="text-gray-500 text-sm md:text-base mt-2">
                 Fill your details and we’ll contact you.
               </p>
 
               {/* FORM */}
               <form
                 onSubmit={handleSubmit}
-                className="mt-8 space-y-5"
+                className="md:mt-8 mt-4 space-y-5"
               >
 
                 {/* NAME */}
                 <div className="flex flex-col items-start">
-                  <label className="text-sm font-medium text-gray-700">
+
+                  <label className="text-xs md:text-sm font-medium text-gray-700">
                     Name
                   </label>
 
@@ -179,8 +194,6 @@ export default function CTAButtonPopup() {
                     onChange={handleChange}
                     required
                     placeholder="Enter your name"
-                   
-                   
                     className="
                       w-full
                       mt-2
@@ -188,17 +201,21 @@ export default function CTAButtonPopup() {
                       py-3
                       rounded-xl
                       placeholder:text-gray-700
+                      md:placeholder:text-base
+                      placeholder:text-sm
                       border
                       border-gray-600
                       outline-none
                       focus:border-[#4043FE]
                     "
                   />
+
                 </div>
 
                 {/* EMAIL */}
                 <div className="flex flex-col items-start">
-                  <label className="text-sm font-medium text-gray-700">
+
+                  <label className="text-xs md:text-sm font-medium text-gray-700">
                     Email
                   </label>
 
@@ -216,17 +233,22 @@ export default function CTAButtonPopup() {
                       py-3
                       rounded-xl
                       placeholder:text-gray-700
+                      md:placeholder:text-base
+                      placeholder:text-sm
+
                       border
                       border-gray-600
                       outline-none
                       focus:border-[#4043FE]
                     "
                   />
+
                 </div>
 
                 {/* PHONE */}
                 <div className="flex flex-col items-start">
-                  <label className="text-sm font-medium text-gray-700">
+
+                  <label className="md:text-sm text-xs font-medium text-gray-700">
                     Phone Number
                   </label>
 
@@ -244,21 +266,25 @@ export default function CTAButtonPopup() {
                       py-3
                       rounded-xl
                       placeholder:text-gray-700
+                      md:placeholder:text-base
+                      placeholder:text-sm
                       border
                       border-gray-600
                       outline-none
                       focus:border-[#4043FE]
                     "
                   />
+
                 </div>
 
                 {/* SUBMIT BUTTON */}
                 <button
                   type="submit"
+                  style={{
+                    backgroundColor: submitBtnBg,
+                  }}
                   className="
                     w-full
-                    bg-[#4043FE]
-                    hover:bg-[#3134db]
                     text-white
                     py-3
                     rounded-xl
@@ -269,6 +295,8 @@ export default function CTAButtonPopup() {
                 >
                   Submit Details
                 </button>
+
+                
 
               </form>
 

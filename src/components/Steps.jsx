@@ -743,7 +743,7 @@ export default function StepsSection() {
     >
       <div className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
       <span className="md:text-sm text-xs font-semibold text-gray-300 tracking-wide">
-        REAL-TIME INTERNSHIP EXPERIENCE
+        REAL-TIME INTERNSHIP EXPERIENCE <span className="line-through">Not a Fake Certificate</span>
       </span>
     </motion.div>
 
@@ -821,7 +821,7 @@ export default function StepsSection() {
           className="rounded-3xl border border-red-500/20 bg-red-500/10 p-6 mt-8"
         >
           <p className="text-red-300 font-bold text-xs md:text-lg">
-            ⚠️ This is NOT a dummy internship.
+            ⚠️ This is not a dummy internship.
           </p>
 
           <p className="text-white/70  text-xs md:text-base leading-relaxed mt-3">

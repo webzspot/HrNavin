@@ -110,7 +110,7 @@ AI powered HR Training
             animate="animate"
             className="inline-block"
           >
-            <span className="inline-block rotate-[6deg] bg-[#B1E635] text-gray-700 shadow-xl text-3xl md:text-5xl shadow-[#B1E635] px-2 py-3 rounded-xl">
+            <span className="inline-block rotate-[6deg] bg-[#B1E635] text-gray-700 shadow-xl text-2xl md:text-5xl shadow-[#B1E635] px-2 py-2 md:py-3 rounded-xl">
               60
             </span>
           </motion.span>{" "}

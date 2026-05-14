@@ -266,7 +266,7 @@ const Pricing = () => {
             <div className="grid md:grid-cols-2 gap-5">
 
               {/* GENERALIST */}
-              <div className="rounded-2xl border border-gray-200 p-6">
+              <div className="rounded-2xl border border-gray-200 p-4 md:p-6">
                 <h4 className="font-semibold md:text-xl text-gray-800">
                   HR Generalist Program
                 </h4>
@@ -282,7 +282,7 @@ const Pricing = () => {
               </div>
 
               {/* INTERNSHIP */}
-              <div className="rounded-2xl border border-gray-200 p-6">
+              <div className="rounded-2xl border border-gray-200 p-4 md:p-6">
                 <h4 className="font-semibold md:text-xl text-gray-800">
                   Real-Time Internship
                 </h4>
@@ -311,7 +311,7 @@ const Pricing = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
-            className="bg-[#e9e6e3] rounded-3xl p-4 lg:p-6 grid md:grid-cols-2 xl:grid-cols-4 gap-6"
+            className="bg-[#e9e6e3] rounded-3xl p-4 md:p-6 grid md:grid-cols-2 xl:grid-cols-4 gap-6"
           >
 
             {[
@@ -389,15 +389,13 @@ const Pricing = () => {
 
                 variants={fadeUp}
 
-                whileHover={{
-                  y: -4,
-                }}
+               
 
                 className="bg-white rounded-2xl p-4 lg:p-5 shadow-sm"
               >
 
                 {/* TOP */}
-                <div className="flex items-start gap-3 ">
+                <div className="flex items-center gap-3 ">
 
                   <div className="p-2 md:w-20 md:h-20 w-14 h-14 rounded-full">
                     <img
@@ -408,16 +406,18 @@ const Pricing = () => {
 
                   <div>
 
-                    <h3 className="font-semibold text-base lg:text-xl">
+                    <h3 className="font-semibold text-base  lg:text-xl">
                       {item.title}
                     </h3>
 
-                    <p className="text-gray-500 text-xs md:text-sm leading-relaxed">
-                      {item.desc}
-                    </p>
+                    
 
                   </div>
+                  
                 </div>
+                {/* <p className="text-gray-500 text-xs md:text-sm leading-relaxed">
+                      {item.desc}
+                    </p> */}
 
                 <div className="border-t border-[#E9EAEB] my-2 md:my-4"></div>
 
@@ -454,10 +454,10 @@ const Pricing = () => {
                 <div className="border-t border-[#E9EAEB] my-4"></div>
 
                 {/* TOTAL */}
-                <div className={`${item.color}  flex md:flex-col flex-row items-center justify-center gap-3 rounded-xl text-center py-2  md:py-4 mt-4`}>
+                <div className={`${item.color}  flex  flex-row items-center justify-center gap-3 rounded-xl text-center py-2  md:py-4 mt-4`}>
 
                   <p className=" text-sm md:text-base text-gray-600">
-                    TOTAL VALUE
+                    TOTAL VALUE :
                   </p>
 
                   <h4 className=" text-lg md:text-3xl font-bold">
@@ -494,7 +494,7 @@ const Pricing = () => {
                     <motion.li
                       key={idx}
                       variants={fadeUp}
-                      className="flex items-center text-sm lg:text-base gap-3"
+                      className="flex items-center text-xs lg:text-base gap-3"
                     >
 
                       <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center shrink-0">
@@ -515,7 +515,7 @@ const Pricing = () => {
           {/* EMI SECTION */}
           <motion.div
             variants={fadeUp}
-            className="mt-10 rounded-3xl bg-gradient-to-r from-[#0f5cc9] to-[#2f6edc] text-white p-6 md:p-8 overflow-hidden relative"
+            className="mt-10 rounded-3xl bg-gradient-to-r from-[#0f5cc9] to-[#2f6edc] text-white p-4 md:p-8 overflow-hidden relative"
           >
 
             <div className="absolute right-0 top-0 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
@@ -543,11 +543,11 @@ const Pricing = () => {
 
             </div>
             <CTAButtonPopup
-              buttonText="Apply Now"
-              buttonBg="#000000"
-              gradientFrom="#FFD6D6"
-              gradientTo="#ffffff"
-              submitBtnBg="#FF4D4D" />
+             buttonText="Start your Journey"
+  buttonBg="#000000"
+  gradientFrom="#B1E635"
+  gradientTo="#ffffff"
+  submitBtnBg="#B1E635" />
 
           </motion.div>
 
