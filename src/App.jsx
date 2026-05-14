@@ -7,6 +7,7 @@ import Steps from "./components/Steps";
 import Mentor from "./components/Mentor";
 import Footer from "./components/Footer";
 import Pricing from "./components/Pricing";
+import MentorSection from "./components/Mentorcard";
 
 const App = () => {
   return (
@@ -27,10 +28,12 @@ const App = () => {
       <div>
         <Mentor/>
       </div>
+      
 
       <div id="pricing">
         <Pricing/>
       </div>
+
 
       <div id="career">
         <Footer />

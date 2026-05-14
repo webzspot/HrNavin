@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 
 import { motion } from "framer-motion";
+import CTAButtonPopup from "./Button";
 
 const Pricing = () => {
 
@@ -75,10 +76,18 @@ const Pricing = () => {
           {/* HEADING */}
           <motion.h2
             variants={blurReveal}
-            className="text-center text-3xl md:text-5xl font-bold mb-10 text-gray-800"
+            className="text-center text-xl md:text-5xl font-bold mb-4 text-gray-800"
           >
             Pricing That Removes Fear
           </motion.h2>
+
+          <motion.p
+            variants={blurReveal}
+            className="text-center text-gray-500 max-w-3xl mx-auto mb-12 text-base md:text-lg"
+          >
+            Total Program Value: ₹20,000 — designed to be risk-free
+            with our Pay-After-Placement model.
+          </motion.p>
 
           {/* TOP CARD */}
           <motion.div
@@ -99,7 +108,7 @@ const Pricing = () => {
 
             viewport={{ once: true }}
 
-            className="relative rounded-2xl p-4 md:px-8 md:py-16 text-white mb-10 bg-gradient-to-r from-[#2f6edc] to-[#0f5cc9] overflow-hidden"
+            className="relative rounded-3xl p-5 md:px-8 md:py-14 text-white mb-10 bg-gradient-to-r from-[#2f6edc] to-[#0f5cc9] overflow-hidden"
           >
 
             {/* ABSOLUTE CIRCLES */}
@@ -110,7 +119,7 @@ const Pricing = () => {
             {/* HEADER */}
             <motion.div
               variants={fadeUp}
-              className="flex items-center gap-3 mb-6"
+              className="flex items-center gap-3 mb-8"
             >
 
               <div className="w-16 h-16 rounded-lg flex items-center justify-center">
@@ -122,20 +131,24 @@ const Pricing = () => {
 
               <div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
 
-                  <h3 className="font-semibold text-2xl">
-                    Full Program (All)
+                  <h3 className="font-semibold md:text-2xl">
+                    PAY-AFTER-PLACEMENT MODEL
                   </h3>
 
-                  <span className="bg-yellow-400 whitespace-nowrap text-black text-[10px] lg:text-xs px-2 py-1 rounded">
+                  <span className="bg-yellow-400 whitespace-nowrap text-black text-[8px] lg:text-xs px-2 py-1 rounded">
                     Best Value
+                  </span>
+
+                  <span className="bg-lime-400 whitespace-nowrap text-black text-[8px] lg:text-xs px-2 py-1 rounded font-semibold">
+                    Risk-Free
                   </span>
 
                 </div>
 
-                <p className="text-sm text-white/80">
-                  Everything you need to become job-ready.
+                <p className=" text-xs md:text-sm text-white/80 leading-relaxed mt-2 max-w-xl">
+                  Designed to make career growth accessible without financial pressure.
                 </p>
 
               </div>
@@ -144,80 +157,69 @@ const Pricing = () => {
             {/* PRICE SECTION */}
             <motion.div
               variants={stagger}
-              className="flex flex-col lg:flex-row lg:items-center gap-4 text-sm"
+              className="flex flex-col xl:flex-row xl:items-center gap-6"
             >
 
-              <motion.div
-                variants={fadeUp}
-                className="whitespace-nowrap"
-              >
+              {/* DURING */}
+              <div className="flex gap-4 items-center">
+                <motion.div
+                  variants={fadeUp}
+                  className="whitespace-nowrap"
+                >
 
-                <p className="text-white/70 mb-1">
-                  Pay During Training
-                </p>
+                  <p className="text-white/70 text-sm md:text-base mb-1">
+                    Pay During Training
+                  </p>
 
-                <p className="md:text-4xl text-xl font-bold">
-                  ₹20,000
-                </p>
+                  <p className="md:text-5xl text-lg font-bold">
+                    ₹10,000
+                  </p>
 
-              </motion.div>
+                </motion.div>
 
-              <div className="h-10 hidden lg:block w-[1px] bg-white/30"></div>
+                <div className="h-14 hidden xl:block w-[1px] bg-white/30"></div>
 
-              <motion.div
-                variants={fadeUp}
-                className="whitespace-nowrap"
-              >
+                {/* AFTER */}
+                <motion.div
+                  variants={fadeUp}
+                  className="whitespace-nowrap"
+                >
 
-                <p className="text-white/70 mb-1">
-                  Pay After Training
-                </p>
+                  <p className="text-white/70 text-sm md:text-base mb-1">
+                    Pay After Placement
+                  </p>
 
-                <p className="md:text-4xl text-xl font-bold">
-                  ₹0
-                </p>
+                  <p className="md:text-5xl text-lg font-bold">
+                    ₹10,000
+                  </p>
 
-              </motion.div>
+                </motion.div>
 
-              <div className="h-10 hidden lg:block w-[1px] bg-white/30"></div>
+                <div className="h-14 hidden xl:block w-[1px] bg-white/30"></div>
+              </div>
 
               {/* FEATURES */}
               <motion.div
                 variants={stagger}
-                className="flex items-center text-base xl:text-xl w-full xl:whitespace-nowrap xl:w-150 flex-wrap gap-3 xl:gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs lg:text-base w-full"
               >
 
-                <motion.span
-                  variants={fadeUp}
-                  className="flex items-center gap-2"
-                >
-                  <Video size={16} />
-                  All Training Programs
-                </motion.span>
-
-                <motion.span
-                  variants={fadeUp}
-                  className="flex items-center gap-2"
-                >
-                  <Users size={16} />
-                  Priority Placement Support
-                </motion.span>
-
-                <motion.span
-                  variants={fadeUp}
-                  className="flex items-center gap-2"
-                >
-                  <Infinity size={16} />
-                  Real-Time Internship
-                </motion.span>
-
-                <motion.span
-                  variants={fadeUp}
-                  className="flex items-center gap-2"
-                >
-                  <Briefcase size={16} />
-                  HR Generalist Program
-                </motion.span>
+                {[
+                  "Recruitment Training",
+                  "Communication Training",
+                  "Interview Preparation",
+                  "Job Search Strategy",
+                  "Placement Support",
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    variants={fadeUp}
+                    className="flex items-center gap-2"
+                  >
+                    <Check size={16} />
+                    {item}
+                  </motion.div>
+                ))}
 
               </motion.div>
 
@@ -231,12 +233,76 @@ const Pricing = () => {
                   scale: 0.98,
                 }}
 
-                className="md:ml-auto mx-auto whitespace-nowrap flex items-start bg-white/90 text-gray-900 px-10 py-3 rounded-lg font-medium shadow border border-white/40 hover:bg-white"
+                className="xl:ml-auto whitespace-nowrap bg-white/90 text-gray-900 px-10 py-3 rounded-xl text-sm md:text-base font-semibold shadow border border-white/40 hover:bg-white"
               >
-                Go All-in
+                Get Started
               </motion.button>
 
             </motion.div>
+          </motion.div>
+
+          {/* OPTIONAL ADDONS */}
+          <motion.div
+            variants={fadeUp}
+            className="bg-white rounded-3xl p-5 md:p-7 mb-10 border border-gray-200"
+          >
+
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center">
+                <Briefcase className="text-blue-600" size={22} />
+              </div>
+
+              <div>
+                <h3 className="md:text-2xl font-bold text-gray-800">
+                  Optional Add-ons
+                </h3>
+
+                <p className="text-gray-500 text-xs md:text-sm">
+                  Career customization based on your goal.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-5">
+
+              {/* GENERALIST */}
+              <div className="rounded-2xl border border-gray-200 p-6">
+                <h4 className="font-semibold md:text-xl text-gray-800">
+                  HR Generalist Program
+                </h4>
+
+                <p className="text-gray-500 mt-3 text-sm md:text-base leading-relaxed">
+                  Learn payroll, onboarding, HR documentation,
+                  operations, employee management, and compliance basics.
+                </p>
+
+                <div className="mt-5 inline-flex rounded-full bg-green-100 text-green-700 px-4 py-2 text-xs md:text-sm font-semibold">
+                  ₹5,000 after placement
+                </div>
+              </div>
+
+              {/* INTERNSHIP */}
+              <div className="rounded-2xl border border-gray-200 p-6">
+                <h4 className="font-semibold md:text-xl text-gray-800">
+                  Real-Time Internship
+                </h4>
+
+                <p className="text-gray-500 mt-3  text-sm md:text-base leading-relaxed">
+                  Gain consulting-style HR experience through live
+                  recruitment workflows and real client requirements.
+                </p>
+
+                <div className="mt-5 inline-flex rounded-full bg-blue-100 text-blue-700 px-4 py-2 text-xs md:text-sm font-semibold">
+                  ₹5,000 after placement
+                </div>
+              </div>
+
+            </div>
+
+            <p className=" text-xs md:text-sm text-gray-500 mt-6">
+              👉 Choose based on your goal. Upgrade anytime.
+            </p>
+
           </motion.div>
 
           {/* CARDS */}
@@ -245,80 +311,75 @@ const Pricing = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
-            className="bg-[#e9e6e3] rounded-2xl p-4 lg:p-6 grid md:grid-cols-3 gap-6"
+            className="bg-[#e9e6e3] rounded-3xl p-4 lg:p-6 grid md:grid-cols-2 xl:grid-cols-4 gap-6"
           >
 
             {[
               {
                 title: "Recruitment Only",
-                desc: "Start your career with core hiring skills.",
+                desc: "Core hiring & placement-focused training.",
                 during: "₹10,000",
                 after: "₹10,000",
+                total: "₹20,000",
                 color: "bg-[#CCDCFF] border border-[#7EA7FF]",
                 icon: "https://ik.imagekit.io/psltlu4ds/HR%20navin/profile-2user.png?updatedAt=1778004321209",
 
                 features: [
-                  {
-                    text: "Communication Training",
-                    icon: "https://ik.imagekit.io/psltlu4ds/HR%20navin/video.png",
-                  },
-
-                  {
-                    text: "Interview Preparation",
-                    icon: "https://ik.imagekit.io/psltlu4ds/HR%20navin/Vector.png",
-                  },
-
-                  {
-                    text: "Placement Support",
-                    icon: "https://ik.imagekit.io/psltlu4ds/HR%20navin/driver.png",
-                  },
-
-                  {
-                    text: "Core Recruitment Training",
-                    icon: "https://ik.imagekit.io/psltlu4ds/HR%20navin/profile-2use.png",
-                  },
+                  "Recruitment Training",
+                  "Communication Training",
+                  "Interview Preparation",
+                  "Placement Support",
                 ],
               },
 
               {
                 title: "Recruitment + Generalist",
-                desc: "Expand beyond hiring into complete HR skills.",
+                desc: "Expand into complete HR operations.",
                 during: "₹15,000",
                 after: "₹5,000",
+                total: "₹20,000",
                 color: "bg-[#9BE8D2] border border-[#1BE0A8]",
                 icon: "https://ik.imagekit.io/psltlu4ds/HR%20navin/briefcase.png?updatedAt=1778004321314",
 
                 features: [
-                  {
-                    text: "Everything in Recruitment Only",
-                    icon: "https://ik.imagekit.io/psltlu4ds/HR%20navin/profile-2u.png",
-                  },
-
-                  {
-                    text: "HR Generalist Program",
-                    icon: "https://ik.imagekit.io/psltlu4ds/HR%20navin/airdrop.png",
-                  },
+                  "Everything in Recruitment",
+                  "HR Generalist Program",
+                  "Documentation Training",
+                  "Operations Exposure",
                 ],
               },
 
               {
                 title: "Recruitment + Internship",
-                desc: "Gain real-world experience while you learn.",
+                desc: "Gain practical real-world HR experience.",
                 during: "₹15,000",
                 after: "₹5,000",
+                total: "₹20,000",
                 color: "bg-[#E8C79A] border border-[#E59421]",
                 icon: "https://ik.imagekit.io/psltlu4ds/HR%20navin/teacher.png?updatedAt=1778004321092",
 
                 features: [
-                  {
-                    text: "Everything in Recruitment Only",
-                    icon: "https://ik.imagekit.io/psltlu4ds/HR%20navin/profile-2user.png",
-                  },
+                  "Everything in Recruitment",
+                  "Real-Time Internship",
+                  "Live Recruitment Workflow",
+                  "Client Hiring Exposure",
+                ],
+              },
 
-                  {
-                    text: "Real-Time Internship",
-                    icon: "https://ik.imagekit.io/psltlu4ds/HR%20navin/Vector%20(4).png",
-                  },
+              {
+                title: "Full Program (All)",
+                desc: "Complete career-ready HR transformation.",
+                during: "₹20,000",
+                after: "₹0",
+                total: "₹20,000",
+                color: "bg-[#D7C8FF] border border-[#9C74FF]",
+                icon: "https://ik.imagekit.io/psltlu4ds/HR%20navin/Frame%202147224409.png",
+
+                features: [
+                  "Recruitment Training",
+                  "HR Generalist Program",
+                  "Real-Time Internship",
+                  "Priority Placement Support",
                 ],
               },
             ].map((item, i) => (
@@ -332,13 +393,13 @@ const Pricing = () => {
                   y: -4,
                 }}
 
-                className="bg-white rounded-xl p-3 lg:p-4 shadow-sm"
+                className="bg-white rounded-2xl p-4 lg:p-5 shadow-sm"
               >
 
                 {/* TOP */}
-                <div className="flex items-start gap-3 mb-2">
+                <div className="flex items-start gap-3 ">
 
-                  <div className="p-2 w-24 h-24 rounded-full">
+                  <div className="p-2 md:w-20 md:h-20 w-14 h-14 rounded-full">
                     <img
                       src={item.icon}
                       alt="icon"
@@ -347,30 +408,30 @@ const Pricing = () => {
 
                   <div>
 
-                    <h3 className="font-semibold text-lg lg:text-xl">
+                    <h3 className="font-semibold text-base lg:text-xl">
                       {item.title}
                     </h3>
 
-                    <p className="text-gray-500">
+                    <p className="text-gray-500 text-xs md:text-sm leading-relaxed">
                       {item.desc}
                     </p>
 
                   </div>
                 </div>
 
-                <div className="border-t border-[#E9EAEB] my-4"></div>
+                <div className="border-t border-[#E9EAEB] my-2 md:my-4"></div>
 
                 {/* PRICING */}
                 <div className="flex items-center justify-between text-sm">
 
                   <div className="text-center flex-1">
 
-                    <p className="font-semibold text-xl lg:text-3xl">
+                    <p className="font-semibold text-lg md:text-2xl">
                       {item.during}
                     </p>
 
-                    <p className="text-gray-400 text-sm lg:text-base">
-                      Pay during training
+                    <p className="text-gray-400 text-xs md:text-sm">
+                      During Training
                     </p>
 
                   </div>
@@ -379,12 +440,12 @@ const Pricing = () => {
 
                   <div className="text-center flex-1">
 
-                    <p className="font-semibold text-xl lg:text-3xl">
+                    <p className="font-semibold text-lg md:text-2xl">
                       {item.after}
                     </p>
 
-                    <p className="text-gray-400 text-sm md:text-base">
-                      Pay after training
+                    <p className="text-gray-400 text-xs lg:text-sm">
+                      After Placement
                     </p>
 
                   </div>
@@ -393,14 +454,14 @@ const Pricing = () => {
                 <div className="border-t border-[#E9EAEB] my-4"></div>
 
                 {/* TOTAL */}
-                <div className={`${item.color} rounded-lg text-center py-3 mt-4`}>
+                <div className={`${item.color}  flex md:flex-col flex-row items-center justify-center gap-3 rounded-xl text-center py-2  md:py-4 mt-4`}>
 
-                  <p className="text-base text-gray-600">
-                    TOTAL FEE
+                  <p className=" text-sm md:text-base text-gray-600">
+                    TOTAL VALUE
                   </p>
 
-                  <h4 className="text-2xl font-bold">
-                    ₹20,000
+                  <h4 className=" text-lg md:text-3xl font-bold">
+                    {item.total}
                   </h4>
 
                 </div>
@@ -415,9 +476,9 @@ const Pricing = () => {
                     scale: 0.98,
                   }}
 
-                  className="w-full mt-4 border border-gray-300 rounded-lg py-2 bg-gray-100 hover:bg-gray-200"
+                  className="w-full mt-4 border border-gray-300 text-sm md:text-base rounded-xl  py-3 bg-gray-100 hover:bg-gray-200 font-medium"
                 >
-                  Get started
+                  Choose Plan
                 </motion.button>
 
                 <div className="border-t border-[#E9EAEB] my-4"></div>
@@ -425,7 +486,7 @@ const Pricing = () => {
                 {/* FEATURES */}
                 <motion.ul
                   variants={stagger}
-                  className="space-y-3 text-sm text-gray-700"
+                  className="space-y-3 text-xs md:text-sm text-gray-700"
                 >
 
                   {item.features.map((f, idx) => (
@@ -433,16 +494,14 @@ const Pricing = () => {
                     <motion.li
                       key={idx}
                       variants={fadeUp}
-                      className="flex items-center text-lg gap-3"
+                      className="flex items-center text-sm lg:text-base gap-3"
                     >
 
-                      <img
-                        src={f.icon}
-                        alt=""
-                        className="w-5 h-5 object-contain"
-                      />
+                      <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+                        <Check size={12} className="text-green-600" />
+                      </div>
 
-                      {f.text}
+                      {f}
 
                     </motion.li>
                   ))}
@@ -452,6 +511,46 @@ const Pricing = () => {
             ))}
 
           </motion.div>
+
+          {/* EMI SECTION */}
+          <motion.div
+            variants={fadeUp}
+            className="mt-10 rounded-3xl bg-gradient-to-r from-[#0f5cc9] to-[#2f6edc] text-white p-6 md:p-8 overflow-hidden relative"
+          >
+
+            <div className="absolute right-0 top-0 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
+
+              <div>
+                <h3 className="md:text-3xl text-lg font-bold">
+                  💳 Flexible EMI Options
+                </h3>
+
+                <p className="text-white/70 mt-3 leading-relaxed text-sm md:text-lg">
+                  Weekly EMI: ₹1,500 – ₹2,500
+                  <br />
+                  One-time / Two-split / EMI available.
+                </p>
+              </div>
+
+              <div className="bg-white/10 border border-white/10 lg:rounded-2xl rounded-lg px-3 md:px-6 py-2 md:py-5 backdrop-blur-xl">
+                <p className="md:text-lg text-xs font-semibold leading-relaxed">
+                  Money should never stop your career growth.
+                </p>
+              </div>
+
+
+            </div>
+            <CTAButtonPopup
+              buttonText="Apply Now"
+              buttonBg="#000000"
+              gradientFrom="#FFD6D6"
+              gradientTo="#ffffff"
+              submitBtnBg="#FF4D4D" />
+
+          </motion.div>
+
         </div>
       </motion.section>
     </div>

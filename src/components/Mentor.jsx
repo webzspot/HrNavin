@@ -9,6 +9,7 @@ import {
 
 import { FaPlay } from "react-icons/fa";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import MentorSection from "./Mentorcard";
 
 /* ---------------- MENTORS ---------------- */
 
@@ -272,7 +273,7 @@ export default function CoverflowCarousel() {
 
       {/* ================= MENTOR SECTION ================= */}
 
-      <motion.section
+      {/* <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{
@@ -283,7 +284,7 @@ export default function CoverflowCarousel() {
         className="py-12 container mx-auto max-w-7xl px-4 relative"
       >
 
-        {/* HEADING */}
+    
         <motion.div
           variants={stagger}
           className="mb-12 z-40"
@@ -305,7 +306,7 @@ export default function CoverflowCarousel() {
 
         </motion.div>
 
-        {/* MARQUEE */}
+        
         <motion.div
           initial={{
             opacity: 0,
@@ -327,13 +328,12 @@ export default function CoverflowCarousel() {
           className="relative overflow-hidden"
         >
 
-          {/* LEFT FADE */}
+        
           <div className="absolute left-0 top-0 h-full w-12 lg:w-36 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
 
-          {/* RIGHT FADE */}
+        
           <div className="absolute right-0 top-0 h-full w-12 lg:w-36 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-          {/* TOP CURVE */}
           <div className="absolute w-full h-full -top-6 md:-top-24 lg:-top-32 xl:-top-40 z-10">
             <img
               src="https://ik.imagekit.io/psltlu4ds/HR%20navin/bottom%20curve.png"
@@ -341,7 +341,7 @@ export default function CoverflowCarousel() {
             />
           </div>
 
-          {/* BOTTOM CURVE */}
+         
           <div className="absolute w-full h-full -bottom-80 z-10">
             <img
               src="https://ik.imagekit.io/psltlu4ds/HR%20navin/bottom%20curve.png"
@@ -349,7 +349,7 @@ export default function CoverflowCarousel() {
             />
           </div>
 
-          {/* CARDS */}
+         
           <div className="marquee-track">
 
             {doubled.map((m, i) => (
@@ -377,7 +377,7 @@ export default function CoverflowCarousel() {
 
                 <div className="flex-shrink-0 w-[240px] rounded-lg bg-[#f0f0ec] pt-4 pb-0 shadow-sm">
 
-                  {/* TOP */}
+                  
                   <div className="flex justify-between items-start px-4 mt-7 mb-3">
 
                     <div>
@@ -398,7 +398,7 @@ export default function CoverflowCarousel() {
 
                   </div>
 
-                  {/* IMAGE */}
+                  
                   <div
                     className="rounded-t-2xl h-[230px] overflow-hidden"
                     style={{
@@ -419,7 +419,7 @@ export default function CoverflowCarousel() {
           </div>
         </motion.div>
 
-        {/* MARQUEE STYLE */}
+      
         <style>{`
           .marquee-track {
             display: flex;
@@ -443,7 +443,9 @@ export default function CoverflowCarousel() {
           }
         `}</style>
 
-      </motion.section>
+      </motion.section> */}
+
+      <MentorSection/>
 
       {/* ================= 60 DAYS ================= */}
 
@@ -479,9 +481,9 @@ export default function CoverflowCarousel() {
 
                 viewport={{ once: true }}
 
-                className="text-3xl md:text-5xl font-semibold text-center mb-10"
+                className="text-xl md:text-5xl font-semibold text-center mb-10"
               >
-                60 Day Transformation
+                60 Day Transformation  roadmap
               </motion.h2>
 
               {/* CARD */}
@@ -531,7 +533,7 @@ export default function CoverflowCarousel() {
                   <li>• Communication Training + Roleplays</li>
                 </ul>
 
-                <div className="mt-6 inline-block bg-white text-gray-700 text-base md:text-xl px-4 py-2 rounded-lg shadow-sm">
+                <div className="mt-6 inline-block bg-white text-gray-700 text-sm md:text-xl px-4 py-2 rounded-lg shadow-sm">
                   Outcome: You Stop Fearing Calls & Interviews
                 </div>
 
@@ -594,7 +596,7 @@ export default function CoverflowCarousel() {
                   <li>• Mock Interviews + Job Search Strategy</li>
                 </ul>
 
-                <div className="mt-6 inline-block bg-white text-gray-800 text-base md:text-xl px-4 py-2 rounded-lg shadow-sm">
+                <div className="mt-6 inline-block bg-white text-gray-800 text-sm md:text-xl px-4 py-2 rounded-lg shadow-sm">
                   Outcome: You Start Attending Interviews With Confidence
                 </div>
 

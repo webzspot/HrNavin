@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import CTAButtonPopup from "./Button";
 
 const mentors = [
   {
@@ -93,14 +94,14 @@ const Hero = () => {
     alt="logo"
   />
 
-  Smart HR Training
+AI powered HR Training
 </motion.div>
 
         <motion.h1 
           initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
           animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-3xl md:text-7xl font-bold leading-normal"
+          className="text-2xl md:text-7xl font-bold leading-normal"
         >
           Become a job ready IT <br /> HR in{" "}
           <motion.span
@@ -120,17 +121,25 @@ const Hero = () => {
           initial={{ opacity: 0, filter: "blur(8px)", y: 15 }}
           animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-4 text-[#B3B3B6] max-w-2xl text-xl mx-auto"
+          className="mt-4   max-w-2xl text-base py-6 lg:text-xl mx-auto"
         >
-          Even If You Have No HR Experience, Career Gaps, or Weak Communication
+          Even If You Have No HR Experience, Career Gaps, or Weak Communication  This will help you to get placed
         </motion.p>
+          <motion.p 
+          initial={{ opacity: 0, filter: "blur(8px)", y: 15 }}
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-4  text-gray-300  max-w-2xl text-base  lg:text-xl mx-auto"
+        >
+         
+                </motion.p>
 
         {/* Features */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="flex flex-wrap justify-center gap-6 mt-6 text-gray-300"
+          className="flex flex-wrap justify-center text-sm  text-[#B3B3B6] lg:text-base gap-4 md:gap-6 my-6 "
         >
           <div className="flex items-center gap-2">
             <img src="https://ik.imagekit.io/psltlu4ds/HR%20navin/Group.png" className="w-7 h-7" alt="internship" />
@@ -154,22 +163,13 @@ const Hero = () => {
         </motion.div>
 
         {/* CTA */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.7, type: "spring", stiffness: 200 }}
-          className="inline-block hover:scale-105 tran transition-transform p-[1.5px] rounded-xl mt-5 bg-gradient-to-r from-[#FFF0F0] to-transparent"
-        >
-          <button className="bg-[#4043FE]  px-8 py-3 rounded-xl lg:text-xl flex items-center gap-2 text-white transition-all duration-300 ">
-            Book Your Seat Now <ArrowUpRight size={18} />
-          </button>
-        </motion.div>
+       <CTAButtonPopup/>
 
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.9 }}
-          className="text-xs text-gray-400 mt-2"
+          className="text-xs text-gray-400 mt-5"
         >
           Learn From Top Industry Mentors
         </motion.p>
@@ -180,43 +180,115 @@ const Hero = () => {
         <div className="pointer-events-none absolute -left-2 md:left-0 top-0 h-full w-16 md:w-24 bg-gradient-to-r from-[#020617] to-transparent z-20"></div>
         <div className="pointer-events-none absolute -right-1 md:right-0 top-0 h-full w-12 md:w-20 bg-gradient-to-l from-[#020617] to-transparent z-20"></div>
 
-        <motion.div
-          className="flex gap-6"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            ease: "linear",
-            duration: 25,
-            repeat: Infinity,
-          }}
-        >
-          {loopMentors.map((mentor, index) => (
-            <div
-              key={index}
-              className="min-w-[240px] rounded-[30px] shadow-[0_0_25px_rgba(255,255,255,0.12)]"
-            >
-              <div className="rounded-[27px] p-[2px] bg-[#c7cbd6a4]">
-                <div className="rounded-[24px] bg-[#4A5064] p-2">
-                  <div className="relative rounded-[20px] overflow-hidden">
-                    <div className={`absolute inset-0 bg-gradient-to-b ${mentor.bg}`}></div>
-                    <div className="relative z-10 flex justify-center items-end h-[200px] lg:h-[230px]">
-                      <img src={mentor.img} alt={mentor.name} className="h-full object-contain object-bottom" />
-                    </div>
-                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    <div className="absolute bottom-4 left-4 right-4 z-20 flex justify-between items-end">
-                      <div>
-                        <h3 className="text-white text-sm font-medium">{mentor.name}</h3>
-                        <p className="text-white text-sm leading-tight">{mentor.role}</p>
-                        <p className="text-white italic lg:text-xs">{mentor.exp}</p>
-                      </div>
-                      <p className="text-white text-sm whitespace-nowrap">{mentor.company}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+    <motion.div
+  className="flex gap-6 w-max"
+  animate={{
+    x: ["0%", "-50%"],
+  }}
+  transition={{
+    repeat: Infinity,
+    duration: 28,
+    ease: "linear",
+  }}
+>
+   {loopMentors.map((mentor, index) => (
+  <motion.div
+    key={index}
+    
+    transition={{ duration: 0.25 }}
+    className="group relative min-w-[200px] sm:min-w-[220px] lg:min-w-[250px]"
+  >
+
+    {/* glass border only */}
+  <div className="p-[2.5px] border-white/40 rounded-[34px] bg-gradient-to-br from-white/40 via-white/15 to-white/5 shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
+
+  {/* main card */}
+  <div className="relative overflow-hidden rounded-[32px] bg-[#1B2030]/95 border border-white/10">
+
+    {/* soft top reflection */}
+    <div className="absolute inset-0 z-10 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-70 pointer-events-none"></div>
+
+    {/* smooth continuous shine */}
+    <div className="absolute inset-0 overflow-hidden z-10 pointer-events-none">
+      <div className="absolute top-0 -left-[40%] h-full w-[30%] rotate-12 bg-white/10 blur-2xl animate-[shine_5s_linear_infinite]"></div>
+    </div>
+
+    {/* image */}
+    <div className="relative overflow-hidden">
+      <img
+        src={mentor.img}
+        alt={mentor.name}
+        className="w-full h-[220px] sm:h-[300px] object-cover bg-[#b1e63574] transition-transform duration-700 group-hover:scale-105"
+      />
+
+      {/* overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0E111A] via-black/30 to-transparent"></div>
+    </div>
+
+    {/* company */}
+    <div className="absolute top-3 right-3 z-20 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10">
+      <p className="text-white text-[10px] sm:text-xs font-medium tracking-wide">
+        {mentor.company}
+      </p>
+    </div>
+
+    {/* content */}
+    <div className="absolute bottom-0 left-0 right-0 z-20 p-5 sm:p-6 bg-gradient-to-t from-black/80 to-transparent">
+
+      <div className="md:w-12 w-8 h-[2px] md:h-[3px] rounded-full bg-[#C7FF6B] mb-1 lg:mb-3"></div>
+
+      <h3 className="text-white text-sm sm:text-xl font-semibold tracking-wide">
+        {mentor.name}
+      </h3>
+
+      <p className="text-white/80 text-xs sm:text-sm mt-1 leading-relaxed">
+        {mentor.role}
+      </p>
+
+      <div className="md:mt-4 mt-2 flex items-center justify-between">
+
+        <p className="text-[#C7FF6B] text-[11px] sm:text-xs italic font-medium tracking-wide">
+          {mentor.exp}
+        </p>
+
+        <div className="flex items-center gap-1">
+          <div className="h-[1px] w-10 bg-gradient-to-r from-[#C7FF6B] to-transparent"></div>
+          <div className="w-1.5 h-1.5 rounded-full bg-[#C7FF6B]"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+  </motion.div>
+))}
         </motion.div>
       </div>
+       <style>{`
+    @keyframes shine {
+      0% {
+        transform: translateX(0);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateX(450%);
+        opacity: 0;
+      }
+    }
+
+    .shine-effect {
+      animation: shine 5s linear infinite;
+    }
+  `}</style>
     </section>
   );
 };

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 // icons
 import { ArrowUpRight } from "lucide-react";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import CTAButtonPopup from "./Button";
 
 export default function CTASection() {
 
@@ -102,161 +103,141 @@ export default function CTASection() {
       >
 
         {/* QUOTE TEXT */}
-        <motion.p
-          variants={blurReveal}
-          className="text-gray-300 text-lg lg:text-2xl mb-6 relative"
-        >
+      {/* QUOTE TEXT */}
+<motion.p
+  variants={blurReveal}
+  className="text-gray-300 text-lg lg:text-2xl mb-6 relative leading-relaxed"
+>
 
-          {/* LEFT QUOTE */}
-          <motion.span
-            initial={{
-              opacity: 0,
-              scale: 0.5,
-              rotate: -20,
-            }}
+  {/* LEFT QUOTE */}
+  <motion.span
+    initial={{
+      opacity: 0,
+      scale: 0.5,
+      rotate: -20,
+    }}
+    whileInView={{
+      opacity: 0.4,
+      scale: 1,
+      rotate: 0,
+    }}
+    transition={{
+      duration: 0.8,
+      delay: 0.2,
+    }}
+    viewport={{ once: true }}
+    className="md:text-4xl text-lg absolute -left-2 md:left-16 top-0 md:top-[-10px] opacity-40"
+  >
+    <FaQuoteLeft />
+  </motion.span>
 
-            whileInView={{
-              opacity: 0.4,
-              scale: 1,
-              rotate: 0,
-            }}
+  Seats are limited to maintain
+  
+  quality mentoring.
 
-            transition={{
-              duration: 0.8,
-              delay: 0.2,
-            }}
+  {/* RIGHT QUOTE */}
+  <motion.span
+    initial={{
+      opacity: 0,
+      scale: 0.5,
+      rotate: 20,
+    }}
+    whileInView={{
+      opacity: 0.4,
+      scale: 1,
+      rotate: 0,
+    }}
+    transition={{
+      duration: 0.8,
+      delay: 0.3,
+    }}
+    viewport={{ once: true }}
+    className="md:text-4xl text-lg absolute -right-2 md:right-16 top-0 md:top-[-10px] opacity-40"
+  >
+    <FaQuoteRight />
+  </motion.span>
 
-            viewport={{ once: true }}
+</motion.p>
 
-            className="md:text-4xl text-lg absolute -left-2 md:left-32 top-0 md:top-[-10px] opacity-40"
-          >
-            <FaQuoteLeft />
-          </motion.span>
+{/* MAIN TEXT */}
+<motion.h2
+  variants={blurReveal}
+  className="text-xl md:text-5xl font-bold text-center leading-tight flex flex-col items-center gap-4 mt-5"
+>
 
-          If You're Serious About Changing Your Career
-          <br />
-          This Program Is For You
+  <div className="flex items-center gap-3">
 
-          {/* RIGHT QUOTE */}
-          <motion.span
-            initial={{
-              opacity: 0,
-              scale: 0.5,
-              rotate: 20,
-            }}
+    {/* GLOW BOX */}
+    <span className="relative inline-block">
 
-            whileInView={{
-              opacity: 0.4,
-              scale: 1,
-              rotate: 0,
-            }}
+      <motion.span
+        variants={shaggyVariants}
+        initial="initial"
+        animate="animate"
+        className="
+          inline-block
+          rotate-[6deg]
+          bg-[#B1E635]
+          text-black
+          shadow-xl
+          text-xl
+          md:text-5xl
+          shadow-[#B1E635]
+          px-2 md:py-3 py-2
+          rounded-xl
+        "
+      >
+        60
+      </motion.span>
 
-            transition={{
-              duration: 0.8,
-              delay: 0.3,
-            }}
+      <span className="absolute inset-0 blur-xl bg-lime-400/60 rounded-xl"></span>
 
-            viewport={{ once: true }}
+    </span>
 
-            className="md:text-4xl text-lg absolute -right-2 md:right-32 top-0 md:top-[-10px] opacity-40"
-          >
-            <FaQuoteRight />
-          </motion.span>
+    <span>Days From Now</span>
 
-        </motion.p>
+  </div>
 
-        {/* DOT IMAGE */}
-        <motion.div
-          variants={fadeUp}
-          className="w-[40%] mx-auto"
-        >
-          <img
-            src="https://ik.imagekit.io/psltlu4ds/HR%20navin/Frame%202147224427.png"
-            alt="line"
-          />
-        </motion.div>
+  <span className=" md:text-3xl text-gray-200 text-sm md:text-base font-normal mt-5 max-w-3xl">
+    You’ll either stay confused —
+    <br className="hidden md:block" />
+    or you’ll be working as an HR.
+    <span className="font-bold">The choice is yours.</span>
+  </span>
 
-        {/* MAIN TEXT */}
-        <motion.h2
-          variants={blurReveal}
-          className="text-3xl md:text-5xl font-bold flex justify-center mt-5 items-center gap-3"
-        >
+</motion.h2>
 
-          {/* GLOW BOX */}
-          <span className="relative inline-block">
+<motion.p
+  variants={fadeUp}
+  className="text-base text-gray-400 mt-6"
+>
+  
+</motion.p>
+{/* BUTTONS */}
+<motion.div
+className =''
+  variants={fadeUp}
+  className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
+>
 
-            {/* NUMBER */}
-            <motion.span
+  
+           <CTAButtonPopup className="flex items-center"
+  
+    
+  />
+  
 
-               variants={shaggyVariants}
-            initial="initial"
-            animate="animate"
-            className="inline-block"
-              
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    className="border border-white/20 md:mt-4 bg-white/10 backdrop-blur-md px-10 md:px-14 py-3 rounded-xl text-white"
+  >
+    Talk to HR Mentor
+  </motion.button>
 
-              className="
-                inline-block
-                rotate-[6deg]
-                bg-[#B1E635]
-                text-black
-                shadow-xl
-                text-3xl
-                md:text-5xl
-                shadow-[#B1E635]
-                px-2 py-3
-                rounded-xl
-              "
-            >
-              60
-            </motion.span>
+</motion.div>
 
-            {/* Glow */}
-            <span className="absolute inset-0 blur-xl bg-lime-400/60 rounded-xl"></span>
+{/* BOTTOM TEXT */}
 
-          </span>
-
-          Days from now
-        </motion.h2>
-
-        {/* BUTTON */}
-        <motion.div
-          variants={fadeUp}
-          className="inline-block p-[1.5px] rounded-xl  hover:scale-105 mt-10 bg-gradient-to-r from-[#FFF0F0] to-transparent"
-        >
-
-          <motion.button
-
-           
-
-            className="bg-[#4043FE] cursor-pointer  px-8 py-3 rounded-xl flex items-center gap-2 text-white"
-          >
-
-            Book Your Seat Now
-
-            <motion.div
-              animate={{
-                x: [0, 4, 0],
-              }}
-
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-              }}
-            >
-              <ArrowUpRight size={18} />
-            </motion.div>
-
-          </motion.button>
-
-        </motion.div>
-
-        {/* BOTTOM TEXT */}
-        <motion.p
-          variants={fadeUp}
-          className="text-xs text-gray-400 mt-2"
-        >
-          Limited seats available
-        </motion.p>
 
       </motion.div>
 
