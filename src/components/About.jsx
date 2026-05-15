@@ -100,14 +100,14 @@ const AboutSection = () => {
               className="lg:col-span-3 flex items-center gap-2 text-gray-600"
             >
               <span className="w-2 h-2 bg-orange-500 text-sm lg:text-lg rounded-full"></span>
-              <span>About HR Learners Hub</span>
+              <span className="text-sm md:text-base">About HR Learners Hub</span>
             </motion.div>
 
             {/* Heading */}
             <div className="lg:col-span-9">
               <motion.h2
                 variants={blurReveal}
-                className="text-lg lg:text-3xl text-gray-900 leading-snug"
+                className="text-base md:text-3xl text-gray-900 leading-snug"
               >
                 We empower aspiring HR professionals with real-world IT hiring
                 skills beyond classroom learning.
@@ -509,7 +509,7 @@ const AboutSection = () => {
               className="flex justify-center items-center gap-2 text-sm lg:text-lg text-gray-600 mb-6"
             >
               <span className="w-2 h-2 bg-orange-500 lg:text-lg rounded-full"></span>
-              <span>
+              <span className="md:text-base text-sm">
   Our Promise{" "}
   <span className="line-through opacity-70">
     NOT A MARKETING LINE

@@ -739,10 +739,10 @@ export default function StepsSection() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7 }}
       viewport={{ once: true }}
-      className="inline-flex items-center gap-2   px-4 py-2 mb-6"
+      className="inline-flex items-center gap-2    py-2 mb-3 md:mb-6"
     >
       <div className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
-      <span className="md:text-sm text-xs font-semibold text-gray-300 tracking-wide">
+      <span className="md:text-base text-xs  text-gray-300 tracking-wide">
         REAL-TIME INTERNSHIP EXPERIENCE <span className="line-through">Not a Fake Certificate</span>
       </span>
     </motion.div>
@@ -768,7 +768,7 @@ export default function StepsSection() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.1 }}
       viewport={{ once: true }}
-      className="text-white/60 text-sm md:text-base leading-relaxed mt-6 max-w-3xl"
+      className="text-white/60 text-sm md:text-base leading-relaxed mt-3 md:mt-6 max-w-3xl"
       
     >
       Through our HR consulting brand{" "}
