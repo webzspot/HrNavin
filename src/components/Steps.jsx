@@ -844,7 +844,7 @@ export default function StepsSection() {
   className="relative"
 >
   {/* Glow */}
-  <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-[40px] scale-90" />
+  <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-[40px] pointer-events-none scale-90" />
 
   {/* Glass Card */}
   <div className="relative p-4 md:p-6 rounded-[36px] border border-white/40 bg-white/10 backdrop-blur-2xl shadow-[0_10px_60px_rgba(255,255,255,0.08)] overflow-hidden">
