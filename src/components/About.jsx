@@ -5,6 +5,7 @@ import { RiLightbulbFlashFill } from "react-icons/ri";
 import { RiAwardFill } from "react-icons/ri";
 import CTAButtonPopup from "./Button";
 
+
 const AboutSection = () => {
   const mentors = [
     {
@@ -184,7 +185,7 @@ const AboutSection = () => {
   buttonBg="#000000"
   gradientFrom="#B1E635"
   gradientTo="#ffffff"
-  submitBtnBg="#B1E635"
+  // submitBtnBg="#B1E635"
 />
                 </motion.div>
               </div>
@@ -324,7 +325,7 @@ const AboutSection = () => {
 
                   <motion.div
                     variants={fadeUp}
-                    className="relative z-30 
+                    className="relative z-20 
                     border-4 lg:border-none
                     lg:bg-none bg-[radial-gradient(circle_at_center,#282FE0_0%,#020C32_100%)] 
                     px-3 py-6 lg:px-0 lg:py-0 rounded-xl lg:w-[40%]"

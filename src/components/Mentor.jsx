@@ -565,7 +565,7 @@ export default function CoverflowCarousel() {
                 scale: secondCardScale,
               }}
 
-              className="relative z-20 w-full mt-20 md:mt-12"
+              className="relative z-30 w-full mt-20 md:mt-12"
             >
 
               <div className="bg-[#B1E635] rounded-2xl p-6 md:px-8 md:py-14 shadow-xl">
