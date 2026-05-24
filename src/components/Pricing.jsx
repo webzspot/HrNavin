@@ -547,7 +547,7 @@ const Pricing = () => {
   buttonBg="#000000"
   gradientFrom="#B1E635"
   gradientTo="#ffffff"
-  submitBtnBg="#B1E635" />
+  />
 
           </motion.div>
 

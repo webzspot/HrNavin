@@ -177,8 +177,8 @@ AI powered HR Training
 
       {/* 🔥 CAROUSEL */}
       <div className="relative mt-16 max-w-7xl mx-auto overflow-hidden">
-        <div className="pointer-events-none absolute -left-2 md:left-0 top-0 h-full w-16 md:w-24 bg-gradient-to-r from-[#020617] to-transparent z-20"></div>
-        <div className="pointer-events-none absolute -right-1 md:right-0 top-0 h-full w-12 md:w-20 bg-gradient-to-l from-[#020617] to-transparent z-20"></div>
+        <div className="pointer-events-none absolute -left-2 md:left-0 top-0 h-full w-16 md:w-24 bg-gradient-to-r from-[#020617] to-transparent z-10"></div>
+        <div className="pointer-events-none absolute -right-1 md:right-0 top-0 h-full w-12 md:w-20 bg-gradient-to-l from-[#020617] to-transparent z-10"></div>
 
     <motion.div
   className="flex gap-6 w-max"
