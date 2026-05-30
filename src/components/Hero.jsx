@@ -9,7 +9,7 @@ const mentors = [
   {
     name: "Navin",
     role: "Specialist in IT Recruitment & Career Coaching",
-    exp: "8+ Yrs Experience",
+    exp: "8+ Yrs",
     img: "https://ik.imagekit.io/psltlu4ds/HR%20navin/Untitled-853-x-1813-px-853-x-1153-px-14.png",
     company: "Meta",
     bg: "radial-gradient(circle at center, #282FE0 0%, #0B1445 60%, #020C32 70%)",
@@ -17,7 +17,7 @@ const mentors = [
   {
     name: "Melvin",
     role: "IT Recruitment & Talent Acquisition (End-to-End)",
-    exp: "5+ Yrs Experience",
+    exp: "5+ Yrs ",
     img: "https://ik.imagekit.io/psltlu4ds/HR%20navin/123.png",
     company: "Microsoft",
     bg: "radial-gradient(circle at center, #282FE0 0%, #0B1445 60%, #020C32 70%)",
