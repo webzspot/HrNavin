@@ -27,7 +27,7 @@ const Pricing = () => {
       filter: "blur(0px)",
 
       transition: {
-        duration: 1,
+        duration: 0.5,
         ease: [0.22, 1, 0.36, 1],
       },
     },
@@ -235,7 +235,7 @@ const Pricing = () => {
 
                 className="xl:ml-auto whitespace-nowrap bg-white/90 text-gray-900 px-10 py-3 rounded-xl text-sm md:text-base font-semibold shadow border border-white/40 hover:bg-white"
               >
-                Get Started
+                Get started
               </motion.button>
 
             </motion.div>
@@ -367,7 +367,7 @@ const Pricing = () => {
               },
 
               {
-                title: "Full Program (All)",
+                title: "Full Program -[Recruitment + Generalist +Internship] ",
                 desc: "Complete career-ready HR transformation.",
                 during: "₹20,000",
                 after: "₹0",
@@ -476,9 +476,9 @@ const Pricing = () => {
                     scale: 0.98,
                   }}
 
-                  className="w-full mt-4 border border-gray-300 text-sm md:text-base rounded-xl  py-3 bg-gray-100 hover:bg-gray-200 font-medium"
+                  className="w-full mt-4 border border-gray-300 text-sm md:text-base rounded-xl  py-3 bg-[#2A74DB] hover:bg-gray-200 font-medium"
                 >
-                  Choose Plan
+                 Enroll Now
                 </motion.button>
 
                 <div className="border-t border-[#E9EAEB] my-4"></div>

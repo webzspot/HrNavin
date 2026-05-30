@@ -8,6 +8,7 @@ import Mentor from "./components/Mentor";
 import Footer from "./components/Footer";
 import Pricing from "./components/Pricing";
 import MentorSection from "./components/Mentorcard";
+import CoverflowCarousel from "./components/Shorts";
 
 const App = () => {
   return (
@@ -27,6 +28,9 @@ const App = () => {
       </div>
       <div>
         <Mentor/>
+      </div>
+      <div>
+        <CoverflowCarousel/>
       </div>
       
 

@@ -8,48 +8,51 @@ import CTAButtonPopup from "./Button";
 const mentors = [
   {
     name: "Navin",
-    role: "IT Recruitment & HR Career Strategy",
-    experience: "6+ Years Experience",
-    company: "Technical Hiring Specialist",
-    number: "01",
+    role: "Specialist in IT Recruitment and Carrier Coching",
+    years: "6+ Years",
+ bg: "radial-gradient(circle at center, #282FE0 0%, #0B1445 60%, #020C32 70%)",
     image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop",
+      "https://ik.imagekit.io/psltlu4ds/HR%20navin/Untitled-853-x-1813-px-853-x-1153-px-14.png",
   },
   {
     name: "Melvin",
-    role: "8+ Years IT Recruitment (End-to-End)",
-    experience: "8+ Years Experience",
-    company: "Senior IT Recruiter",
-    number: "02",
+    role: "8+ Years IT Recruitment & Talent Acquistion (End-to-End)",
+    years: "8+ Years",
+     bg: "radial-gradient(circle at center, #282FE0 0%, #0B1445 60%, #020C32 70%)",
     image:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop",
+      "https://ik.imagekit.io/psltlu4ds/HR%20navin/cropim.png",
   },
   {
     name: "Ramya",
     role: "Communication & Confidence Building",
-    experience: "5+ Years Experience",
-    company: "Soft Skills Trainer",
-    number: "03",
+    years: "5+ Years",
+     bg: "radial-gradient(circle at center, #282FE0 0%, #0B1445 60%, #020C32 70%)",
     image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop",
+      "https://ik.imagekit.io/psltlu4ds/HR%20navin/crop2.png",
   },
   {
-    name: "Sangeetha",
+    name: "Shanthi",
     role: "HR Generalist, Payroll & Compliance",
-    experience: "7+ Years Experience",
-    company: "HR Ops Expert",
-    number: "04",
+    years: "7+ Years",
+     bg: "radial-gradient(circle at center, #282FE0 0%, #0B1445 60%, #020C32 70%)",
     image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1200&auto=format&fit=crop",
+      "https://ik.imagekit.io/psltlu4ds/HR%20navin/crop3.png",
   },
   {
     name: "Suganya Karthik",
     role: "Advanced HR & Career Guidance",
-    experience: "9+ Years Experience",
-    company: "Career Growth Mentor",
-    number: "05",
+    years: "9+ Years",
+     bg: "radial-gradient(circle at center, #282FE0 0%, #0B1445 60%, #020C32 70%)",
     image:
-      "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop",
+      "https://ik.imagekit.io/psltlu4ds/HR%20navin/shared%20image%20(1).png",
+  },
+   {
+    name: "Sriram",
+    role: "Sourcing Scientist (TA Intelligence | Analytics & Automation Expert) ",
+    years: "10+ Years",
+     bg: "radial-gradient(circle at center, #282FE0 0%, #0B1445 60%, #020C32 70%)",
+    image:
+      "https://ik.imagekit.io/psltlu4ds/HR%20navin/shared%20image%20(3).png",
   },
 ];
 
@@ -80,24 +83,22 @@ export default function MentorSection() {
   const nextMentor = mentors[current === mentors.length - 1 ? 0 : current + 1];
 
   return (
-    <section className="relative container mx-auto overflow-hidden py-20 px-4 md:px-8">
+    <section className="relative container mx-auto overflow-hidden py-14 md:py-20 px-4 md:px-8">
 
       {/* TOP CONTENT */}
       <div className="max-w-5xl mx-auto text-center">
 
-       <div className="flex items-center justify-center gap-2">
-        
-         <motion.p
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-black  tracking-[1px] font-semibold text-lg md:text-5xl "
-        >
-          Learn From Multiple Mentors <span className="line-through">  NOT ONE TRAINER</span>
-        </motion.p>
-
-       </div>
+        <div className="flex items-center justify-center gap-2">
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-black tracking-[1px] font-semibold text-lg md:text-5xl"
+          >
+            Learn From Multiple Mentors <span className="line-through">NOT ONE TRAINER</span>
+          </motion.p>
+        </div>
 
         <motion.p
           initial={{ opacity: 0, y: 40 }}
@@ -112,159 +113,145 @@ export default function MentorSection() {
       </div>
 
       {/* CAROUSEL */}
-      <div className="relative max-w-7xl mx-auto mt-10 mb-5 md:h-[520px] flex items-center justify-center overflow-hidden">
+      <div className="relative max-w-7xl mx-auto mt-10 m md:h-[560px] flex items-center justify-center overflow-hidden">
 
         {/* LEFT PREVIEW CARD — stays mounted, only animates values */}
         <motion.div
-          animate={{ x: -260, rotate: -8, scale: 0.82, opacity: 0.35 }}
+          animate={{ x: -310, rotate: -8, scale: 0.82, opacity: 0.35 }}
           transition={SPRING}
           className="
             hidden lg:block
             absolute
-            w-[320px] h-[560px]
-            rounded-[36px] overflow-hidden
-            border border-black/5
-            bg-white
-            shadow-[0_10px_40px_rgba(0,0,0,0.08)]
+            w-[350px]
+            rounded-xl bg-[#f0f0ec] shadow-sm
+            overflow-hidden
           "
         >
-          <img src={prevMentor.image} alt="" className="w-full h-full object-cover" />
+          <div className="flex flex-col">
+            <div className="flex justify-between items-start px-4 mt-7 mb-3">
+              <div>
+                <h3 className="font-black text-xl">{prevMentor.name}</h3>
+                
+              </div>
+              <span className="text-[11px] bg-white px-3 py-1 rounded-full shadow text-gray-700 whitespace-nowrap">
+                {prevMentor.years}
+              </span>
+            </div>
+            <p className=" text-gray-500 mt-1 mb-3 leading-snug h-9 ">
+                  {prevMentor.role}
+                </p>
+            <div
+              className="rounded-t-3xl h-[350px] overflow-hidden"
+              style={{ background: prevMentor.bg }}
+            >
+              <img
+                src={prevMentor.image}
+                alt={prevMentor.name}
+                className="w-full h-full object-cover object-top  transition-transform"
+              />
+            </div>
+          </div>
         </motion.div>
 
         {/* RIGHT PREVIEW CARD — stays mounted, only animates values */}
         <motion.div
-          animate={{ x: 260, rotate: 8, scale: 0.82, opacity: 0.35 }}
+          animate={{ x: 310, rotate: 8, scale: 0.82, opacity: 0.35 }}
           transition={SPRING}
           className="
             hidden lg:block
             absolute
-            w-[320px] h-[560px]
-            rounded-[36px] overflow-hidden
-            border border-black/5
-            bg-white
-            shadow-[0_10px_40px_rgba(0,0,0,0.08)]
+            w-[350px]
+            rounded-xl bg-[#f0f0ec] shadow-sm
+            overflow-hidden
           "
         >
-          <img src={nextMentor.image} alt="" className="w-full h-full object-cover" />
+          <div className="flex flex-col">
+            <div className="flex justify-between items-start px-4 mt-7 mb-3">
+              <div>
+                <h3 className="font-black text-xl">{nextMentor.name}</h3>
+                <p className=" text-gray-500 mt-1 mb-3 leading-snug h-9 ">
+                  {nextMentor.role}
+                </p>
+              </div>
+              <span className="text-[11px] bg-white px-3 py-1 rounded-full shadow text-gray-700 whitespace-nowrap">
+                {nextMentor.years}
+              </span>
+            </div>
+            <div
+              className="rounded-t-3xl h-[350px] overflow-hidden"
+              style={{ background: nextMentor.bg }}
+            >
+              <img
+                src={nextMentor.image}
+                alt={nextMentor.name}
+                className="w-full h-full object-cover object-top transition-transform"
+              />
+            </div>
+          </div>
         </motion.div>
 
-        {/* ACTIVE CARD
-            — mode="popLayout" keeps the outgoing card visible while the
-              incoming card slides in, eliminating any white-flash gap.       */}
+        {/* ACTIVE CARD */}
         <AnimatePresence mode="popLayout" initial={false} custom={direction}>
-
           <motion.div
             key={current}
             custom={direction}
-
             initial={(dir) => ({
               opacity: 0,
               x: dir > 0 ? 260 : -260,
               rotate: dir > 0 ? 8 : -8,
               scale: 0.88,
             })}
-
             animate={{
               opacity: 1,
               x: 0,
               rotate: 0,
               scale: 1,
             }}
-
             exit={(dir) => ({
               opacity: 0,
               x: dir > 0 ? -260 : 260,
               rotate: dir > 0 ? -8 : 8,
               scale: 0.88,
             })}
-
             transition={SPRING}
-
             className="
               relative z-20
-              w-full
-              max-w-[380px] md:max-w-[420px]
-              md:h-[520px] h-[450px]
-              rounded-[36px] overflow-hidden
-              border border-black/5
-              bg-white
-              shadow-[0_20px_80px_rgba(0,0,0,0.12)]
+              w-[380px]
+              rounded-xl bg-[#f0f0ec] shadow-sm
+              overflow-hidden
             "
           >
-
-            {/* IMAGE */}
-            <div className="relative h-full">
-
-              <img
-                src={mentor.image}
-                alt={mentor.name}
-                className="w-full h-full object-cover"
-              />
-
-              {/* OVERLAY */}
-              <div className="absolute inset-0 rounded-[36px] bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
-
-              {/* NUMBER */}
-              <div
-                className="
-                  absolute top-5 right-5
-                  w-14 h-14
-                  rounded-2xl
-                  bg-[#B1E635] text-black
-                  flex items-center justify-center
-                  font-bold text-xl
-                  shadow-lg shadow-[#B1E635]/40
-                "
-              >
-                {mentor.number}
-              </div>
-
-              {/* CONTENT */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8">
-
-                <p className="text-[#D4FF4F] uppercase tracking-[3px] text-xs md:text-sm font-semibold">
-                  {mentor.experience}
-                </p>
-
-                <h3 className="text-xl md:text-4xl text-white font-bold mt-3">
-                  {mentor.name}
-                </h3>
-
-                <p className="text-gray-200 text-xs  md:text-lg leading-relaxed mt-3">
-                  {mentor.role}
-                </p>
-
-                {/* TAGS */}
-                <div className="flex justify-between gap-3 mt-6">
-
-                  <div className="bg-white/15 backdrop-blur-xl w-full border border-white/10 px-4 py-2 rounded-xl">
-                    <p className="text-xs md:text-sm text-gray-300">Experience</p>
-                    <h4 className="text-xs md:text-sm text-white font-semibold mt-1">
-                      {mentor.experience}
-                    </h4>
-                  </div>
-
-                  <div className="bg-white/15 backdrop-blur-xl w-full border border-white/10 px-4 py-2 rounded-xl">
-                    <p className="text-xs md:text-sm text-gray-300">Role</p>
-                    <h4 className="text-xs md:text-sm text-white font-semibold mt-1">
-                      {mentor.company}
-                    </h4>
-                  </div>
-
+            <div className="flex flex-col">
+              <div className="flex justify-between items-start px-4 mt-7 mb-3">
+                <div>
+                  <h3 className="font-black text-xl">{mentor.name}</h3>
+                 
                 </div>
-
+                <span className="text-[11px] bg-white px-3 py-1 rounded-full shadow text-gray-700 whitespace-nowrap">
+                  {mentor.years}
+                </span>
               </div>
-
+               <p className=" text-gray-500 px-4  mt-1 mb-4 leading-snug h-9 ">
+                    {mentor.role}
+                  </p>
+              <div
+                className="rounded-t-3xl h-[330px] overflow-hidden"
+                style={{ background: mentor.bg }}
+              >
+                <img
+                  src={mentor.image}
+                  alt={mentor.name}
+                  className="w-full h-full object-cover object-top  transition-transform"
+                />
+              </div>
             </div>
-
           </motion.div>
-
         </AnimatePresence>
 
       </div>
 
       {/* ARROWS */}
-      <div className="flex justify-center items-center gap-5 lg:mt-10">
+      <div className="flex justify-center items-center gap-5 mt-5 lg:mt-10">
 
         {/* LEFT */}
         <motion.button
@@ -272,7 +259,7 @@ export default function MentorSection() {
           whileHover={{ scale: 1.08 }}
           onClick={prevSlide}
           className="
-            w-14 h-14 rounded-full
+            md:w-14 md:h-14 w-8 h-8 rounded-full
             bg-white border border-black/10
             shadow-[0_5px_20px_rgba(0,0,0,0.08)]
             flex items-center justify-center
@@ -290,7 +277,7 @@ export default function MentorSection() {
               key={index}
               className={`
                 transition-all duration-500 rounded-full
-                ${current === index ? "w-10 h-3 bg-[#B1E635]" : "w-3 h-3 bg-black/15"}
+                ${current === index ? "md:w-10 md:h-3 w-5 h-1.5 bg-[#B1E635]" : "md:w-3 md:h-3 w-1.5 h-1.5 bg-black/15"}
               `}
             />
           ))}
@@ -302,7 +289,7 @@ export default function MentorSection() {
           whileHover={{ scale: 1.08 }}
           onClick={nextSlide}
           className="
-            w-14 h-14 rounded-full
+            md:w-14 w-8 h-8 md:h-14 rounded-full
             bg-white border border-black/10
             shadow-[0_5px_20px_rgba(0,0,0,0.08)]
             flex items-center justify-center
@@ -323,7 +310,6 @@ export default function MentorSection() {
         viewport={{ once: true }}
         className="mx-auto text-gray-800 text-center"
       >
-
         <div className="inline-block px-8 py-3 md:py-10">
           <p className="text-lg md:text-4xl leading-relaxed">
             💡 Different mentors.{" "}
@@ -331,11 +317,9 @@ export default function MentorSection() {
             <span className="text-[#B1E635]">One goal: Your Job.</span>
           </p>
         </div>
-
         <div>
           <CTAButtonPopup />
         </div>
-
       </motion.div>
 
     </section>

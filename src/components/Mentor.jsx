@@ -451,7 +451,7 @@ export default function CoverflowCarousel() {
 
       <section
         ref={containerRef}
-        className="py-10 lg:py-16 mb-20 px-4"
+        className="py-5 lg:py-16 mb-20 px-4"
       >
 
         <div className="max-w-5xl mx-auto">

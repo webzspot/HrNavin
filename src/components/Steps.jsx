@@ -1,875 +1,428 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
-import { PiBookOpenTextLight } from "react-icons/pi";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import CTAButtonPopup from "./Button";
 
 /* ---------------- ICONS ---------------- */
+
 const BookIcon = ({ color = "#fff" }) => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
   </svg>
 );
-const ArrowIcon = ({ color = "#111" }) => (
+
+const ArrowIcon = ({ color = "#fff" }) => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
-    <circle cx="12" cy="12" r="9" /><path d="M10 8l4 4-4 4" />
+    <circle cx="12" cy="12" r="9" />
+    <path d="M10 8l4 4-4 4" />
   </svg>
 );
-const LightningIcon = ({ color = "#111" }) => (
+
+const LightningIcon = ({ color = "#fff" }) => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
     <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" />
   </svg>
 );
-const PeopleIcon = ({ color = "#111" }) => (
+
+const PeopleIcon = ({ color = "#fff" }) => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
-    <circle cx="9" cy="8" r="3" /><circle cx="17" cy="10" r="3" />
-    <path d="M4 20c0-3 2-5 5-5" /><path d="M14 20c0-3 2-5 5-5" />
-  </svg>
-);
-const MicIcon = ({ color = "#111" }) => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
-    <rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0" />
-  </svg>
-);
-const SearchIcon = ({ color = "#111" }) => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
-    <circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" />
-  </svg>
-);
-const InternIcon = ({ color = "#111" }) => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
-    <path d="M5 12h10" /><path d="M12 5l7 7-7 7" />
+    <circle cx="9" cy="8" r="3" />
+    <circle cx="17" cy="10" r="3" />
+    <path d="M4 20c0-3 2-5 5-5" />
+    <path d="M14 20c0-3 2-5 5-5" />
   </svg>
 );
 
-const STEP_ICONS = [BookIcon, ArrowIcon, LightningIcon, PeopleIcon, MicIcon, SearchIcon, InternIcon];
+const MicIcon = ({ color = "#fff" }) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
+    <rect x="9" y="3" width="6" height="11" rx="3" />
+    <path d="M5 11a7 7 0 0 0 14 0" />
+  </svg>
+);
+
+const SearchIcon = ({ color = "#fff" }) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
+    <circle cx="11" cy="11" r="7" />
+    <path d="M20 20l-4-4" />
+  </svg>
+);
+
+const InternIcon = ({ color = "#fff" }) => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
+    <path d="M5 12h10" />
+    <path d="M12 5l7 7-7 7" />
+  </svg>
+);
+
+const STEP_ICONS = [
+  BookIcon,
+  ArrowIcon,
+  LightningIcon,
+  PeopleIcon,
+  MicIcon,
+  SearchIcon,
+  InternIcon,
+];
 
 /* ---------------- DATA ---------------- */
+
 const STEPS = [
   {
     id: 1,
     title: "HR Recruitment Fundamentals",
     sub: "Learn End-to-End Recruitment Practically",
     points: [
-      "Understanding the complete recruitment lifecycle",
-      "Resume screening & candidate shortlisting",
-      "LinkedIn & Naukri sourcing techniques",
+      "Understanding recruitment lifecycle",
+      "Resume screening & shortlisting",
+      "LinkedIn & Naukri sourcing",
       "IT & Non-IT recruitment basics",
-      "Real-time recruitment workflow exposure",
     ],
     outcome: "Build strong recruiter skills from scratch.",
   },
   {
     id: 2,
     title: "Communication & Confidence Building",
-    sub: "Improve Your Professional Communication",
+    sub: "Improve Professional Communication",
     points: [
-      "HR communication fundamentals",
-      "Interview speaking practice sessions",
-      "Voice & confidence improvement activities",
-      "Professional email & WhatsApp communication",
-      "Mock HR calling & roleplay practice",
+      "Interview speaking practice",
+      "Voice improvement sessions",
+      "Professional email communication",
+      "Mock HR calling practice",
     ],
-    outcome: "Speak confidently in interviews and HR discussions.",
+    outcome: "Speak confidently in interviews.",
   },
   {
     id: 3,
     title: "HR Generalist Training",
     sub: "Learn Core HR Operations",
     points: [
-      "Payroll & attendance basics",
-      "Employee onboarding process",
-      "HR documentation & HR operations",
-      "PF, ESI & compliance basics",
-      "HR policies & employee management fundamentals",
+      "Payroll basics",
+      "Employee onboarding",
+      "HR documentation",
+      "Compliance fundamentals",
     ],
-    outcome: "Gain practical exposure to HR Generalist activities.",
+    outcome: "Gain practical HR operations exposure.",
   },
   {
     id: 4,
     title: "Interview Preparation",
-    sub: "Get Ready to Attend Interviews Confidently",
+    sub: "Get Ready for Interviews",
     points: [
-      "Resume preparation & profile building",
-      "HR interview questions & answers",
-      "Mock interviews with trainer feedback",
-      "Salary negotiation guidance",
-      "Corporate interview preparation strategies",
+      "Resume preparation",
+      "Mock interviews",
+      "Salary negotiation",
+      "Corporate interview strategy",
     ],
-    outcome: "Attend interviews with confidence and clarity.",
+    outcome: "Attend interviews confidently.",
   },
   {
     id: 5,
     title: "Placement Support",
-    sub: "Dedicated Job Support Until Placement",
+    sub: "Dedicated Job Assistance",
     points: [
-      "Daily job updates & openings",
-      "Consultancy & IT company opportunities",
-      "Referral & recruiter support",
-      "Job application guidance",
-      "Placement tracking & follow-up support",
+      "Daily job updates",
+      "Referral support",
+      "Application guidance",
+      "Placement follow-up",
     ],
-    outcome: "Increase your chances of getting placed faster.",
+    outcome: "Increase placement opportunities.",
   },
   {
     id: 6,
     title: "Internship Opportunity",
-    sub: "Gain Real-Time HR Exposure",
+    sub: "Gain Real-Time Exposure",
     points: [
-      "Live internship experience in recruitment",
-      "Candidate coordination activities",
-      "Practical sourcing exposure",
-      "Team collaboration & HR workflow understanding",
-      "Experience certificate support",
+      "Live internship work",
+      "Candidate coordination",
+      "Recruitment exposure",
+      "Experience certificate",
     ],
-    outcome: "Build practical experience before joining a company.",
+    outcome: "Build real HR experience.",
   },
   {
     id: 7,
     title: "AI in HR",
-    sub: "Learn Future-Ready HR Skills",
+    sub: "Learn Future-Ready Skills",
     points: [
-      "AI tools used in recruitment",
-      "AI-based resume screening techniques",
-      "AI sourcing & outreach automation",
-      "ChatGPT & recruitment productivity workflows",
-      "Future trends in AI-powered hiring",
+      "AI recruitment tools",
+      "AI screening techniques",
+      "ChatGPT workflows",
+      "AI hiring trends",
     ],
-    outcome: "Become an AI-enabled modern HR professional.",
+    outcome: "Become an AI-enabled HR professional.",
   },
 ];
 
-const ANGLES = [-90, -35, 20, 75, 130, 180, 225];
+/* ---------------- COMPONENT ---------------- */
 
-/* ---------------- ORBIT ---------------- */
-function Orbit({ active, setActive, size }) {
-  const cx = size / 2;
-  const cy = size / 2;
-  const r = size * 0.4;
-  const centerR = size * 0.2;
-  const nodeSize = size * 0.12;
-
-  const getPos = (deg) => {
-    const rad = (deg * Math.PI) / 180;
-    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
-  };
-
-  return (
-    <div style={{ width: size, height: size, position: "relative" }}>
-      <svg width={size} height={size} className="absolute inset-0" style={{ overflow: "visible" }}>
-        <style>{`
-          @keyframes orbitCW { 
-            0% { transform: rotate(0deg); } 
-            100% { transform: rotate(360deg); } 
-          }
-          @keyframes orbitACW { 
-            0% { transform: rotate(360deg); } 
-            100% { transform: rotate(0deg); } 
-          }
-          @keyframes orbitSlow { 
-            0% { transform: rotate(0deg); } 
-            100% { transform: rotate(360deg); } 
-          }
-          .orbit-ring-cw {
-            animation: orbitCW 40s linear infinite;
-            will-change: transform;
-            transform-origin: 50% 50%;
-          }
-          .orbit-ring-acw {
-            animation: orbitACW 40s linear infinite;
-            will-change: transform;
-            transform-origin: 50% 50%;
-          }
-          .orbit-ring-slow {
-            animation: orbitSlow 24s linear infinite;
-            will-change: transform;
-            transform-origin: 50% 50%;
-          }
-        `}</style>
-        <g className="orbit-ring-cw">
-          <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgba(255,255,255,0.38)" strokeWidth="1.8" strokeDasharray="4 10" strokeLinecap="round" />
-        </g>
-        <g className="orbit-ring-acw">
-          <circle cx={cx} cy={cy} r={r * 0.78} fill="none" stroke="rgba(255,255,255,0.30)" strokeWidth="1.7" strokeDasharray="3 9" strokeLinecap="round" />
-        </g>
-        <g className="orbit-ring-slow">
-          <circle cx={cx} cy={cy} r={r * 0.6} fill="none" stroke="rgba(255,255,255,0.24)" strokeWidth="1.6" strokeDasharray="2 8" strokeLinecap="round" />
-        </g>
-      </svg>
-
-      {/* Center */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.7 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="absolute rounded-full bg-white flex flex-col items-center justify-center"
-        style={{
-          width: centerR * 2, height: centerR * 2,
-          left: cx - centerR, top: cy - centerR,
-          boxShadow: "0 0 45px rgba(99,102,241,0.8), 0 0 90px rgba(99,102,241,0.45)",
-        }}
-      >
-        <div className="mb-1 p-1 flex items-center justify-center rounded-full bg-gradient-to-r from-[#2129CA] to-[#0A135A]">
-          <PiBookOpenTextLight size={28} className="text-white" />
-        </div>
-        <div style={{ fontSize: size * 0.038, color: "#111827", fontWeight: 700, textAlign: "center", lineHeight: 1.1 }}>
-          HR<br />Fundamentals
-        </div>
-      </motion.div>
-
-      {/* Nodes */}
-      {STEPS.map((step, i) => {
-        const pos = getPos(ANGLES[i]);
-        const isActive = active === step.id;
-        return (
-          <motion.button
-            key={step.id}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: i * 0.08, ease: "backOut" }}
-            onClick={() => {
-              setActive(step.id);
-              const isMobile = window.innerWidth < 1024;
-              const element = document.getElementById(
-                isMobile
-                  ? `mobile-step-${step.id}`
-                  : `desktop-step-${step.id}`
-              );
-              if (element) {
-                const y =
-                  element.getBoundingClientRect().top +
-                  window.pageYOffset -
-                  (isMobile ? 260 : 180);
-                window.scrollTo({
-                  top: y,
-                  behavior: "smooth",
-                });
-              }
-            }}
-            className="absolute flex items-center justify-center font-bold transition-all duration-300 cursor-pointer"
-            style={{
-              width: nodeSize, height: nodeSize,
-              left: pos.x - nodeSize / 2, top: pos.y - nodeSize / 2,
-              borderRadius: 12,
-              background: isActive ? "#3B82F6" : "#ffffff",
-              color: isActive ? "#fff" : "#111",
-              fontSize: size * 0.034,
-              border: "1px solid rgba(255,255,255,0.25)",
-              boxShadow: isActive ? "0 0 22px rgba(59,130,246,0.95)" : "0 4px 14px rgba(0,0,0,0.15)",
-              transition: "all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1)",
-            }}
-          >
-            {step.id}
-          </motion.button>
-        );
-      })}
-    </div>
-  );
-}
-
-/* ---------------- STEP CARD - Always Open ---------------- */
-function StepCard({ step, active, setActive, index, isMobile }) {
-  const Icon = STEP_ICONS[step.id - 1];
-  const isActive = active === step.id;
-  const cardId = isMobile ? `mobile-step-${step.id}` : `desktop-step-${step.id}`;
-
-  return (
-    <motion.div
-      id={cardId}
-      initial={{ opacity: 0, y: 80 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.3, margin: "-50px 0px -50px 0px" }}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.08,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
-      className="relative w-full"
-    >
-      <motion.div
-        className="w-full rounded-3xl bg-white overflow-hidden"
-        animate={{
-          boxShadow: isActive
-            ? "0 20px 60px rgba(0,0,0,0.16), 0 0 0 2px #3B82F6"
-            : "0 6px 18px rgba(0,0,0,0.08)",
-        }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
-      >
-        <div className="flex space-x-3 p-4 md:p-6 items-start">
-          <motion.div
-            animate={{
-              backgroundColor: isActive ? "#3B82F6" : "#ffffff",
-              scale: isActive ? 1.05 : 1,
-            }}
-            transition={{
-              duration: 0.3,
-              ease: [0.2, 0.8, 0.4, 1],
-            }}
-            className="rounded-2xl flex items-center justify-center shrink-0 border border-[#e5e7eb]"
-            style={{
-              width: 60,
-              height: 60,
-            }}
-          >
-            <Icon color={isActive ? "#fff" : "#111"} />
-          </motion.div>
-
-          <div className="flex-1">
-            <motion.p
-              animate={{
-                color: isActive ? "#111827" : "#374151",
-              }}
-              transition={{ duration: 0.2 }}
-              className="font-bold text-base lg:text-xl leading-tight"
-            >
-              {step.title}
-            </motion.p>
-
-            <p
-              className="mt-2 text-sm md:text-base"
-              style={{
-                color: "#6b7280",
-                lineHeight: 1.5,
-                fontWeight: 500,
-              }}
-            >
-              {step.sub}
-            </p>
-          </div>
-
-          <motion.div
-            animate={{
-              height: isActive ? 70 : 24,
-              backgroundColor: isActive ? "#3B82F6" : "#e5e7eb",
-            }}
-            transition={{
-              duration: 0.4,
-              ease: [0.4, 0, 0.2, 1],
-            }}
-            style={{
-              width: 5,
-              borderRadius: 30,
-            }}
-          />
-        </div>
-
-        <div className="md:px-6 px-3 pb-6">
-          <div className="h-[1px] w-full bg-[#e5e7eb] mb-2 md:mb-6" />
-
-          <div className="flex flex-col gap-2 md:gap-4">
-            {step.points.map((point, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{
-                  delay: i * 0.05,
-                  duration: 0.4,
-                  ease: "easeOut",
-                }}
-                viewport={{ once: false, margin: "-20px" }}
-                className="flex items-start gap-3"
-              >
-                <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center shrink-0 mt-[2px]">
-                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-                    <path
-                      d="M2 6L5 9L10 3"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-
-                <p
-                  className="md:text-[15px] text-xs"
-                  style={{
-                    color: "#374151",
-                    lineHeight: 1.7,
-                    fontWeight: 500,
-                  }}
-                >
-                  {point}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.2,
-              duration: 0.5,
-              ease: "easeOut",
-            }}
-            viewport={{ once: false, margin: "-20px" }}
-            className="md:mt-7 mt-4 md:text-sm text-xs rounded-2xl border border-blue-100 bg-blue-50 p-3 md:p-5"
-          >
-            <p
-              style={{
-                fontWeight: 700,
-                color: "#2563eb",
-                marginBottom: 8,
-              }}
-            >
-              🎯 Outcome
-            </p>
-
-            <p
-              className="lg:text-[15px] text-xs"
-              style={{
-                color: "#1e3a8a",
-                lineHeight: 1.7,
-                fontWeight: 500,
-              }}
-            >
-              {step.outcome}
-            </p>
-          </motion.div>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}
-
-/* ---------------- BADGE ---------------- */
-function Badge({ text }) {
-  return (
-    <motion.div 
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      viewport={{ once: true }}
-      className="flex items-center gap-3"
-    >
-      <div
-        className="flex items-center justify-center rounded-full shrink-0"
-        style={{ width: 24, height: 24, background: "#a3e635", boxShadow: "0 0 10px rgba(163,230,53,0.6)" }}
-      >
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d="M2 6l2.5 2.5L10 3" stroke="#111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </div>
-      <span style={{ color: "#fff", fontSize: 15, fontWeight: 500 }}>{text}</span>
-    </motion.div>
-  );
-}
-
-/* -------------------------------------------------- */
-/* DESKTOP: Intersection Observer for Highlighting   */
-/* -------------------------------------------------- */
-function DesktopLayout({ active, setActive, orbitSize }) {
-  // Setup intersection observer to highlight active card
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            const stepId = parseInt(id.split("-")[2]);
-            if (stepId && stepId !== active) {
-              setActive(stepId);
-            }
-          }
-        });
-      },
-      {
-        threshold: 0.25,
-        rootMargin: "-15% 0px -65% 0px",
-      }
-    );
-
-    STEPS.forEach((step) => {
-      const element = document.getElementById(`desktop-step-${step.id}`);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, [active, setActive]);
-
-  return (
-    <div
-      className="max-w-7xl mx-auto"
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-start",
-        gap: "40px",
-        position: "relative",
-      }}
-    >
-      {/* LEFT: sticky column */}
-      <div
-        style={{
-          position: "sticky",
-          top: "80px",
-          width: "50%",
-          flexShrink: 0,
-          alignSelf: "flex-start",
-        }}
-      >
-        <Orbit active={active} setActive={setActive} size={orbitSize} />
-
-        {/* <motion.div
-          key={active}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="text-center mt-4"
-        >
-          <span
-            className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold"
-            style={{
-              background: "rgba(59,130,246,0.18)",
-              color: "#93c5fd",
-              border: "1px solid rgba(59,130,246,0.3)",
-            }}
-          >
-            Currently Viewing: Step {active} of {STEPS.length}
-          </span>
-        </motion.div> */}
-      </div>
-
-      {/* RIGHT: All cards always visible */}
-      <div
-      className=""
-        style={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          gap: "24px",
-          paddingBottom: "80px",
-          paddingTop: "16px",
-        }}
-      >
-        {STEPS.map((step, index) => (
-          <StepCard
-            key={step.id}
-            step={step}
-            active={active}
-            setActive={setActive}
-            index={index}
-            isMobile={false}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* -------------------------------------------------- */
-/* MOBILE: Fixed Intersection with Sticky Orbit Reference */
-/* -------------------------------------------------- */
-function MobileLayout({ active, setActive, orbitSize }) {
-  const orbitRef = useRef(null);
-  const isScrollingToCard = useRef(false);
-
-  // Set initial active card
-  useEffect(() => {
-    setActive(1);
-  }, [setActive]);
-
-  // Setup intersection observer for mobile
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (isScrollingToCard.current) return;
-        
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            const stepId = parseInt(id.split('-')[2]);
-            if (stepId && stepId !== active) {
-              setActive(stepId);
-            }
-          }
-        });
-      },
-      {
-        threshold: 0.83,
-        rootMargin: "-80px 0px -80px 0px",
-      }
-    );
-
-    STEPS.forEach((step) => {
-      const element = document.getElementById(`mobile-step-${step.id}`);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => observer.disconnect();
-  }, [active, setActive]);
-
-  // Handle orbit button clicks
-  const handleOrbitClick = useCallback((stepId) => {
-    isScrollingToCard.current = true;
-    setActive(stepId);
-    
-    const element = document.getElementById(`mobile-step-${stepId}`);
-    if (element) {
-      const y = element.getBoundingClientRect().top + window.pageYOffset - 120;
-      window.scrollTo({
-        top: y,
-        behavior: "smooth",
-      });
-    }
-    
-    setTimeout(() => {
-      isScrollingToCard.current = false;
-    }, 600);
-  }, [setActive]);
-
-  return (
-    <div className="relative">
-      {/* STICKY ORBIT */}
-      <motion.div
-        ref={orbitRef}
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="sticky top-14 z-20 flex flex-col items-center pt-4  pb-10 mb-10"
-        style={{
-          background: "linear-gradient(to bottom, #010897 85%, transparent)",
-        }}
-      >
-        <Orbit
-          active={active}
-          setActive={handleOrbitClick}
-          size={orbitSize}
-        />
-      </motion.div>
-
-      {/* CARDS */}
-      <div className="flex flex-col px-4 gap-8 mt-9 pb-10">
-        {STEPS.map((step, index) => (
-          <StepCard
-            key={step.id}
-            step={step}
-            active={active}
-            setActive={setActive}
-            index={index}
-            isMobile={true}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* -------------------------------------------------- */
-/* MAIN EXPORT                                        */
-/* -------------------------------------------------- */
 export default function StepsSection() {
-  const [active, setActive] = useState(1);
-  const [orbitSize, setOrbitSize] = useState(560);
-  const [isMobile, setIsMobile] = useState(false);
+  const progressLineRef = useRef(null);
+  const [activeStep, setActiveStep] = useState(-1);
 
   useEffect(() => {
-    const handleResize = () => {
-      const w = window.innerWidth;
-      setIsMobile(w < 1024);
-      setOrbitSize(w < 1024 ? 340 : 520);
+    const updateProgress = () => {
+      const section = document.getElementById("timeline-section");
+      if (!section || !progressLineRef.current) return;
+
+      const rect = section.getBoundingClientRect();
+      const totalHeight = rect.height;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate progress based on viewport center
+      const centerPoint = viewportHeight / 2;
+      let progress;
+      
+      if (rect.top <= centerPoint && rect.bottom >= centerPoint) {
+        // Center is within section
+        const pointInSection = centerPoint - rect.top;
+        progress = pointInSection / totalHeight;
+      } else if (rect.bottom < centerPoint) {
+        // Scrolled past section
+        progress = 1;
+      } else {
+        // Haven't reached section yet
+        progress = 0;
+      }
+      
+      progress = Math.min(Math.max(progress, 0), 1);
+      
+      // Smooth easing
+      const easedProgress = Math.pow(progress, 0.8);
+      const lineHeight = easedProgress * totalHeight;
+      
+      progressLineRef.current.style.height = `${lineHeight}px`;
+
+      // Detect which step to highlight when line reaches the number
+      const timelineItems = document.querySelectorAll(".timeline-step");
+      let currentActive = -1;
+
+      timelineItems.forEach((item, index) => {
+        const itemRect = item.getBoundingClientRect();
+        const sectionRect = section.getBoundingClientRect();
+        const numberDot = item.querySelector(".number-dot");
+        
+        if (numberDot) {
+          const dotRect = numberDot.getBoundingClientRect();
+          const dotTopRelative = dotRect.top - sectionRect.top;
+          const dotBottomRelative = dotRect.bottom - sectionRect.top;
+          const dotCenter = (dotTopRelative + dotBottomRelative) / 2;
+          
+          // Highlight when line reaches the center of the number dot
+          if (lineHeight >= dotCenter) {
+            currentActive = index;
+          }
+        } else {
+          // Fallback to item position
+          const itemTopRelative = itemRect.top - sectionRect.top;
+          if (lineHeight >= itemTopRelative + 20) {
+            currentActive = index;
+          }
+        }
+      });
+
+      setActiveStep(currentActive);
     };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
+
+    return () => {
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+    };
   }, []);
 
-  // Animated cycling text
-  const texts = ["Live HR Projects", "Real Recruitment", "HR Operations", "Documentation"];
-  const [activeTextIndex, setActiveTextIndex] = useState(0);
-  
-  useEffect(() => {
-    const interval = setInterval(() => setActiveTextIndex((p) => (p + 1) % texts.length), 2000);
-    return () => clearInterval(interval);
-  }, [texts.length]);
-
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      viewport={{ once: true, margin: "-50px" }}
-      className="w-full rounded-b-4xl bg-gradient-to-t from-[#020B32] to-[#010897]"
-    >
-      <div className="md:px-8 pt-14 max-w-7xl mx-auto md:pt-20">
-        {/* HEADING */}
-        <motion.h1
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          viewport={{ once: true, margin: "-50px" }}
-          className="font-bold text-white text-xl md:text-5xl leading-tight text-center lg:text-left"
-          
-        >
-          The 7-Step System That
-          <br />
-          Gets You Placed
-        </motion.h1>
-
-        {/* DESKTOP layout */}
-        <div className="hidden lg:block">
-          <DesktopLayout active={active} setActive={setActive} orbitSize={orbitSize} />
-        </div>
-
-        {/* MOBILE layout */}
-        <div className="block lg:hidden">
-          <MobileLayout active={active} setActive={setActive} orbitSize={orbitSize} />
-        </div>
-
-       <div className="mx-auto flex items-center justify-center">
-         <CTAButtonPopup
-  buttonText="Join HR Program"
- 
-/>
-       </div>
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#020B32] to-[#010897] py-20">
+      {/* BG GLOW */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 blur-[120px] rounded-full" />
+        <div className="absolute bottom-10 right-10 w-72 h-72 bg-cyan-500/20 blur-[120px] rounded-full" />
       </div>
 
-      {/* BOTTOM SECTION */}
-     <div className="relative mt-6 md:mt-24 overflow-hidden">
-  <div className="max-w-7xl mx-auto px-4 md:px-10 py-10 md:py-20">
-
-    {/* TOP LABEL */}
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7 }}
-      viewport={{ once: true }}
-      className="inline-flex items-center gap-2    py-2 mb-3 md:mb-6"
-    >
-      <div className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
-      <span className="md:text-base text-xs  text-gray-300 tracking-wide">
-        REAL-TIME INTERNSHIP EXPERIENCE <span className="line-through">Not a Fake Certificate</span>
-      </span>
-    </motion.div>
-
-    {/* HEADING */}
-    <motion.h2
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true }}
-      className="text-white font-bold leading-tight max-w-5xl"
-      
-    >
-      
-      <span className=" text-lg md:text-5xl">
-        Work On LIVE HR Projects While Learning.
-      </span>
-    </motion.h2>
-
-    {/* SUBTEXT */}
-    <motion.p
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.1 }}
-      viewport={{ once: true }}
-      className="text-white/60 text-sm md:text-base leading-relaxed mt-3 md:mt-6 max-w-3xl"
-      
-    >
-      Through our HR consulting brand{" "}
-      <span className="text-white font-semibold">HR Squad</span>,
-      selected learners get 
-    </motion.p>
-
-    {/* MAIN GRID */}
-    <div className="grid lg:grid-cols-2 gap-10 items-center mt-5">
-
-      {/* LEFT CONTENT */}
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="md:space-y-5 space-y-3 text-sm md:text-base"
-      >
-
-        {[
-          "Real IT recruitment exposure",
-          "Live hiring support work",
-          "HR operations & documentation",
-          "Consulting-style HR experience",
-        ].map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.08 }}
-            viewport={{ once: true }}
-            className="flex items-start gap-4  "
-          >
-            <div className="md:w-6 md:h-6 w-4 h-4 rounded-full bg-lime-400 flex items-center justify-center shrink-0 mt-1">
-  <IoCheckmarkSharp className=" md:text-base text-sm text-black" />
-</div>
-
-            <p className="text-white/90 leading-relaxed font-medium text-xs md:text-lg">
-              {item}
-            </p>
-          </motion.div>
-        ))}
-
-        {/* WARNING BOX */}
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
+        {/* BADGE */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="rounded-3xl border border-red-500/20 bg-red-500/10 p-6 mt-8"
+          className="flex justify-center mb-5"
         >
-          <p className="text-red-300 font-bold text-xs md:text-lg">
-            ⚠️ This is not a dummy internship.
-          </p>
-
-          <p className="text-white/70  text-xs md:text-base leading-relaxed mt-3">
-            You’ll work on actual client hiring requirements,
-            
-          </p>
-
-          <p className="text-lime-300 text-xs md:text-base font-semibold mt-5">
-            👉 This experience makes recruiters take you seriously.
-          </p>
+          <div className="px-5 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-blue-200 text-sm">
+            🚀 7-Step HR Placement Roadmap
+          </div>
         </motion.div>
-      </motion.div>
 
-      {/* RIGHT IMAGE */}
-     <motion.div
-  initial={{ opacity: 0, x: 50 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.8 }}
-  viewport={{ once: true }}
-  className="relative"
->
-  {/* Glow */}
-  <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-[40px] pointer-events-none scale-90" />
+        {/* HEADING */}
+        <motion.h1
+          initial={{ opacity: 0, y: 70 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center text-white font-bold text-2xl md:text-6xl leading-tight"
+        >
+          The 7-Step System
+          <br />
+          That Gets You Placed
+        </motion.h1>
 
-  {/* Glass Card */}
-  <div className="relative p-4 md:p-6 rounded-[36px] border border-white/40 bg-white/10 backdrop-blur-2xl shadow-[0_10px_60px_rgba(255,255,255,0.08)] overflow-hidden">
+        {/* TIMELINE */}
+        <div
+          id="timeline-section"
+          className="relative mt-16 md:mt-24 max-w-5xl mx-auto"
+        >
+          {/* TIMELINE LINE */}
+          <div className="absolute left-3 md:left-6 top-0 h-full w-[4px] md:w-[4px] bg-white/10 rounded-full overflow-hidden">
+            {/* ACTIVE GLOW LINE */}
+            <div
+              ref={progressLineRef}
+              className="absolute top-0 left-0 w-full rounded-full transition-all duration-[500ms] ease-out"
+              style={{
+                height: "0px",
+                background:
+                  "linear-gradient(to bottom,#60A5FA,#22D3EE,#A3E635)",
+                boxShadow: "0 0 25px rgba(34,211,238,0.9)",
+              }}
+            />
+          </div>
 
-    {/* Inner Border */}
-    <div className="rounded-[28px] border border-white/20 overflow-hidden">
-      <img
-        src="https://ik.imagekit.io/psltlu4ds/WhatsApp%20Image%202026-05-12%20at%205.21.43%20PM.jpeg"
-        alt="Internship Certificate"
-        className="w-full h-full object-cover"
-      />
-    </div>
+          {/* TIMELINE ITEMS */}
+          <div className="flex flex-col gap-10 md:gap-20">
+            {STEPS.map((step, index) => {
+              const Icon = STEP_ICONS[step.id - 1];
+              const isActive = activeStep >= index;
 
-  </div>
+              return (
+                <motion.div
+                  key={step.id}
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7 }}
+                  viewport={{ once: true }}
+                  className="timeline-step relative flex items-start gap-2 md:gap-8"
+                >
+                  {/* NUMBER DOT - only show color when active */}
+                  <div
+                    className={`number-dot relative z-20 flex items-center justify-center md:w-12 w-8 h-8 md:h-12 rounded-full border-4 shrink-0 transition-all duration-500
+                    ${
+                      isActive
+                        ? "bg-blue-500 border-cyan-300 shadow-[0_0_45px_rgba(34,211,238,1)] scale-110"
+                        : "bg-[#0F172A] border-white/10"
+                    }`}
+                  >
+                    <span
+                      className={`font-bold text-xs md:text-sm transition-all duration-500
+                      ${
+                        isActive
+                          ? "text-white scale-110"
+                          : "text-white/30"
+                      }`}
+                    >
+                      {step.id}
+                    </span>
+                  </div>
 
-  <div className="mx-auto flex items-center justify-center">
-         <CTAButtonPopup
-  buttonText="Join HR Program"
- 
-/>
-</div>
-</motion.div>
-    </div>
-  </div>
-</div>
-    </motion.div>
+                  {/* CARD - only show highlight when active */}
+                  <motion.div
+                    whileHover={{
+                      y: isActive ? -8 : 0,
+                      scale: isActive ? 1.01 : 1,
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className={`relative flex-1 overflow-hidden rounded-[30px] border p-4 md:p-8 shadow-[0_10px_60px_rgba(0,0,0,0.25)] transition-all duration-500
+                    ${
+                      isActive
+                        ? "border-cyan-300/50 bg-white/10 backdrop-blur-xl"
+                        : "border-white/5 bg-white/3 backdrop-blur-sm"
+                    }`}
+                  >
+                    {/* CARD GLOW - only when active */}
+                    {isActive && (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#020617]/95 via-[#0B1120]/70 to-transparent" />
+                       
+                      </>
+                    )}
+
+                    {/* BIG NUMBER - faded for inactive */}
+                    <div className={`absolute md:top-4 top-1/3 right-5 text-6xl md:text-7xl font-black transition-all duration-500
+                      ${isActive ? "text-white/8" : "text-white/3"}`}>
+                      0{step.id}
+                    </div>
+
+                    {/* TOP */}
+                    <div className="relative z-10 flex items-start gap-4">
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-500
+                        ${isActive 
+                          ? "bg-gradient-to-br from-cyan-500 to-blue-500 " 
+                          : "bg-white/5"}`}>
+                        <Icon color={isActive ? "#fff" : "rgba(255,255,255,0.2)"} />
+                      </div>
+
+                      <div>
+                        <h2 className={`font-bold text-base md:text-3xl leading-tight transition-all duration-500
+                          ${isActive ? "text-white" : "text-white/30"}`}>
+                          {step.title}
+                        </h2>
+                        <p className={`text-sm md:text-base mt-2 transition-all duration-500
+                          ${isActive ? "text-cyan-200" : "text-white/20"}`}>
+                          {step.sub}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* DIVIDER */}
+                    <div className={`h-[1px] w-full my-6 transition-all duration-500
+                      ${isActive ? "bg-white" : "bg-white/5"}`} />
+
+                    {/* POINTS */}
+                    <div className="space-y-4 relative z-10">
+                      {step.points.map((point, i) => (
+                        <div
+                          key={i}
+                          className="flex items-start gap-3"
+                        >
+                          <div className={`w-5 h-5 rounded-full flex items-center justify-center mt-1 shrink-0 transition-all duration-500
+                            ${isActive ? "bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]" : "bg-white/10"}`}>
+                            {isActive && <IoCheckmarkSharp className="text-black text-sm" />}
+                          </div>
+                          <p className={`leading-relaxed text-xs md:text-base transition-all duration-500
+                            ${isActive ? "text-white/80" : "text-white/20"}`}>
+                            {point}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* OUTCOME */}
+                    <div className={`mt-8 rounded-2xl border md:p-5 p-3 relative z-10 transition-all duration-500
+                      ${isActive 
+                        ? "border-cyan-400/40 bg-cyan-500/15" 
+                        : "border-white/5 bg-white/5"}`}>
+                      <p className={`text-sm md:text-base font-bold mb-2 transition-all duration-500
+                        ${isActive ? "text-cyan-300" : "text-white/20"}`}>
+                        🎯 Outcome
+                      </p>
+                      <p className={`text-xs md:text-base leading-relaxed transition-all duration-500
+                        ${isActive ? "text-white/80" : "text-white/20"}`}>
+                        {step.outcome}
+                      </p>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="flex justify-center mt-20">
+          <CTAButtonPopup buttonText="Join HR Program" />
+        </div>
+      </div>
+    </section>
   );
 }
