@@ -456,7 +456,7 @@ export default function CoverflowCarousel() {
 
         <div className="max-w-5xl mx-auto">
 
-          <div className="relative h-[800px] md:h-[950px]">
+          <div className="relative h-[805px] md:h-[950px]">
 
             {/* FIRST CARD */}
             <div className="sticky top-24 z-20 w-full">
