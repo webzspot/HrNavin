@@ -332,6 +332,13 @@ import v4 from '../assets/v4.webm'
 import v5 from '../assets/v5.webm'
 import v6 from '../assets/v6.webm'
 import v7 from '../assets/v7.webm'
+import p1 from '../assets/p1.avif'
+import p2 from '../assets/p2.avif'
+import p3 from '../assets/p3.avif'
+import p4 from '../assets/p4.avif'
+import p5 from '../assets/p5.avif'
+import p6 from '../assets/p6.avif'
+import p7 from '../assets/p7.avif'
 
 const fadeUp = {
   hidden: {
@@ -349,13 +356,13 @@ const fadeUp = {
 };
 
 const people = [
-  { id: 1, image: v1 },
-  { id: 2, image: v2 },
-  { id: 3, image: v3 },
-  { id: 4, image: v4 },
-  { id: 5, image: v5 },
-  { id: 6, image: v6 },
-  { id: 7, image: v7 },
+  { id: 1, image: v1, poster: p1 },
+  { id: 2, image: v2, poster: p2 },
+  { id: 3, image: v3, poster: p3 },
+  { id: 4, image: v4, poster: p4 },
+  { id: 5, image: v5, poster: p5 },
+  { id: 6, image: v6, poster: p6 },
+  { id: 7, image: v7, poster: p7 },
 ];
 
 const avatars = [
@@ -390,8 +397,9 @@ function ArrowButton({ onClick, direction }) {
 /* Card that animates only when animKey changes.
    Single-play is enforced globally in the parent via a captured
    'play' event listener — whenever ANY video starts, all others pause.
-   Paused cards always show a dark overlay + play icon. */
-function Card({ image, heightClass, animKey, direction, animate }) {
+   Paused cards always show a dark overlay + play icon.
+   `poster` shows a thumbnail image before the video is played. */
+function Card({ image, poster, heightClass, animKey, direction, animate }) {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -430,6 +438,7 @@ function Card({ image, heightClass, animKey, direction, animate }) {
       <video
         ref={videoRef}
         src={image}
+        poster={poster}
         className="w-full h-full object-cover"
         muted={isMuted}
         loop
@@ -648,12 +657,12 @@ export default function RealPeopleSection() {
               <div className="flex gap-3 items-end">
                 <div className="flex-1 h-[550px] rounded-2xl overflow-hidden">
                   <Card
-                    image={g(0).image} heightClass="h-full" animKey={`c1-${index}`} direction={direction} animate={true}
+                    image={g(0).image} poster={g(0).poster} heightClass="h-full" animKey={`c1-${index}`} direction={direction} animate={true}
                   />
                 </div>
                 <div className="flex-1 h-[490px] rounded-2xl overflow-hidden">
                   <Card
-                    image={g(1).image} heightClass="h-full" animKey={`c2-${index}`} direction={direction} animate={false}
+                    image={g(1).image} poster={g(1).poster} heightClass="h-full" animKey={`c2-${index}`} direction={direction} animate={false}
                   />
                 </div>
               </div>
@@ -666,12 +675,12 @@ export default function RealPeopleSection() {
               <div className="flex gap-3 items-end">
                 <div className="flex-1 h-[550px] rounded-2xl overflow-hidden">
                   <Card
-                    image={g(2).image} heightClass="h-full" animKey={`c3-${index}`} direction={direction} animate={false}
+                    image={g(2).image} poster={g(2).poster} heightClass="h-full" animKey={`c3-${index}`} direction={direction} animate={false}
                   />
                 </div>
                 <div className="flex-1 h-[490px] rounded-2xl overflow-hidden">
                   <Card
-                    image={g(3).image} heightClass="h-full" animKey={`c4-${index}`} direction={direction} animate={true}
+                    image={g(3).image} poster={g(3).poster} heightClass="h-full" animKey={`c4-${index}`} direction={direction} animate={true}
                   />
                 </div>
               </div>
@@ -721,12 +730,12 @@ export default function RealPeopleSection() {
             <div className="flex gap-3 items-end">
               <div className="flex-[2.5] h-80 rounded-2xl overflow-hidden">
                 <Card
-                  image={g(0).image} heightClass="h-full" animKey={`m1-${index}`} direction={direction} animate={true}
+                  image={g(0).image} poster={g(0).poster} heightClass="h-full" animKey={`m1-${index}`} direction={direction} animate={true}
                 />
               </div>
               <div className="flex-[2.5] h-[17rem] rounded-2xl overflow-hidden">
                 <Card
-                  image={g(1).image} heightClass="h-full" animKey={`m2-${index}`} direction={direction} animate={false}
+                  image={g(1).image} poster={g(1).poster} heightClass="h-full" animKey={`m2-${index}`} direction={direction} animate={false}
                 />
               </div>
             </div>
