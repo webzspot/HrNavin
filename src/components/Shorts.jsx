@@ -325,6 +325,13 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import v1 from '../assets/v1.webm'
+import v2 from '../assets/v2.webm'
+import v3 from '../assets/v3.webm'
+import v4 from '../assets/v4.webm'
+import v5 from '../assets/v5.webm'
+import v6 from '../assets/v6.webm'
+import v7 from '../assets/v7.webm'
 
 const fadeUp = {
   hidden: {
@@ -342,13 +349,13 @@ const fadeUp = {
 };
 
 const people = [
-  { id: 1, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQOUBfnzfwUV7j4ZyGTKdn2vblc1axylyqnNyJDStue9Zym1Ygnh-hix8vSksxJtRaKkEPmn0fFRLZ9EHSV07gSWL0I1TaOKgFTXJfE.mp4?updatedAt=1784366671683" },
-  { id: 2, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQP_hmurGFseQE4A6vb3DnRcHuMPIGnUxzifgCAkYpJk19DqccSCgqMjcKUgSfTgg_fQFf681gmPCgV3uwpITaG9jnucs7Blk4VEUnc.mp4?updatedAt=1784366670830" },
-  { id: 3, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQNbQkSNStCSdn53fVGW4vna2itLnHJ9PyDM3OM2bwdstHSsCx7_bABDyPad1MN1PYY4Qxo5rU8qi6CeAAFcDS5kbroEDzzQtMq-ntY.mp4?updatedAt=1784366670473" },
-  { id: 4, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQMCk5WLmFUnZHeMNcSAVudxfh0t9mfUUY-sGThNXhnpiyvTk8V5pSlxXmNiVckXa3vQiBbBYCeBhtL8syrAFPSJpq1QkrAvtvPqEFw.mp4?updatedAt=1784366668985" },
-  { id: 5, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQPHiw-tCgVzUnwppulgVmASF825SXh25h3SpQbyR0G6Q6F8kjPz862mM8kGdQjTrCSqCX01-5zBFf7RGrnIJA3GkZrhFkpMYsLq6RQ.mp4?updatedAt=1784366667260" },
-  { id: 6, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQOw8NddQub28E2fEPpwGf_wMDPpONbhJfqRaPfXrIvtJIu9WbB3iR2MdRrltwdNqwxPLGFuwE8U_1Bk5mdshjDuVTdVxbCZL3s5ji8.mp4?updatedAt=1784366665699" },
-  { id: 7, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQMFcYttbM6wg1VrWrY-BNhZIthBruBRdaCyuLVXIWdzk3Oh-sgFVSkpGYOqkubD_VfDfaUrXh8Cclw_uyztzw1pLzH-4gKPrY2qAME.mp4?updatedAt=1784366657026" },
+  { id: 1, image: v1 },
+  { id: 2, image: v2 },
+  { id: 3, image: v3 },
+  { id: 4, image: v4 },
+  { id: 5, image: v5 },
+  { id: 6, image: v6 },
+  { id: 7, image: v7 },
 ];
 
 const avatars = [
