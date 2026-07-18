@@ -323,32 +323,32 @@
 // }
 
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const fadeUp = {
-    hidden: {
-      opacity: 0,
-      y: 60,
+  hidden: {
+    opacity: 0,
+    y: 60,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
     },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  };
+  },
+};
 
 const people = [
-  { id: 1, image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face" },
-  { id: 2, image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=400&fit=crop&crop=face" },
-  { id: 3, image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=520&fit=crop&crop=face" },
-  { id: 4, image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=380&fit=crop&crop=face" },
-  { id: 5, image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&crop=face" },
-  { id: 6, image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=400&fit=crop&crop=face" },
-  { id: 7, image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=520&fit=crop&crop=face" },
+  { id: 1, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQOUBfnzfwUV7j4ZyGTKdn2vblc1axylyqnNyJDStue9Zym1Ygnh-hix8vSksxJtRaKkEPmn0fFRLZ9EHSV07gSWL0I1TaOKgFTXJfE.mp4?updatedAt=1784366671683" },
+  { id: 2, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQP_hmurGFseQE4A6vb3DnRcHuMPIGnUxzifgCAkYpJk19DqccSCgqMjcKUgSfTgg_fQFf681gmPCgV3uwpITaG9jnucs7Blk4VEUnc.mp4?updatedAt=1784366670830" },
+  { id: 3, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQNbQkSNStCSdn53fVGW4vna2itLnHJ9PyDM3OM2bwdstHSsCx7_bABDyPad1MN1PYY4Qxo5rU8qi6CeAAFcDS5kbroEDzzQtMq-ntY.mp4?updatedAt=1784366670473" },
+  { id: 4, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQMCk5WLmFUnZHeMNcSAVudxfh0t9mfUUY-sGThNXhnpiyvTk8V5pSlxXmNiVckXa3vQiBbBYCeBhtL8syrAFPSJpq1QkrAvtvPqEFw.mp4?updatedAt=1784366668985" },
+  { id: 5, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQPHiw-tCgVzUnwppulgVmASF825SXh25h3SpQbyR0G6Q6F8kjPz862mM8kGdQjTrCSqCX01-5zBFf7RGrnIJA3GkZrhFkpMYsLq6RQ.mp4?updatedAt=1784366667260" },
+  { id: 6, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQOw8NddQub28E2fEPpwGf_wMDPpONbhJfqRaPfXrIvtJIu9WbB3iR2MdRrltwdNqwxPLGFuwE8U_1Bk5mdshjDuVTdVxbCZL3s5ji8.mp4?updatedAt=1784366665699" },
+  { id: 7, image: "https://ik.imagekit.io/j6jj6qqht/Hrnavin/SaveClip.App_AQMFcYttbM6wg1VrWrY-BNhZIthBruBRdaCyuLVXIWdzk3Oh-sgFVSkpGYOqkubD_VfDfaUrXh8Cclw_uyztzw1pLzH-4gKPrY2qAME.mp4?updatedAt=1784366657026" },
 ];
 
 const avatars = [
@@ -365,12 +365,23 @@ function StarIcon() {
   );
 }
 
-function PlayButton() {
+function PlayButton({ onClick, isPlaying, visible }) {
   return (
-    <button className="absolute bottom-3 left-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-200 z-10">
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-gray-800 ml-0.5">
-        <path d="M8 5v14l11-7z" />
-      </svg>
+    <button
+      onClick={onClick}
+      className={`absolute bottom-3 left-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-200 z-10 ${
+        visible ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
+    >
+      {isPlaying ? (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-gray-800">
+          <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-gray-800 ml-0.5">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      )}
     </button>
   );
 }
@@ -390,18 +401,65 @@ function ArrowButton({ onClick, direction }) {
   );
 }
 
-/* Card that animates only when animKey changes */
+/* Card that animates only when animKey changes.
+   Single-play is enforced globally in the parent via a captured
+   'play' event listener — whenever ANY video starts, all others pause.
+   Paused cards always show a dark overlay + play icon.
+   The playing card shows its icon only on hover, with no overlay. */
 function Card({ image, heightClass, animKey, direction, animate }) {
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleActivate = (e) => {
+    e.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      video.muted = false;
+      setIsMuted(false);
+      const playPromise = video.play();
+      if (playPromise) {
+        playPromise.catch(() => {
+          // Browser blocked audio on this tap — fall back to muted
+          video.muted = true;
+          setIsMuted(true);
+          video.play().catch(() => {});
+        });
+      }
+    } else {
+      video.pause();
+    }
+  };
+
   return (
     <div
       key={animKey}
-      className={`relative rounded-2xl overflow-hidden shadow-sm w-full ${heightClass}`}
+      onClick={handleActivate}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`relative rounded-2xl overflow-hidden shadow-sm w-full cursor-pointer ${heightClass}`}
       style={animate ? {
         animation: `slide${direction} 0.45s cubic-bezier(0.4,0,0.2,1) both`,
       } : {}}
     >
-      <img src={image} alt="" className="w-full h-full object-cover" />
-      <PlayButton />
+      <video
+        ref={videoRef}
+        src={image}
+        className="w-full h-full object-cover"
+        muted={isMuted}
+        loop
+        playsInline
+        preload="metadata"
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+      />
+      {!isPlaying && (
+        <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+      )}
+      <PlayButton onClick={handleActivate} isPlaying={isPlaying} visible={isPlaying ? isHovered : true} />
     </div>
   );
 }
@@ -411,10 +469,42 @@ export default function RealPeopleSection() {
   const [direction, setDirection] = useState("InRight");
   const total = people.length;
 
+  const sectionRef = useRef(null);
+
   const prev = () => { setDirection("InLeft");  setIndex((i) => (i - 1 + total) % total); };
   const next = () => { setDirection("InRight"); setIndex((i) => (i + 1) % total); };
 
   const g = (n) => people[(index + n) % total];
+
+  /* ---- GLOBAL SINGLE-PLAY ENFORCEMENT ----
+     'play' events don't bubble, but they CAN be caught in the capture
+     phase on an ancestor. So the moment ANY video in this section starts
+     playing (tap, click, mobile, desktop — doesn't matter), we pause
+     every other video. This can never miss, even after cards remount. */
+  useEffect(() => {
+    const root = sectionRef.current;
+    if (!root) return;
+
+    const onAnyPlay = (e) => {
+      if (e.target.tagName !== "VIDEO") return;
+      root.querySelectorAll("video").forEach((v) => {
+        if (v !== e.target && !v.paused) v.pause();
+      });
+    };
+
+    root.addEventListener("play", onAnyPlay, true); // capture phase!
+    return () => root.removeEventListener("play", onAnyPlay, true);
+  }, []);
+
+  // Pause everything when the user navigates the carousel, so a
+  // remounted/hidden card can't keep playing audio.
+  useEffect(() => {
+    const root = sectionRef.current;
+    if (!root) return;
+    root.querySelectorAll("video").forEach((v) => {
+      if (!v.paused) v.pause();
+    });
+  }, [index]);
 
   return (
     <>
@@ -428,116 +518,115 @@ export default function RealPeopleSection() {
           to   { opacity: 1; transform: translateX(0); }
         }
       `}</style>
-      
-       {/* ================= GALLERY SECTION ================= */}
-        <motion.section
-          className="relative py-5 lg:py-24"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-        >
-          <div className="max-w-7xl mx-auto px-4">
 
-            {/* Heading */}
-            <div className="text-center mb-14">
-              <div className="flex justify-center items-center gap-2 mb-4">
-                <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
-                <span className="text-gray-600">
-                  Gallery
-                </span>
-              </div>
+      {/* ================= GALLERY SECTION ================= */}
+      <motion.section
+        className="relative py-5 lg:py-24"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeUp}
+      >
+        <div className="max-w-7xl mx-auto px-4">
 
-             <h2 className="text-2xl md:text-6xl font-bold text-[#111827]">
-  Celebrating
-  <span className="text-[#2A74DB]"> Career Success Stories</span>
-</h2>
-
-              <p className="mt-5 text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
-                Explore our mentorship sessions, team activities,
-                and student success stories.
-              </p>
+          {/* Heading */}
+          <div className="text-center mb-14">
+            <div className="flex justify-center items-center gap-2 mb-4">
+              <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+              <span className="text-gray-600">
+                Gallery
+              </span>
             </div>
 
-            {/* BENTO GRID */}
-            <div className="grid lg:grid-cols-3 gap-6">
+            <h2 className="text-2xl md:text-6xl font-bold text-[#111827]">
+              Celebrating
+              <span className="text-[#2A74DB]"> Career Success Stories</span>
+            </h2>
 
-              {/* LARGE LEFT CARD */}
+            <p className="mt-5 text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
+              Explore our mentorship sessions, team activities,
+              and student success stories.
+            </p>
+          </div>
+
+          {/* BENTO GRID */}
+          <div className="grid lg:grid-cols-3 gap-6">
+
+            {/* LARGE LEFT CARD */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="lg:col-span-2 relative md:h-[600px] overflow-hidden rounded-[32px]"
+            >
+              <img
+                src="https://ik.imagekit.io/psltlu4ds/HR%20navin/WhatsApp%20Image%202026-05-28%20at%2011.25.29%20AM%20(1).jpeg"
+                alt=""
+                className="w-full h-full object-cover"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+
+              <div className="absolute bottom-0 p-8">
+
+                <h3 className="text-white text-sm md:text-4xl font-bold mt-5">
+                  Students Who Got Placed
+                </h3>
+
+                <p className="text-white/80 hidden md:block mt-3">
+                  HR mentorship and industry guidance.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* RIGHT COLUMN */}
+            <div className="flex flex-col gap-6">
+
+              {/* TEAM */}
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="lg:col-span-2 relative md:h-[600px] overflow-hidden rounded-[32px]"
+                className="relative h-[287px] overflow-hidden rounded-[32px]"
               >
                 <img
-                  src="https://ik.imagekit.io/psltlu4ds/HR%20navin/WhatsApp%20Image%202026-05-28%20at%2011.25.29%20AM%20(1).jpeg"
+                  src="https://ik.imagekit.io/psltlu4ds/HR%20navin/WhatsApp%20Image%202026-05-28%20at%2011.25.29%20AM%20(2).jpeg"
                   alt=""
                   className="w-full h-full object-cover"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
 
-                <div className="absolute bottom-0 p-8">
-                  
-
-                  <h3 className="text-white text-sm md:text-4xl font-bold mt-5">
-                   Students Who Got Placed
+                <div className="absolute bottom-0 p-6">
+                  <h3 className="text-white text-sm md:text-2xl font-bold">
+                    Our Team
                   </h3>
-
-                  <p className="text-white/80 hidden md:block mt-3">
-                    HR mentorship and industry guidance.
-                  </p>
                 </div>
               </motion.div>
 
-              {/* RIGHT COLUMN */}
-              <div className="flex flex-col gap-6">
+              {/* STUDENT */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="relative lg:h-[287px] h-[300px] overflow-hidden rounded-[32px]"
+              >
+                <img
+                  src="https://ik.imagekit.io/psltlu4ds/HR%20navin/WhatsApp%20Image%202026-05-28%20at%2011.25.29%20AM.jpeg"
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
 
-                {/* TEAM */}
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="relative h-[287px] overflow-hidden rounded-[32px]"
-                >
-                  <img
-                    src="https://ik.imagekit.io/psltlu4ds/HR%20navin/WhatsApp%20Image%202026-05-28%20at%2011.25.29%20AM%20(2).jpeg"
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
-
-                  <div className="absolute bottom-0 p-6">
-                    <h3 className="text-white text-sm md:text-2xl font-bold">
-                      Our Team
-                    </h3>
-                  </div>
-                </motion.div>
-
-                {/* STUDENT */}
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="relative lg:h-[287px] h-[300px] overflow-hidden rounded-[32px]"
-                >
-                  <img
-                    src="https://ik.imagekit.io/psltlu4ds/HR%20navin/WhatsApp%20Image%202026-05-28%20at%2011.25.29%20AM.jpeg"
-                    alt=""
-                    className="w-full h-full  object-cover"
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
-
-                  <div className="absolute bottom-0 p-6">
-                    <h3 className="text-white text-sm md:text-2xl font-bold">
-                      Success Meetups
-                    </h3>
-                  </div>
-                </motion.div>
-
-              </div>
+                <div className="absolute bottom-0 p-6">
+                  <h3 className="text-white text-sm md:text-2xl font-bold">
+                    Success Meetups
+                  </h3>
+                </div>
+              </motion.div>
 
             </div>
-          </div>
-        </motion.section>
 
-      <section className="w-full bg-white px-5 md:px-8 py-8 md:py-10 font-sans">
+          </div>
+        </div>
+      </motion.section>
+
+      <section ref={sectionRef} className="w-full bg-white px-5 md:px-8 py-8 md:py-10 font-sans">
         <div className="max-w-7xl mx-auto">
 
           {/* ── DESKTOP layout (md+) ── */}
@@ -568,18 +657,22 @@ export default function RealPeopleSection() {
                 </div>
                 <div className="flex -space-x-2 mt-1 ml-1">
                   {avatars.map((src, i) => (
-                    <img key={i} src={src} alt="" className="w-8 h-8  rounded-md border-2 border-white object-cover" />
+                    <img key={i} src={src} alt="" className="w-8 h-8 rounded-md border-2 border-white object-cover" />
                   ))}
                 </div>
               </div>
 
               {/* Left 2 cards: card1 (tall, ANIMATES) + card2 (short, static) */}
               <div className="flex gap-3 items-end">
-                <div className="flex-1 h-[440px] rounded-2xl overflow-hidden">
-                  <Card image={g(0).image} heightClass="h-full" animKey={`c1-${index}`} direction={direction} animate={true} />
+                <div className="flex-1 h-[550px] rounded-2xl overflow-hidden">
+                  <Card
+                    image={g(0).image} heightClass="h-full" animKey={`c1-${index}`} direction={direction} animate={true}
+                  />
                 </div>
-                <div className="flex-1 h-[360px] rounded-2xl overflow-hidden">
-                  <Card image={g(1).image} heightClass="h-full" animKey={`c2-${index}`} direction={direction} animate={false} />
+                <div className="flex-1 h-[490px] rounded-2xl overflow-hidden">
+                  <Card
+                    image={g(1).image} heightClass="h-full" animKey={`c2-${index}`} direction={direction} animate={false}
+                  />
                 </div>
               </div>
             </div>
@@ -587,16 +680,17 @@ export default function RealPeopleSection() {
             {/* RIGHT: cards start at TOP (items-start), arrows below */}
             <div className="flex-1 flex flex-col gap-4">
 
-              {/* Arrows aligned to top-right, same height as heading block */}
-              
-
               {/* Right 2 cards: card3 (tall, static) + card4 (short, ANIMATES) */}
               <div className="flex gap-3 items-end">
-                <div className="flex-1 h-[440px] rounded-2xl overflow-hidden">
-                  <Card image={g(2).image} heightClass="h-full" animKey={`c3-${index}`} direction={direction} animate={false} />
+                <div className="flex-1 h-[550px] rounded-2xl overflow-hidden">
+                  <Card
+                    image={g(2).image} heightClass="h-full" animKey={`c3-${index}`} direction={direction} animate={false}
+                  />
                 </div>
-                <div className="flex-1 h-[360px] rounded-2xl overflow-hidden">
-                  <Card image={g(3).image} heightClass="h-full" animKey={`c4-${index}`} direction={direction} animate={true} />
+                <div className="flex-1 h-[490px] rounded-2xl overflow-hidden">
+                  <Card
+                    image={g(3).image} heightClass="h-full" animKey={`c4-${index}`} direction={direction} animate={true}
+                  />
                 </div>
               </div>
 
@@ -644,10 +738,14 @@ export default function RealPeopleSection() {
             {/* Mobile 2 cards: big (ANIMATES) + small (static) */}
             <div className="flex gap-3 items-end">
               <div className="flex-[2.5] h-72 rounded-2xl overflow-hidden">
-                <Card image={g(0).image} heightClass="h-full" animKey={`m1-${index}`} direction={direction} animate={true} />
+                <Card
+                  image={g(0).image} heightClass="h-full" animKey={`m1-${index}`} direction={direction} animate={true}
+                />
               </div>
               <div className="flex-[2.5] h-60 rounded-2xl overflow-hidden">
-                <Card image={g(1).image} heightClass="h-full" animKey={`m2-${index}`} direction={direction} animate={false} />
+                <Card
+                  image={g(1).image} heightClass="h-full" animKey={`m2-${index}`} direction={direction} animate={false}
+                />
               </div>
             </div>
 
