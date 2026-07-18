@@ -372,27 +372,6 @@ function StarIcon() {
   );
 }
 
-function PlayButton({ onClick, isPlaying, visible }) {
-  return (
-    <button
-      onClick={onClick}
-      className={`absolute bottom-3 left-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-200 z-10 ${
-        visible ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
-    >
-      {isPlaying ? (
-        <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-gray-800">
-          <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
-        </svg>
-      ) : (
-        <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-gray-800 ml-0.5">
-          <path d="M8 5v14l11-7z" />
-        </svg>
-      )}
-    </button>
-  );
-}
-
 function ArrowButton({ onClick, direction }) {
   return (
     <button
@@ -411,13 +390,11 @@ function ArrowButton({ onClick, direction }) {
 /* Card that animates only when animKey changes.
    Single-play is enforced globally in the parent via a captured
    'play' event listener — whenever ANY video starts, all others pause.
-   Paused cards always show a dark overlay + play icon.
-   The playing card shows its icon only on hover, with no overlay. */
+   Paused cards always show a dark overlay + play icon. */
 function Card({ image, heightClass, animKey, direction, animate }) {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
 
   const handleActivate = (e) => {
     e.stopPropagation();
@@ -445,8 +422,6 @@ function Card({ image, heightClass, animKey, direction, animate }) {
     <div
       key={animKey}
       onClick={handleActivate}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className={`relative rounded-2xl overflow-hidden shadow-sm w-full cursor-pointer ${heightClass}`}
       style={animate ? {
         animation: `slide${direction} 0.45s cubic-bezier(0.4,0,0.2,1) both`,
@@ -458,6 +433,7 @@ function Card({ image, heightClass, animKey, direction, animate }) {
         className="w-full h-full object-cover"
         muted={isMuted}
         loop
+        controls
         playsInline
         preload="metadata"
         onPlay={() => setIsPlaying(true)}
@@ -466,7 +442,6 @@ function Card({ image, heightClass, animKey, direction, animate }) {
       {!isPlaying && (
         <div className="absolute inset-0 bg-black/40 pointer-events-none" />
       )}
-      <PlayButton onClick={handleActivate} isPlaying={isPlaying} visible={isPlaying ? isHovered : true} />
     </div>
   );
 }
@@ -744,12 +719,12 @@ export default function RealPeopleSection() {
 
             {/* Mobile 2 cards: big (ANIMATES) + small (static) */}
             <div className="flex gap-3 items-end">
-              <div className="flex-[2.5] h-72 rounded-2xl overflow-hidden">
+              <div className="flex-[2.5] h-80 rounded-2xl overflow-hidden">
                 <Card
                   image={g(0).image} heightClass="h-full" animKey={`m1-${index}`} direction={direction} animate={true}
                 />
               </div>
-              <div className="flex-[2.5] h-60 rounded-2xl overflow-hidden">
+              <div className="flex-[2.5] h-[17rem] rounded-2xl overflow-hidden">
                 <Card
                   image={g(1).image} heightClass="h-full" animKey={`m2-${index}`} direction={direction} animate={false}
                 />
