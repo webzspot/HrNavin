@@ -195,7 +195,7 @@ AI powered HR Training
         </motion.div>
 
         {/* CTA */}
-       <CTAButtonPopup/>
+       <CTAButtonPopup className="mt-7"/>
 
        
       </div>
