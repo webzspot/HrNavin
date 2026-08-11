@@ -40,8 +40,8 @@ const mentors = [
   },
   {
     name: "Shanthi",
-    role: "HR Generalist, Payroll & Compliance",
-    exp: "7+ Years",
+    role: "HR Recruitment Specialist & Internship Mentor",
+    exp: "5+ Years",
     img: "https://ik.imagekit.io/psltlu4ds/HR%20navin/crop3.png",
     company: "Google",
     bg: "radial-gradient(circle at center, #282FE0 0%, #0B1445 60%, #020C32 70%)",

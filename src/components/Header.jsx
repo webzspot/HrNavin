@@ -13,6 +13,61 @@ const Navbar = () => {
     // { id: "career", label: "Career" },
   ];
 
+  const contacts = [
+    {
+      name: "Sudha",
+      number: "6382974304",
+    },
+    {
+      name: "Vikasini",
+      number: "7538864115",
+    },
+    {
+      name: "Kadhar",
+      number: "7826015352",
+    },
+  ];
+
+  const getWeeklyContact = () => {
+    // Monday, August 10, 2026 = Week 1 (Sudha)
+    const rotationStart = new Date("2026-08-10T00:00:00");
+
+    const today = new Date();
+
+    // Remove time portion
+    const startDate = new Date(rotationStart);
+    startDate.setHours(0, 0, 0, 0);
+
+    const currentDate = new Date(today);
+    currentDate.setHours(0, 0, 0, 0);
+
+    // Calculate difference in days
+    const differenceInTime =
+      currentDate.getTime() - startDate.getTime();
+
+    const differenceInDays =
+      Math.floor(
+        differenceInTime / (1000 * 60 * 60 * 24)
+      );
+
+    // Calculate which week we are in
+    const weekNumber =
+      Math.floor(differenceInDays / 7);
+
+    // Rotate between 0, 1, 2
+    const contactIndex =
+      ((weekNumber % contacts.length) + contacts.length) %
+      contacts.length;
+
+    return contacts[contactIndex];
+  };
+
+  const handleContactClick = () => {
+    const contact = getWeeklyContact();
+
+    window.location.href = `tel:${contact.number}`;
+  };
+
   // SCROLL TO SECTION
   const handleScroll = (id) => {
     const section = document.getElementById(id);
@@ -113,9 +168,12 @@ const Navbar = () => {
 
         {/* DESKTOP BUTTON */}
         <div className="hidden md:block">
-          <button className="bg-white text-black px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition">
-            Contact Us
-          </button>
+          <button
+  onClick={handleContactClick}
+  className="bg-white text-black px-5 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition"
+>
+  Contact Us
+</button>
         </div>
 
         {/* MOBILE MENU BUTTON */}
@@ -175,7 +233,10 @@ const Navbar = () => {
           ))}
 
           {/* BUTTON */}
-          <button className="mt-5 bg-white text-black py-3 rounded-xl font-medium hover:bg-gray-200 transition">
+          <button
+            onClick={handleContactClick}
+            className="mt-5 bg-white text-black py-3 rounded-xl font-medium hover:bg-gray-200 transition"
+          >
             Contact Us
           </button>
 

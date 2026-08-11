@@ -3,7 +3,10 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, X } from "lucide-react";
+import { X } from "lucide-react";
+
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbwhqIQrL0LVMPw0EomXnNxe8uDq3VnNa4TUtjar_uNV_Z6wJnKf-pqwMhPxkVXy0x_E/exec";
 
 export default function CTAButtonPopup({
   buttonText = "Book Your Seat Now",
@@ -11,17 +14,25 @@ export default function CTAButtonPopup({
   gradientFrom = "#FFF0F0",
   gradientTo = "transparent",
   submitBtnBg = "#4043FE",
-}) {
+  className = "text-white",
+})  {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    fullName: "",
     phone: "",
+    email: "",
+    completionYear: "",
+    degreeDepartment: "",
+    committedToHR: "",
+    interestedInPaidProgram: "",
   });
 
   useEffect(() => {
     setMounted(true);
+
     return () => setMounted(false);
   }, []);
 
@@ -38,24 +49,86 @@ export default function CTAButtonPopup({
   }, [open]);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Submitted:", formData);
-    setOpen(false);
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  setIsSubmitting(true);
+
+  try {
+    const formBody = new URLSearchParams();
+
+    formBody.append("fullName", formData.fullName);
+    formBody.append("phone", formData.phone);
+    formBody.append("email", formData.email);
+    formBody.append("completionYear", formData.completionYear);
+    formBody.append(
+      "degreeDepartment",
+      formData.degreeDepartment
+    );
+    formBody.append(
+      "committedToHR",
+      formData.committedToHR
+    );
+    formBody.append(
+      "interestedInPaidProgram",
+      formData.interestedInPaidProgram
+    );
+
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      body: formBody,
+      mode: "no-cors",
+    });
+
+    // Show success state on button
+    setIsSubmitting("success");
+
+    // Reset form
     setFormData({
-      name: "",
-      email: "",
+      fullName: "",
       phone: "",
+      email: "",
+      completionYear: "",
+      degreeDepartment: "",
+      committedToHR: "",
+      interestedInPaidProgram: "",
     });
-  };
 
-  // Popup content
+    // Keep success message visible for 2 seconds
+    setTimeout(() => {
+      setOpen(false);
+      setIsSubmitting(false);
+    }, 2000);
+
+  } catch (error) {
+    console.error("Form submission error:", error);
+
+    // Show error state on button
+    setIsSubmitting("error");
+
+    // Keep error message visible for 2 seconds
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 2000);
+  }
+};
+
+
+
+
+
+
+
+
   const popupContent = open && (
     <motion.div
       initial={{ opacity: 0 }}
@@ -63,10 +136,7 @@ export default function CTAButtonPopup({
       exit={{ opacity: 0 }}
       style={{
         position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        inset: 0,
         zIndex: 999999,
         display: "flex",
         alignItems: "center",
@@ -74,6 +144,7 @@ export default function CTAButtonPopup({
         backgroundColor: "rgba(0, 0, 0, 0.6)",
         backdropFilter: "blur(4px)",
         padding: "1rem",
+        overflowY: "auto",
       }}
       onClick={(e) => {
         if (e.target === e.currentTarget) {
@@ -89,7 +160,9 @@ export default function CTAButtonPopup({
         style={{
           position: "relative",
           width: "100%",
-          maxWidth: "28rem",
+          maxWidth: "32rem",
+          maxHeight: "90vh",
+          overflowY: "auto",
           borderRadius: "28px",
           backgroundColor: "white",
           padding: "1.5rem",
@@ -115,78 +188,56 @@ export default function CTAButtonPopup({
             border: "none",
           }}
         >
-          <X size={18} />
+          <X size={18} color="#333" />
         </button>
 
-        <h2 className="text-xl md:text-3xl font-bold text-black">
-          Book Your Slot
-        </h2>
+        {/* HEADER */}
+        <div className="pr-10">
+          <h2 className="text-xl md:text-3xl font-bold text-black">
+            Book Your Slot
+          </h2>
 
-        <p className="text-gray-500 text-sm md:text-base mt-2">
-          Fill your details and we'll contact you.
-        </p>
+          <p className="text-gray-500 text-sm md:text-base mt-2">
+            Fill in your details and we'll contact you.
+          </p>
+        </div>
 
-        <form onSubmit={handleSubmit} className="md:mt-8 mt-4 space-y-5">
+        {/* FORM */}
+        <form
+          onSubmit={handleSubmit}
+          className="md:mt-8 mt-5 space-y-5"
+        >
+          {/* FULL NAME */}
           <div className="flex flex-col items-start">
             <label className="text-xs md:text-sm font-medium text-gray-700">
-              Name
+              Full Name
             </label>
+
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="fullName"
+              value={formData.fullName}
               onChange={handleChange}
               required
-              placeholder="Enter your name"
+              placeholder="Enter your full name"
               className="
-                w-full
-                mt-2
-                px-4
-                py-3
-                rounded-xl
-                placeholder:text-gray-700
-                md:placeholder:text-base
-                placeholder:text-sm
-                border
-                border-gray-600
+                w-full mt-2 px-4 py-3 rounded-xl
+                placeholder:text-gray-500
+                text-sm md:text-base
+                border border-gray-300
                 outline-none
                 focus:border-[#4043FE]
+                focus:ring-1 focus:ring-[#4043FE]
               "
             />
           </div>
 
+          {/* PHONE */}
           <div className="flex flex-col items-start">
             <label className="text-xs md:text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              placeholder="Enter your email"
-              className="
-                w-full
-                mt-2
-                px-4
-                py-3
-                rounded-xl
-                placeholder:text-gray-700
-                md:placeholder:text-base
-                placeholder:text-sm
-                border
-                border-gray-600
-                outline-none
-                focus:border-[#4043FE]
-              "
-            />
-          </div>
-
-          <div className="flex flex-col items-start">
-            <label className="md:text-sm text-xs font-medium text-gray-700">
               Phone Number
             </label>
+
             <input
               type="tel"
               name="phone"
@@ -194,38 +245,187 @@ export default function CTAButtonPopup({
               onChange={handleChange}
               required
               placeholder="Enter phone number"
+              pattern="[0-9]{10}"
+              maxLength={10}
               className="
-                w-full
-                mt-2
-                px-4
-                py-3
-                rounded-xl
-                placeholder:text-gray-700
-                md:placeholder:text-base
-                placeholder:text-sm
-                border
-                border-gray-600
+                w-full mt-2 px-4 py-3 rounded-xl
+                placeholder:text-gray-500
+                text-sm md:text-base
+                border border-gray-300
                 outline-none
                 focus:border-[#4043FE]
+                focus:ring-1 focus:ring-[#4043FE]
               "
             />
           </div>
 
+          {/* EMAIL */}
+          <div className="flex flex-col items-start">
+            <label className="text-xs md:text-sm font-medium text-gray-700">
+              E-Mail ID
+            </label>
+
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              placeholder="Enter your email address"
+              className="
+                w-full mt-2 px-4 py-3 rounded-xl
+                placeholder:text-gray-500
+                text-sm md:text-base
+                border border-gray-300
+                outline-none
+                focus:border-[#4043FE]
+                focus:ring-1 focus:ring-[#4043FE]
+              "
+            />
+          </div>
+
+          {/* YEAR OF UG / PG COMPLETION */}
+          <div className="flex flex-col items-start">
+            <label className="text-xs md:text-sm font-medium text-gray-700">
+              Year of UG/PG Completion
+            </label>
+
+            <input
+              type="text"
+              name="completionYear"
+              value={formData.completionYear}
+              onChange={handleChange}
+              required
+              placeholder="Example: 2025"
+              className="
+                w-full mt-2 px-4 py-3 rounded-xl
+                placeholder:text-gray-500
+                text-sm md:text-base
+                border border-gray-300
+                outline-none
+                focus:border-[#4043FE]
+                focus:ring-1 focus:ring-[#4043FE]
+              "
+            />
+          </div>
+
+          {/* DEGREE & DEPARTMENT */}
+          <div className="flex flex-col items-start">
+            <label className="text-xs md:text-sm font-medium text-gray-700">
+              Degree & Department of UG/PG
+            </label>
+
+            <input
+              type="text"
+              name="degreeDepartment"
+              value={formData.degreeDepartment}
+              onChange={handleChange}
+              required
+              placeholder="Example: B.Com - Commerce"
+              className="
+                w-full mt-2 px-4 py-3 rounded-xl
+                placeholder:text-gray-500
+                text-sm md:text-base
+                border border-gray-300
+                outline-none
+                focus:border-[#4043FE]
+                focus:ring-1 focus:ring-[#4043FE]
+              "
+            />
+          </div>
+
+          {/* HR COMMITMENT */}
+          <div className="flex flex-col items-start">
+            <label className="text-xs md:text-sm font-medium text-gray-700">
+              Are you committed to learning HR skills?
+            </label>
+
+            <select
+              name="committedToHR"
+              value={formData.committedToHR}
+              onChange={handleChange}
+              required
+              className="
+                w-full mt-2 px-4 py-3 rounded-xl
+                text-sm md:text-base
+                border border-gray-300
+                outline-none
+                bg-white
+                focus:border-[#4043FE]
+                focus:ring-1 focus:ring-[#4043FE]
+              "
+            >
+              <option value="">Select an option</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          {/* PAID PROGRAM */}
+          <div className="flex flex-col items-start">
+            <label className="text-xs md:text-sm font-medium text-gray-700">
+              It's a paid program. Are you interested?
+            </label>
+
+            <select
+              name="interestedInPaidProgram"
+              value={formData.interestedInPaidProgram}
+              onChange={handleChange}
+              required
+              className="
+                w-full mt-2 px-4 py-3 rounded-xl
+                text-sm md:text-base
+                border border-gray-300
+                outline-none
+                bg-white
+                focus:border-[#4043FE]
+                focus:ring-1 focus:ring-[#4043FE]
+              "
+            >
+              <option value="">Select an option</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          {/* SUBMIT BUTTON */}
           <button
-            type="submit"
-            style={{
-              backgroundColor: submitBtnBg,
-              width: "100%",
-              color: "white",
-              padding: "0.75rem",
-              borderRadius: "0.75rem",
-              fontWeight: "600",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            Submit Details
-          </button>
+  type="submit"
+  disabled={isSubmitting === true || isSubmitting === "success"}
+  style={{
+    backgroundColor:
+      isSubmitting === "success"
+        ? "#16A34A"
+        : isSubmitting === "error"
+        ? "#DC2626"
+        : isSubmitting === true
+        ? "#999"
+        : submitBtnBg,
+
+    width: "100%",
+    color: "white",
+    padding: "0.75rem",
+    borderRadius: "0.75rem",
+    fontWeight: "600",
+    border: "none",
+
+    cursor:
+      isSubmitting === true ||
+      isSubmitting === "success"
+        ? "not-allowed"
+        : "pointer",
+
+    transition: "all 0.3s ease",
+  }}
+>
+  {isSubmitting === true
+    ? "Submitting..."
+    : isSubmitting === "success"
+    ? "Submitted Successfully ✓"
+    : isSubmitting === "error"
+    ? "Submission Failed ✕"
+    : "Submit Details"}
+</button>
         </form>
       </motion.div>
     </motion.div>
@@ -233,7 +433,7 @@ export default function CTAButtonPopup({
 
   return (
     <>
-      {/* BUTTON */}
+      {/* CTA BUTTON */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -243,7 +443,7 @@ export default function CTAButtonPopup({
           type: "spring",
           stiffness: 200,
         }}
-        className="inline-block hover:scale-105 transition-transform p-[1.5px] rounded-xl mt-5"
+        className={`inline-block hover:scale-105 transition-transform p-[1.5px] rounded-xl ${className}`}
         style={{
           background: `linear-gradient(to right, ${gradientFrom}, ${gradientTo})`,
         }}
@@ -255,29 +455,31 @@ export default function CTAButtonPopup({
           }}
           className="
             px-8
-            py-3
+            py-3 
             rounded-xl
             text-sm
             lg:text-xl
             flex
             items-center
             gap-2
-            text-white
+            
             transition-all
             duration-300
             cursor-pointer
           "
         >
           {buttonText}
-          <ArrowUpRight size={18} />
         </button>
       </motion.div>
 
-      {/* PORTAL - Renders popup directly in document.body */}
-      {mounted && createPortal(
-        <AnimatePresence>{popupContent}</AnimatePresence>,
-        document.body
-      )}
+      {/* POPUP PORTAL */}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {popupContent}
+          </AnimatePresence>,
+          document.body
+        )}
     </>
   );
 }

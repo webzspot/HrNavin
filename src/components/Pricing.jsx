@@ -224,7 +224,7 @@ const Pricing = () => {
               </motion.div>
 
               {/* BUTTON */}
-              <motion.button
+              {/* <motion.button
                 whileHover={{
                   scale: 1.03,
                 }}
@@ -236,7 +236,17 @@ const Pricing = () => {
                 className="xl:ml-auto whitespace-nowrap bg-white/90 text-gray-900 px-10 py-3 rounded-xl text-sm md:text-base font-semibold shadow border border-white/40 hover:bg-white"
               >
                 Get started
-              </motion.button>
+              </motion.button> */}
+
+              
+                 <CTAButtonPopup
+  buttonText="Get started"
+  buttonBg="#ffffff"
+  gradientFrom="#ffffff"
+  gradientTo="rgba(255,255,255,0.4)"
+  className="xl:ml-auto text-black whitespace-nowrap mt-0"
+/>
+               
 
             </motion.div>
           </motion.div>
@@ -467,7 +477,7 @@ const Pricing = () => {
                 </div>
 
                 {/* BUTTON */}
-                <motion.button
+                {/* <motion.button
                   whileHover={{
                     scale: 1.02,
                   }}
@@ -479,7 +489,11 @@ const Pricing = () => {
                   className="w-full mt-4 border border-gray-300 text-sm md:text-base rounded-xl  py-3 bg-[#2A74DB] hover:bg-gray-200 font-medium"
                 >
                  Enroll Now
-                </motion.button>
+                </motion.button> */}
+
+                <div className=" w-full flex items-center justify-center">
+                  <CTAButtonPopup buttonText="Enroll now "  className='mx-auto mt-5 font-medium '  />
+                </div>
 
                 <div className="border-t border-[#E9EAEB] my-4"></div>
 
