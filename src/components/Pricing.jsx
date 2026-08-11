@@ -244,7 +244,8 @@ const Pricing = () => {
   buttonBg="#ffffff"
   gradientFrom="#ffffff"
   gradientTo="#ffffff"
-  className="xl:ml-auto mx-auto md:text-left text-black whitespace-nowrap mt-0"
+  className="xl:ml-auto mx-auto  md:text-left text-black whitespace-nowrap mt-0"
+  
 />
                
 
@@ -491,9 +492,11 @@ const Pricing = () => {
                  Enroll Now
                 </motion.button> */}
 
-                <div className=" w-full flex items-center justify-center">
-                  <CTAButtonPopup buttonText="Enroll now "  className=' mt-5 text-white font-medium '  />
-                </div>
+               
+                  <div className="flex items-center justify-center">
+                    <CTAButtonPopup buttonText="Enroll now "  className='   text-white font-medium '  />
+                  </div>
+              
 
                 <div className="border-t border-[#E9EAEB] my-4"></div>
 
@@ -561,7 +564,7 @@ const Pricing = () => {
   buttonBg="#000000"
   gradientFrom="#B1E635"
   gradientTo="#ffffff"
-  className="mt-4"
+  className=""
   />
 
           </motion.div>

@@ -353,7 +353,7 @@ const ReviewCard = ({ name, text, accentHex }) => (
                     buttonBg="#000000"
                     gradientFrom="#B1E635"
                     gradientTo="#ffffff"
-                    className=" text-white mt-8"
+                    className=" text-white "
                   // submitBtnBg="#B1E635"
                   />
                 </motion.div>
@@ -543,7 +543,7 @@ const ReviewCard = ({ name, text, accentHex }) => (
                         fresher in interviews.
                       </span>
                     </motion.p>
-                    <div className=""><CTAButtonPopup className="mt-8" /></div>
+                    <div className=""><CTAButtonPopup className="" /></div>
                   </motion.div>
 
                 </div>
@@ -758,7 +758,7 @@ const ReviewCard = ({ name, text, accentHex }) => (
                 We Promise Transformation.
               </span>
             </motion.p>
-            <div className="mx-auto"><CTAButtonPopup className="mt-7 text-white" /></div>
+            <div className="mx-auto"><CTAButtonPopup className=" text-white" /></div>
           </div>
 
 
